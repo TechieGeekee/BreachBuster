@@ -5,6 +5,83 @@
     box-sizing: border-box;
 }
 
+/* Enhanced Cyber Effects */
+.glowing-cyber-title {
+    animation: cyberGlow 3s ease-in-out infinite !important;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(139, 69, 193, 0.6) !important;
+}
+
+.rotating-shield {
+    animation: rotateShield 4s linear infinite !important;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8)) !important;
+}
+
+.rotating-shield-container {
+    position: relative;
+}
+
+.rotating-shield-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulseCyber 2s ease-in-out infinite;
+}
+
+/* Enhanced Typing Effect */
+.typing-text {
+    position: relative;
+}
+
+.typing-text::after {
+    content: '|';
+    animation: blinkCursor 1s infinite, colorShift 2s ease-in-out infinite;
+    margin-left: 2px;
+}
+
+/* Cyber Animations */
+@keyframes cyberGlow {
+    0%, 100% { 
+        text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(139, 69, 193, 0.6);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 60px rgba(139, 69, 193, 0.9);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes rotateShield {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseCyber {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% { 
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+@keyframes blinkCursor {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes colorShift {
+    0%, 100% { color: #00FFFF; }
+    50% { color: #8B45C1; }
+}
+
 body {
     font-family: 'Ubuntu', sans-serif;
     background-color: #000;

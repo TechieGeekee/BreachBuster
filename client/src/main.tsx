@@ -200,27 +200,57 @@ function startCounterAnimations() {
     });
 }
 
-// Typing animation
+// Enhanced Typing animation with multiple phrases
 function startTypingAnimation() {
     const typingElement = document.getElementById('typing-subtitle');
     if (!typingElement) return;
     
-    const text = 'Expose the leaks before they expose you..';
-    let index = 0;
+    const phrases = [
+        'Expose the leaks before they expose you',
+        'Secure your digital fortress today',
+        'Hunt down vulnerabilities relentlessly', 
+        'Stay ahead of cyber threats',
+        'Protect what matters most'
+    ];
     
-    typingElement.textContent = '';
-    typingElement.classList.add('typing');
+    let currentPhraseIndex = 0;
+    let currentText = '';
+    let isTyping = true;
+    let isPaused = false;
     
-    const typeInterval = setInterval(() => {
-        if (index < text.length) {
-            typingElement.textContent += text.charAt(index);
-            index++;
-        } else {
-            typingElement.classList.remove('typing');
-            typingElement.classList.add('complete');
-            clearInterval(typeInterval);
+    function typePhrase() {
+        const currentPhrase = phrases[currentPhraseIndex];
+        
+        if (isTyping && !isPaused) {
+            if (currentText.length < currentPhrase.length) {
+                currentText = currentPhrase.slice(0, currentText.length + 1);
+                if (typingElement) typingElement.textContent = currentText;
+                setTimeout(typePhrase, 80);
+            } else {
+                // Finished typing, pause then start deleting
+                isPaused = true;
+                setTimeout(() => {
+                    isTyping = false;
+                    isPaused = false;
+                    typePhrase();
+                }, 2500);
+            }
+        } else if (!isTyping && !isPaused) {
+            if (currentText.length > 0) {
+                currentText = currentText.slice(0, -1);
+                if (typingElement) typingElement.textContent = currentText;
+                setTimeout(typePhrase, 40);
+            } else {
+                // Finished deleting, move to next phrase
+                currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                isTyping = true;
+                setTimeout(typePhrase, 500);
+            }
         }
-    }, 100);
+    }
+    
+    typingElement.classList.add('typing');
+    typePhrase();
 }
 
 // Feature card interactions
