@@ -17,6 +17,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Russo+One&family=Rubik+Mono+One&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Initial Loading Screen to prevent FOUC -->
+    <div id="initial-loading" class="initial-loading">
+        <div class="initial-spinner"></div>
+        <div class="initial-text">Initializing BreachBuster...</div>
+    </div>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-container">
@@ -93,10 +98,25 @@
                     <h1 class="main-heading">BREACH BUSTER</h1>
 
                     <!-- Subtitle -->
-                    <p class="subtitle">
-                        Expose the leaks before they<br>
-                        expose you..
+                    <p class="subtitle typing-text" id="typing-subtitle">
+                        Expose the leaks before they expose you..
                     </p>
+                    
+                    <!-- Dynamic Stats -->
+                    <div class="dynamic-stats">
+                        <div class="stat-counter floating-element">
+                            <div class="counter" id="threats-counter" data-target="1247">0</div>
+                            <div class="counter-label">Threats Blocked Today</div>
+                        </div>
+                        <div class="stat-counter floating-element">
+                            <div class="counter" id="scans-counter" data-target="8392">0</div>
+                            <div class="counter-label">Security Scans Performed</div>
+                        </div>
+                        <div class="stat-counter floating-element">
+                            <div class="counter" id="users-counter" data-target="25738">0</div>
+                            <div class="counter-label">Protected Users</div>
+                        </div>
+                    </div>
 
                     <!-- CTA Button -->
                     <div class="cta-container">
@@ -244,28 +264,44 @@
                     </div>
                     
                     <div class="features-grid">
-                        <div class="feature-card">
+                        <div class="feature-card interactive-card pulse-effect">
                             <div class="feature-icon">🔍</div>
                             <h3>Advanced Detection</h3>
                             <p>Our cutting-edge algorithms scan millions of data points to identify potential security vulnerabilities before they become threats.</p>
+                            <div class="feature-stats">
+                                <span class="feature-number counter" data-target="99.9">0</span>%
+                                <span class="feature-metric">Accuracy Rate</span>
+                            </div>
                         </div>
                         
-                        <div class="feature-card">
+                        <div class="feature-card interactive-card pulse-effect">
                             <div class="feature-icon">⚡</div>
                             <h3>Real-time Monitoring</h3>
                             <p>24/7 continuous monitoring ensures that your systems are protected around the clock with instant threat detection.</p>
+                            <div class="feature-stats">
+                                <span class="feature-number counter" data-target="2">0</span>ms
+                                <span class="feature-metric">Response Time</span>
+                            </div>
                         </div>
                         
-                        <div class="feature-card">
+                        <div class="feature-card interactive-card pulse-effect">
                             <div class="feature-icon">🛡️</div>
                             <h3>Enterprise Security</h3>
                             <p>Military-grade encryption and security protocols keep your data safe while maintaining compliance standards.</p>
+                            <div class="feature-stats">
+                                <span class="feature-number counter" data-target="256">0</span>-bit
+                                <span class="feature-metric">Encryption</span>
+                            </div>
                         </div>
                         
-                        <div class="feature-card">
+                        <div class="feature-card interactive-card pulse-effect">
                             <div class="feature-icon">📊</div>
                             <h3>Detailed Analytics</h3>
                             <p>Comprehensive reports and analytics help you understand your security posture and make informed decisions.</p>
+                            <div class="feature-stats">
+                                <span class="feature-number counter" data-target="24">0</span>/7
+                                <span class="feature-metric">Monitoring</span>
+                            </div>
                         </div>
                     </div>
                 </div>

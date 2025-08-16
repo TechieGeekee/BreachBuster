@@ -6,6 +6,11 @@ let isLoading = true;
 
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Hide initial loading screen after CSS loads
+    setTimeout(() => {
+        hideInitialLoading();
+    }, 800);
+    
     // Start loading sequence
     startLoadingSequence();
     
@@ -14,6 +19,23 @@ document.addEventListener('DOMContentLoaded', function() {
         finishLoading();
     }, 4000); // 4 seconds loading time
 });
+
+// Hide initial loading screen and show content
+function hideInitialLoading() {
+    const initialLoading = document.getElementById('initial-loading');
+    const contentWrapper = document.querySelector('.content-wrapper') as HTMLElement;
+    
+    if (initialLoading) {
+        initialLoading.classList.add('hidden');
+        setTimeout(() => {
+            initialLoading.style.display = 'none';
+        }, 500);
+    }
+    
+    if (contentWrapper) {
+        contentWrapper.classList.add('loaded');
+    }
+}
 
 // Loading sequence
 function startLoadingSequence() {
@@ -135,8 +157,132 @@ function initializeApp() {
     // Initialize password generator
     initializePasswordGenerator();
     
+    // Initialize dynamic features
+    initializeDynamicFeatures();
+    
     // Show initial page with animation
     showPage('home');
+}
+
+// Initialize dynamic features
+function initializeDynamicFeatures() {
+    // Start counter animations
+    startCounterAnimations();
+    
+    // Start typing text animation
+    startTypingAnimation();
+    
+    // Initialize feature card interactions
+    initializeFeatureCards();
+    
+    // Initialize theme toggle functionality
+    initializeThemeToggle();
+}
+
+// Counter animations
+function startCounterAnimations() {
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target') || counter.textContent || '0');
+        const element = counter as HTMLElement;
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target.toString();
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current).toString();
+            }
+        }, 20);
+    });
+}
+
+// Typing animation
+function startTypingAnimation() {
+    const typingElement = document.getElementById('typing-subtitle');
+    if (!typingElement) return;
+    
+    const text = 'Expose the leaks before they expose you..';
+    let index = 0;
+    
+    typingElement.textContent = '';
+    typingElement.classList.add('typing');
+    
+    const typeInterval = setInterval(() => {
+        if (index < text.length) {
+            typingElement.textContent += text.charAt(index);
+            index++;
+        } else {
+            typingElement.classList.remove('typing');
+            typingElement.classList.add('complete');
+            clearInterval(typeInterval);
+        }
+    }, 100);
+}
+
+// Feature card interactions
+function initializeFeatureCards() {
+    const featureCards = document.querySelectorAll('.feature-card');
+    
+    featureCards.forEach(card => {
+        card.addEventListener('mouseenter', function(this: HTMLElement) {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function(this: HTMLElement) {
+            this.style.transform = '';
+        });
+        
+        card.addEventListener('click', function(this: HTMLElement) {
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            }, 150);
+        });
+    });
+}
+
+// Theme toggle functionality
+function initializeThemeToggle() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        updateThemeIcon(true);
+    }
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function(this: HTMLElement) {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            
+            // Save theme preference
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            
+            // Update icon
+            updateThemeIcon(isLight);
+            
+            // Add click animation
+            this.style.transform = 'rotate(180deg) scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 300);
+        });
+    }
+}
+
+function updateThemeIcon(isLight: boolean) {
+    const themeIcon = document.querySelector('.theme-icon') as HTMLImageElement;
+    if (themeIcon) {
+        // Update the icon filter for light/dark mode
+        themeIcon.style.filter = isLight ? 'invert(1)' : 'invert(0)';
+    }
 }
 
 // Initialize entrance animations
