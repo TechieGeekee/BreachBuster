@@ -13,12 +13,13 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { Shield, Copy, RefreshCw, Lock, Eye, EyeOff } from "lucide-react";
+import { Link } from "wouter";
 
 const navigationItems = [
-  { name: "Home", active: true },
-  { name: "About", active: false },
-  { name: "Contact", active: false },
-  { name: "Support", active: false },
+  { name: "Home", active: true, path: "/" },
+  { name: "About", active: false, path: "/about" },
+  { name: "Contact", active: false, path: "/contact" },
+  { name: "Support", active: false, path: "/support" },
 ];
 
 const typingPhrases = [
@@ -461,13 +462,15 @@ export const Main = (): JSX.Element => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              <motion.div 
-                className="text-white font-mono text-4xl sm:text-5xl lg:text-6xl transform rotate-180"
-                animate={{ rotate: [180, 170, 180] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                B
-              </motion.div>
+              <Link href="/">
+                <motion.div 
+                  className="text-white font-mono text-4xl sm:text-5xl lg:text-6xl transform rotate-180 cursor-pointer"
+                  animate={{ rotate: [180, 170, 180] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  B
+                </motion.div>
+              </Link>
               <div className="flex flex-col text-white font-bold">
                 <span className="text-lg sm:text-xl lg:text-2xl font-['Russo_One'] leading-tight">reach</span>
                 <span className="text-lg sm:text-xl lg:text-2xl font-['Russo_One'] leading-tight">uster</span>
@@ -488,15 +491,17 @@ export const Main = (): JSX.Element => {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <NavigationMenuLink
-                            className={`font-['Ubuntu'] font-bold text-base lg:text-lg transition-all duration-300 cursor-pointer ${
-                              item.active 
-                                ? "text-white" 
-                                : "text-white/70 hover:text-white"
-                            }`}
-                          >
-                            {item.name}
-                          </NavigationMenuLink>
+                          <Link href={item.path}>
+                            <NavigationMenuLink
+                              className={`font-['Ubuntu'] font-bold text-base lg:text-lg transition-all duration-300 cursor-pointer ${
+                                item.active 
+                                  ? "text-white" 
+                                  : "text-white/70 hover:text-white"
+                              }`}
+                            >
+                              {item.name}
+                            </NavigationMenuLink>
+                          </Link>
                         </motion.div>
                       </NavigationMenuItem>
                     ))}
@@ -793,16 +798,17 @@ export const Main = (): JSX.Element => {
           <div className="glass-nav rounded-full px-6 py-3">
             <div className="flex items-center space-x-6">
               {navigationItems.map((item, index) => (
-                <motion.button
-                  key={index}
-                  className={`font-['Ubuntu'] font-bold text-sm transition-all duration-300 ${
-                    item.active ? "text-white" : "text-white/70"
-                  }`}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  {item.name}
-                </motion.button>
+                <Link key={index} href={item.path}>
+                  <motion.button
+                    className={`font-['Ubuntu'] font-bold text-sm transition-all duration-300 ${
+                      item.active ? "text-white" : "text-white/70"
+                    }`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    {item.name}
+                  </motion.button>
+                </Link>
               ))}
             </div>
           </div>
