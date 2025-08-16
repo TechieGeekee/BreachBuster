@@ -225,6 +225,9 @@ function addInteractionHandlers() {
     
     // Security section interactions
     addSecuritySectionHandlers();
+    
+    // Creator section interactions
+    addCreatorSectionHandlers();
 }
 
 function addNavigationHandlers() {
@@ -310,6 +313,10 @@ function addThemeToggleHandler() {
     const themeToggle = document.querySelector('.theme-toggle');
     if (!themeToggle) return;
     
+    // Initialize theme state
+    let isDarkMode = localStorage.getItem('theme') !== 'light';
+    updateTheme(isDarkMode);
+    
     themeToggle.addEventListener('click', function(this: HTMLElement) {
         // Add rotation animation
         this.style.transform = 'rotate(180deg) scale(0.9)';
@@ -318,9 +325,21 @@ function addThemeToggleHandler() {
             this.style.transform = '';
         }, 300);
         
-        // You can add theme switching logic here
-        console.log('Theme toggle clicked!');
+        // Toggle theme
+        isDarkMode = !isDarkMode;
+        updateTheme(isDarkMode);
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     });
+    
+    function updateTheme(dark: boolean) {
+        if (dark) {
+            document.documentElement.classList.remove('light-mode');
+            document.documentElement.classList.add('dark-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+            document.documentElement.classList.add('light-mode');
+        }
+    }
     
     // Hover effects
     themeToggle.addEventListener('mouseenter', function(this: HTMLElement) {
@@ -502,22 +521,57 @@ function updateNavigationStates(activePage: string) {
 }
 
 function showPage(pageName: string) {
-    // Hide all pages
+    // Add loading overlay for smooth transitions
+    showPageTransition();
+    
+    // Hide all pages with fade out
     const allPages = document.querySelectorAll('.page');
     allPages.forEach(page => {
+        page.classList.add('page-fadeout');
         page.classList.remove('active');
     });
     
-    // Show target page with delay for smooth transition
+    // Show target page with smooth transition
     setTimeout(() => {
         const targetPage = document.getElementById(`${pageName}-page`);
         if (targetPage) {
-            targetPage.classList.add('active');
+            // Remove fade out from all pages
+            allPages.forEach(page => {
+                page.classList.remove('page-fadeout');
+            });
+            
+            targetPage.classList.add('active', 'page-fadein');
+            
+            // Remove fade in class after animation
+            setTimeout(() => {
+                targetPage.classList.remove('page-fadein');
+            }, 600);
             
             // Trigger page-specific animations
             triggerPageAnimations(pageName);
         }
-    }, 100);
+        
+        hidePageTransition();
+    }, 300);
+}
+
+function showPageTransition() {
+    const transition = document.createElement('div');
+    transition.className = 'page-transition';
+    transition.innerHTML = '<div class="transition-loader"><div class="loader-dots"><span></span><span></span><span></span></div></div>';
+    document.body.appendChild(transition);
+}
+
+function hidePageTransition() {
+    const transition = document.querySelector('.page-transition');
+    if (transition) {
+        transition.classList.add('fade-out');
+        setTimeout(() => {
+            if (transition.parentNode) {
+                transition.remove();
+            }
+        }, 300);
+    }
 }
 
 function triggerPageAnimations(pageName: string) {
@@ -570,7 +624,7 @@ function addPageInteractionHandlers() {
     // Form submission handler
     const securityForm = document.querySelector('.security-form');
     if (securityForm) {
-        securityForm.addEventListener('submit', function(e: Event) {
+        securityForm.addEventListener('submit', function(this: HTMLFormElement, e: Event) {
             e.preventDefault();
             
             const submitButton = this.querySelector('.submit-button') as HTMLElement;
@@ -1115,7 +1169,7 @@ function addSocialMediaEffects() {
 function addFooterLinkEffects() {
     const footerLinks = document.querySelectorAll('.footer-link');
     footerLinks.forEach(link => {
-        link.addEventListener('click', function(this: HTMLElement, e) {
+        link.addEventListener('click', function(this: HTMLElement, e: Event) {
             e.preventDefault();
             
             // Add click ripple effect
@@ -1195,7 +1249,7 @@ function initializePasswordGenerator() {
     // Toggle switches handlers
     const toggles = document.querySelectorAll('.toggle-input');
     toggles.forEach(toggle => {
-        toggle.addEventListener('change', updatePasswordStrength);
+        toggle.addEventListener('change', () => updatePasswordStrength());
     });
     
     // Generate button handler
@@ -1440,6 +1494,86 @@ function initializePasswordGenerator() {
                 feedbackElement.remove();
             }
         }, 3000);
+    }
+}
+
+// Add creator section interactions
+function addCreatorSectionHandlers() {
+    // Creator social media buttons
+    const creatorSocialBtns = document.querySelectorAll('.creator-social .social-btn');
+    creatorSocialBtns.forEach(btn => {
+        btn.addEventListener('click', function(this: HTMLElement, e: Event) {
+            e.preventDefault();
+            
+            const platform = this.getAttribute('data-platform');
+            this.style.transform = 'translateY(-2px) scale(0.95)';
+            
+            setTimeout(() => {
+                this.style.transform = 'translateY(-2px)';
+            }, 150);
+            
+            // Add your actual social media links here
+            switch(platform) {
+                case 'linkedin':
+                    console.log('Opening LinkedIn profile...');
+                    showSocialFeedback('LinkedIn profile link - Add your LinkedIn URL in the code!');
+                    break;
+                case 'instagram':
+                    console.log('Opening Instagram profile...');
+                    showSocialFeedback('Instagram profile link - Add your Instagram URL in the code!');
+                    break;
+                case 'whatsapp':
+                    console.log('Opening WhatsApp...');
+                    showSocialFeedback('WhatsApp contact - Add your WhatsApp number in the code!');
+                    break;
+            }
+        });
+    });
+    
+    // Photo placeholder click
+    const photoPlaceholder = document.querySelector('.photo-placeholder');
+    if (photoPlaceholder) {
+        photoPlaceholder.addEventListener('click', function(this: HTMLElement) {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            }, 100);
+            
+            showSocialFeedback('Photo upload feature - Add your photo upload functionality here!');
+        });
+    }
+    
+    function showSocialFeedback(message: string) {
+        const feedbackElement = document.createElement('div');
+        feedbackElement.className = 'social-feedback';
+        feedbackElement.textContent = message;
+        feedbackElement.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            background: rgba(59, 130, 246, 0.9);
+            border: 1px solid rgba(59, 130, 246, 1);
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            animation: feedbackSlide 0.3s ease-out;
+            max-width: 90vw;
+            text-align: center;
+        `;
+        
+        document.body.appendChild(feedbackElement);
+        
+        setTimeout(() => {
+            if (feedbackElement.parentNode) {
+                feedbackElement.remove();
+            }
+        }, 4000);
     }
 }
 
