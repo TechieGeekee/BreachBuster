@@ -129,6 +129,9 @@ function initializeApp() {
     // Initialize breach check functionality
     initializeBreachCheck();
     
+    // Initialize footer functionality
+    initializeFooter();
+    
     // Show initial page with animation
     showPage('home');
 }
@@ -921,6 +924,248 @@ cyberStyle.textContent = `
     }
 `;
 document.head.appendChild(cyberStyle);
+
+// Initialize footer functionality
+function initializeFooter() {
+    // Create footer particles
+    createFooterParticles();
+    
+    // Newsletter subscription
+    initializeNewsletter();
+    
+    // Social media hover effects
+    addSocialMediaEffects();
+    
+    // Footer link hover effects
+    addFooterLinkEffects();
+    
+    // Security indicators animation
+    animateSecurityIndicators();
+}
+
+function createFooterParticles() {
+    const footerParticlesContainer = document.querySelector('.footer-particles');
+    if (!footerParticlesContainer) return;
+    
+    const particleCount = 12;
+    
+    for (let i = 0; i < particleCount; i++) {
+        createFooterParticle(footerParticlesContainer, i);
+    }
+}
+
+function createFooterParticle(container: Element, index: number): void {
+    const particle = document.createElement('div');
+    particle.className = 'footer-cyber-particle';
+    
+    // Random positioning
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    
+    particle.style.left = x + '%';
+    particle.style.top = y + '%';
+    particle.style.position = 'absolute';
+    particle.style.width = '3px';
+    particle.style.height = '3px';
+    particle.style.background = `hsl(${200 + Math.random() * 80}, 60%, 70%)`;
+    particle.style.borderRadius = '50%';
+    particle.style.boxShadow = '0 0 8px currentColor';
+    
+    // Random animation
+    const duration = 8 + Math.random() * 4;
+    const delay = Math.random() * 3;
+    
+    particle.style.animationDelay = delay + 's';
+    particle.style.animationDuration = duration + 's';
+    particle.style.animation = 'footerParticleFloat 10s linear infinite';
+    
+    container.appendChild(particle);
+    
+    // Recreate particle after animation
+    setTimeout(() => {
+        if (particle.parentNode) {
+            particle.remove();
+        }
+        createFooterParticle(container, index);
+    }, (duration + delay) * 1000);
+}
+
+function initializeNewsletter() {
+    const newsletterForm = document.querySelector('.newsletter-form');
+    const newsletterInput = document.querySelector('.newsletter-input') as HTMLInputElement;
+    const newsletterBtn = document.querySelector('.newsletter-btn') as HTMLButtonElement;
+    
+    if (!newsletterForm || !newsletterInput || !newsletterBtn) return;
+    
+    newsletterBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const email = newsletterInput.value.trim();
+        if (!email || !email.includes('@')) {
+            showNewsletterFeedback('Please enter a valid email address', 'error');
+            return;
+        }
+        
+        // Simulate subscription
+        this.style.transform = 'scale(0.95)';
+        this.innerHTML = '<span>Subscribing...</span><span class="btn-icon">⚡</span>';
+        this.disabled = true;
+        
+        setTimeout(() => {
+            this.style.transform = '';
+            this.innerHTML = '<span>Subscribed!</span><span class="btn-icon">✓</span>';
+            newsletterInput.value = '';
+            showNewsletterFeedback('Successfully subscribed to security alerts!', 'success');
+            
+            setTimeout(() => {
+                this.innerHTML = '<span>Subscribe</span><span class="btn-icon">⚡</span>';
+                this.disabled = false;
+            }, 3000);
+        }, 1500);
+    });
+    
+    // Input validation
+    newsletterInput.addEventListener('input', function() {
+        if (this.value.includes('@') && this.value.length > 5) {
+            this.style.borderColor = 'rgba(16, 185, 129, 0.6)';
+            this.style.boxShadow = '0 0 10px rgba(16, 185, 129, 0.3)';
+        } else {
+            this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            this.style.boxShadow = 'none';
+        }
+    });
+}
+
+function showNewsletterFeedback(message: string, type: string) {
+    const feedbackElement = document.createElement('div');
+    feedbackElement.className = `newsletter-feedback ${type}`;
+    feedbackElement.textContent = message;
+    feedbackElement.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5rem 1rem;
+        border-radius: 15px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        z-index: 100;
+        animation: feedbackSlide 0.3s ease-out;
+        ${type === 'success' ? 
+            'background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.5); color: #10b981;' : 
+            'background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.5); color: #ef4444;'
+        }
+    `;
+    
+    const newsletterForm = document.querySelector('.newsletter-form') as HTMLElement;
+    newsletterForm.style.position = 'relative';
+    newsletterForm.appendChild(feedbackElement);
+    
+    setTimeout(() => {
+        if (feedbackElement.parentNode) {
+            feedbackElement.remove();
+        }
+    }, 3000);
+}
+
+function addSocialMediaEffects() {
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', function(this: HTMLElement) {
+            const platform = this.getAttribute('data-platform');
+            
+            // Platform-specific colors
+            switch(platform) {
+                case 'twitter':
+                    this.style.background = 'rgba(29, 161, 242, 0.2)';
+                    this.style.borderColor = 'rgba(29, 161, 242, 0.5)';
+                    break;
+                case 'linkedin':
+                    this.style.background = 'rgba(0, 119, 181, 0.2)';
+                    this.style.borderColor = 'rgba(0, 119, 181, 0.5)';
+                    break;
+                case 'github':
+                    this.style.background = 'rgba(255, 255, 255, 0.1)';
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                    break;
+                case 'discord':
+                    this.style.background = 'rgba(114, 137, 218, 0.2)';
+                    this.style.borderColor = 'rgba(114, 137, 218, 0.5)';
+                    break;
+            }
+        });
+        
+        link.addEventListener('mouseleave', function(this: HTMLElement) {
+            this.style.background = 'rgba(255, 255, 255, 0.05)';
+            this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        });
+        
+        link.addEventListener('click', function(this: HTMLElement) {
+            this.style.transform = 'translateY(-2px) scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'translateY(-2px)';
+            }, 150);
+        });
+    });
+}
+
+function addFooterLinkEffects() {
+    const footerLinks = document.querySelectorAll('.footer-link');
+    footerLinks.forEach(link => {
+        link.addEventListener('click', function(this: HTMLElement, e) {
+            e.preventDefault();
+            
+            // Add click ripple effect
+            const ripple = document.createElement('span');
+            ripple.style.cssText = `
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
+                animation: linkRipple 0.6s ease-out;
+                pointer-events: none;
+            `;
+            
+            this.style.position = 'relative';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.remove();
+                }
+            }, 600);
+        });
+    });
+}
+
+function animateSecurityIndicators() {
+    const indicators = document.querySelectorAll('.indicator');
+    indicators.forEach((indicator, index) => {
+        // Stagger the animations
+        setTimeout(() => {
+            indicator.classList.add('animate-in');
+        }, index * 300);
+    });
+}
+
+// Add hotline number click effect
+const hotlineLink = document.querySelector('.hotline-link');
+if (hotlineLink) {
+    hotlineLink.addEventListener('click', function(this: HTMLElement, e: Event) {
+        e.preventDefault();
+        
+        // Add emergency pulse effect
+        this.style.animation = 'emergencyPulse 0.5s ease-out';
+        
+        setTimeout(() => {
+            this.style.animation = 'hotlineGlow 3s ease-in-out infinite';
+        }, 500);
+        
+        // You can add actual calling functionality here
+        console.log('Emergency hotline clicked!');
+    });
+}
 
 // Performance optimization for animations
 if ('requestIdleCallback' in window) {
