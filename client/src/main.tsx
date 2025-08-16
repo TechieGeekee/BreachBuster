@@ -114,6 +114,9 @@ function initializeApp() {
     // Create particles for home page
     createParticles();
     
+    // Create cyber particles for security section
+    createCyberParticles();
+    
     // Add interaction handlers
     addInteractionHandlers();
     
@@ -122,6 +125,9 @@ function initializeApp() {
     
     // Start continuous animations
     startContinuousAnimations();
+    
+    // Initialize breach check functionality
+    initializeBreachCheck();
     
     // Show initial page with animation
     showPage('home');
@@ -210,6 +216,9 @@ function addInteractionHandlers() {
     
     // Page-specific interactions
     addPageInteractionHandlers();
+    
+    // Security section interactions
+    addSecuritySectionHandlers();
 }
 
 function addNavigationHandlers() {
@@ -642,6 +651,276 @@ window.addEventListener('resize', function() {
         }
     }
 });
+
+// Create cyber particles for security section
+function createCyberParticles() {
+    const cyberContainer = document.querySelector('.cyber-particles');
+    if (!cyberContainer) return;
+    
+    const particleCount = 8;
+    
+    for (let i = 0; i < particleCount; i++) {
+        createCyberParticle(cyberContainer, i);
+    }
+}
+
+function createCyberParticle(container: Element, index: number): void {
+    const particle = document.createElement('div');
+    particle.className = 'cyber-particle';
+    
+    // Random positioning around the shield
+    const angle = (index / 8) * 360 + Math.random() * 45;
+    const radius = 80 + Math.random() * 40;
+    
+    const x = Math.cos(angle * Math.PI / 180) * radius;
+    const y = Math.sin(angle * Math.PI / 180) * radius;
+    
+    particle.style.left = `calc(50% + ${x}px)`;
+    particle.style.top = `calc(50% + ${y}px)`;
+    particle.style.position = 'absolute';
+    particle.style.width = '4px';
+    particle.style.height = '4px';
+    particle.style.background = `hsl(${210 + Math.random() * 60}, 70%, 60%)`;
+    particle.style.borderRadius = '50%';
+    particle.style.boxShadow = '0 0 10px currentColor';
+    
+    // Random animation delay and duration
+    const delay = Math.random() * 2;
+    const duration = 3 + Math.random() * 2;
+    
+    particle.style.animationDelay = delay + 's';
+    particle.style.animationDuration = duration + 's';
+    particle.style.animation = 'cyberOrbit 4s linear infinite';
+    
+    container.appendChild(particle);
+    
+    // Recreate particle after animation completes
+    setTimeout(() => {
+        if (particle.parentNode) {
+            particle.remove();
+        }
+        createCyberParticle(container, index);
+    }, (duration + delay) * 1000);
+}
+
+// Initialize breach check functionality
+function initializeBreachCheck() {
+    const checkButton = document.getElementById('breach-check-btn') as HTMLButtonElement;
+    const emailInput = document.getElementById('email-input') as HTMLInputElement;
+    const phoneInput = document.getElementById('phone-input') as HTMLInputElement;
+    const resultsContainer = document.getElementById('breach-results') as HTMLElement;
+    
+    if (!checkButton || !emailInput || !resultsContainer) return;
+    
+    checkButton.addEventListener('click', function() {
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        
+        if (!email) {
+            showBreachResults('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        startBreachScan(email, phone);
+    });
+    
+    // Add input validation
+    emailInput.addEventListener('input', function() {
+        if (this.validity.valid) {
+            this.style.borderColor = 'rgba(16, 185, 129, 0.6)';
+        } else {
+            this.style.borderColor = 'rgba(239, 68, 68, 0.6)';
+        }
+    });
+}
+
+function startBreachScan(email: string, phone: string) {
+    const checkButton = document.getElementById('breach-check-btn') as HTMLButtonElement;
+    const checkText = checkButton.querySelector('.check-text') as HTMLElement;
+    const resultsContainer = document.getElementById('breach-results') as HTMLElement;
+    
+    // Start scanning animation
+    checkButton.classList.add('scanning');
+    checkButton.disabled = true;
+    checkText.textContent = 'Scanning Databases...';
+    
+    // Hide previous results
+    resultsContainer.classList.remove('show');
+    
+    // Simulate scanning process
+    const scanningSteps = [
+        'Connecting to security databases...',
+        'Scanning breach records...',
+        'Cross-referencing data...',
+        'Analyzing results...',
+        'Generating report...'
+    ];
+    
+    let stepIndex = 0;
+    const stepInterval = setInterval(() => {
+        if (stepIndex < scanningSteps.length) {
+            checkText.textContent = scanningSteps[stepIndex];
+            stepIndex++;
+        }
+    }, 800);
+    
+    // Complete scan after 4 seconds
+    setTimeout(() => {
+        clearInterval(stepInterval);
+        completeBreachScan(email, phone);
+    }, 4000);
+}
+
+function completeBreachScan(email: string, phone: string) {
+    const checkButton = document.getElementById('breach-check-btn') as HTMLButtonElement;
+    const checkText = checkButton.querySelector('.check-text') as HTMLElement;
+    
+    // Stop scanning animation
+    checkButton.classList.remove('scanning');
+    checkButton.disabled = false;
+    checkText.textContent = 'Scan for Breaches';
+    
+    // Simulate results (in real implementation, this would come from HaveIBeenPwned API)
+    const mockResults = generateMockResults(email);
+    showBreachResults(mockResults.message, mockResults.type, mockResults.details);
+}
+
+function generateMockResults(email: string) {
+    // Simulate different result scenarios
+    const scenarios = [
+        {
+            type: 'safe',
+            message: '✅ Good news! No breaches found for this email address.',
+            details: [
+                'Your email was not found in any known data breaches',
+                'Continue practicing good security habits',
+                'Consider enabling two-factor authentication'
+            ]
+        },
+        {
+            type: 'warning',
+            message: '⚠️ Your email was found in 2 data breaches.',
+            details: [
+                'LinkedIn breach (2012) - Professional data exposed',
+                'Adobe breach (2013) - Account credentials compromised',
+                'Recommendation: Change passwords immediately',
+                'Enable two-factor authentication on all accounts'
+            ]
+        },
+        {
+            type: 'danger',
+            message: '🚨 Critical: Your email was found in 5+ data breaches!',
+            details: [
+                'Multiple high-risk breaches detected',
+                'Personal and financial data may be compromised',
+                'Immediate action required',
+                'Contact our security team for assistance'
+            ]
+        }
+    ];
+    
+    // Random result for demo (in real app, this would be based on actual API response)
+    return scenarios[Math.floor(Math.random() * scenarios.length)];
+}
+
+function showBreachResults(message: string, type: string, details?: string[]) {
+    const resultsContainer = document.getElementById('breach-results') as HTMLElement;
+    
+    let backgroundColor = 'rgba(0, 0, 0, 0.3)';
+    let borderColor = 'rgba(255, 255, 255, 0.1)';
+    
+    if (type === 'safe') {
+        backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        borderColor = 'rgba(16, 185, 129, 0.3)';
+    } else if (type === 'warning') {
+        backgroundColor = 'rgba(251, 191, 36, 0.1)';
+        borderColor = 'rgba(251, 191, 36, 0.3)';
+    } else if (type === 'danger') {
+        backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        borderColor = 'rgba(239, 68, 68, 0.3)';
+    }
+    
+    resultsContainer.style.background = backgroundColor;
+    resultsContainer.style.borderColor = borderColor;
+    
+    let content = `<div class="result-message">${message}</div>`;
+    
+    if (details && details.length > 0) {
+        content += '<div class="result-details">';
+        details.forEach(detail => {
+            content += `<div class="detail-item">• ${detail}</div>`;
+        });
+        content += '</div>';
+    }
+    
+    resultsContainer.innerHTML = content;
+    resultsContainer.classList.add('show');
+}
+
+// Add security section interaction handlers
+function addSecuritySectionHandlers() {
+    // Add hover effects to security stats
+    const statItems = document.querySelectorAll('.security-section .stat-item');
+    statItems.forEach(item => {
+        item.addEventListener('mouseenter', function(this: HTMLElement) {
+            this.style.transform = 'translateY(-5px) scale(1.05)';
+        });
+        
+        item.addEventListener('mouseleave', function(this: HTMLElement) {
+            this.style.transform = '';
+        });
+    });
+    
+    // Add click animation to security badges
+    const badges = document.querySelectorAll('.badge');
+    badges.forEach(badge => {
+        badge.addEventListener('click', function(this: HTMLElement) {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+}
+
+// Add cyber orbit animation keyframes
+const cyberStyle = document.createElement('style');
+cyberStyle.textContent = `
+    @keyframes cyberOrbit {
+        0% {
+            transform: rotate(0deg) translateX(60px) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(360deg) translateX(60px) rotate(-360deg);
+            opacity: 0;
+        }
+    }
+    
+    .result-message {
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+    
+    .result-details {
+        text-align: left;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .detail-item {
+        margin: 0.5rem 0;
+        padding-left: 1rem;
+    }
+`;
+document.head.appendChild(cyberStyle);
 
 // Performance optimization for animations
 if ('requestIdleCallback' in window) {
