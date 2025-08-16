@@ -42,7 +42,7 @@ const TypingEffect = (): JSX.Element => {
       if (currentText.length < currentPhrase.length) {
         const timeout = setTimeout(() => {
           setCurrentText(currentPhrase.slice(0, currentText.length + 1));
-        }, 100);
+        }, 80);
         return () => clearTimeout(timeout);
       } else {
         // Finished typing, pause then start deleting
@@ -51,7 +51,7 @@ const TypingEffect = (): JSX.Element => {
           setTimeout(() => {
             setIsTyping(false);
             setIsPaused(false);
-          }, 2000);
+          }, 2500);
         }, 500);
         return () => clearTimeout(timeout);
       }
@@ -59,7 +59,7 @@ const TypingEffect = (): JSX.Element => {
       if (currentText.length > 0) {
         const timeout = setTimeout(() => {
           setCurrentText(currentText.slice(0, -1));
-        }, 50);
+        }, 40);
         return () => clearTimeout(timeout);
       } else {
         // Finished deleting, move to next phrase
@@ -72,17 +72,34 @@ const TypingEffect = (): JSX.Element => {
   return (
     <motion.p 
       className="font-['Passion_One'] font-normal text-white 
-                 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl
-                 leading-tight max-w-4xl mx-auto min-h-[120px] flex items-center justify-center"
+                 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl
+                 leading-tight max-w-4xl mx-auto min-h-[80px] flex items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {currentText}
       <motion.span
-        className="inline-block w-1 bg-white ml-2"
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 1, repeat: Infinity }}
+        animate={{
+          textShadow: [
+            "0 0 10px rgba(0,255,255,0.5)",
+            "0 0 20px rgba(0,255,255,0.8)",
+            "0 0 10px rgba(0,255,255,0.5)"
+          ]
+        }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {currentText}
+      </motion.span>
+      <motion.span
+        className="inline-block w-1 bg-cyan-400 ml-2"
+        animate={{ 
+          opacity: [0, 1, 0],
+          backgroundColor: ["#00FFFF", "#8B45C1", "#00FFFF"]
+        }}
+        transition={{ 
+          opacity: { duration: 1, repeat: Infinity },
+          backgroundColor: { duration: 2, repeat: Infinity }
+        }}
         style={{ height: "1em" }}
       />
     </motion.p>
@@ -378,33 +395,51 @@ export const Main = (): JSX.Element => {
           }}
         />
         
-        {/* Floating orbs */}
+        {/* Enhanced Floating orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-full blur-xl"
+          className="absolute top-1/4 left-1/4 w-40 h-40 bg-gradient-to-br from-cyan-500/30 to-purple-600/30 rounded-full blur-2xl"
           animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            opacity: [0.3, 0.6, 0.3]
+            x: [0, 80, 0],
+            y: [0, -50, 0],
+            opacity: [0.3, 0.7, 0.3],
+            scale: [1, 1.3, 1]
           }}
           transition={{
-            duration: 8,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
         
         <motion.div
-          className="absolute top-3/4 right-1/4 w-24 h-24 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-full blur-xl"
+          className="absolute top-3/4 right-1/4 w-32 h-32 bg-gradient-to-br from-purple-600/25 to-cyan-400/25 rounded-full blur-2xl"
           animate={{
-            x: [0, -40, 0],
-            y: [0, 40, 0],
-            opacity: [0.2, 0.5, 0.2]
+            x: [0, -60, 0],
+            y: [0, 60, 0],
+            opacity: [0.2, 0.6, 0.2],
+            scale: [0.8, 1.2, 0.8]
           }}
           transition={{
-            duration: 10,
+            duration: 15,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 2
+            delay: 3
+          }}
+        />
+        
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-cyan-500/20 rounded-full blur-xl"
+          animate={{
+            x: [0, -40, 40, 0],
+            y: [0, 40, -40, 0],
+            opacity: [0.3, 0.5, 0.3],
+            rotate: [0, 180, 360]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
           }}
         />
       </div>
@@ -491,63 +526,175 @@ export const Main = (): JSX.Element => {
         </motion.header>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 text-center">
+        <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-6 text-center min-h-[calc(100vh-200px)]">
           <motion.div
-            className="max-w-6xl mx-auto space-y-8 sm:space-y-12"
+            className="max-w-6xl mx-auto space-y-6 sm:space-y-8 flex flex-col justify-center h-full"
             initial="hidden"
             animate={controls}
             variants={staggerContainer}
           >
+            {/* Cyber Grid Background */}
+            <div className="absolute inset-0 pointer-events-none">
+              <motion.div 
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(52, 41, 211, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(52, 41, 211, 0.1) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '50px 50px'
+                }}
+                animate={{
+                  backgroundPosition: ['0px 0px', '50px 50px'],
+                }}
+                transition={{
+                  duration: 20,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+            </div>
+
+            {/* Glitch Effect Lines */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
+                  style={{
+                    top: `${(i + 1) * 12}%`,
+                    opacity: 0.3
+                  }}
+                  animate={{
+                    x: ['-100%', '100%'],
+                    opacity: [0, 0.8, 0]
+                  }}
+                  transition={{
+                    duration: Math.random() * 3 + 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 5,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </div>
+
             {/* Main Heading */}
             <motion.h1 
               className="font-['Passion_One'] font-normal text-white text-shadow-glow
-                         text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[150px] 
-                         leading-none tracking-wide"
+                         text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 
+                         leading-none tracking-wide relative z-10"
               variants={fadeInUp}
               style={{ WebkitTextStroke: "1px #000000" }}
             >
-              BREACH BUSTER
+              <motion.span
+                animate={{
+                  textShadow: [
+                    "0 0 20px rgba(52,41,211,0.8)",
+                    "0 0 40px rgba(139,69,193,0.9)",
+                    "0 0 60px rgba(52,41,211,0.8)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                BREACH
+              </motion.span>
+              {" "}
+              <motion.span
+                animate={{
+                  textShadow: [
+                    "0 0 40px rgba(139,69,193,0.9)",
+                    "0 0 20px rgba(52,41,211,0.8)", 
+                    "0 0 60px rgba(139,69,193,0.9)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                BUSTER
+              </motion.span>
             </motion.h1>
 
             {/* Typing Effect Subtitle */}
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} className="relative z-10">
               <TypingEffect />
             </motion.div>
 
-            {/* CTA Button */}
+            {/* Enhanced CTA Button */}
             <motion.div
               variants={scaleIn}
-              className="pt-8 sm:pt-12"
+              className="pt-4 sm:pt-6 relative z-10"
             >
+              {/* Pulsing Ring Effect */}
+              <motion.div 
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600/30 to-purple-600/30"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 0.2, 0.5]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
               <motion.div
                 whileHover={{ 
                   scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(52, 41, 211, 0.3)"
+                  boxShadow: [
+                    "0 20px 40px rgba(52, 41, 211, 0.4)",
+                    "0 0 80px rgba(139, 69, 193, 0.6)",
+                    "0 20px 40px rgba(52, 41, 211, 0.4)"
+                  ]
                 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                className="relative"
               >
+                {/* Button Glow Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 blur-lg opacity-70"
+                  animate={{
+                    scale: [0.8, 1.1, 0.8],
+                    opacity: [0.4, 0.8, 0.4]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
                 <Button 
-                  className="font-['Passion_One'] font-normal text-white 
-                             text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl
+                  data-testid="button-check-breach"
+                  className="font-['Passion_One'] font-normal text-white relative
+                             text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl
                              bg-gradient-to-r from-blue-600 to-purple-600 
                              hover:from-blue-700 hover:to-purple-700
-                             px-8 sm:px-12 lg:px-16 py-4 sm:py-6 lg:py-8
-                             rounded-full border-2 border-white/20
+                             px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6
+                             rounded-full border-2 border-cyan-400/50
                              transition-all duration-300
-                             shadow-lg hover:shadow-xl"
+                             shadow-lg hover:shadow-xl
+                             backdrop-blur-sm"
                   size="lg"
                 >
                   <motion.span
                     animate={{ 
                       textShadow: [
-                        "0 0 20px rgba(255,255,255,0.5)",
-                        "0 0 30px rgba(52,41,211,0.8)",
-                        "0 0 20px rgba(255,255,255,0.5)"
+                        "0 0 20px rgba(255,255,255,0.8)",
+                        "0 0 40px rgba(0,255,255,0.9)",
+                        "0 0 20px rgba(255,255,255,0.8)"
                       ]
                     }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="flex items-center gap-3"
                   >
+                    <motion.div
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    >
+                      <Shield size={32} className="inline-block" />
+                    </motion.div>
                     Check For Breach Now
                   </motion.span>
                 </Button>
@@ -555,23 +702,75 @@ export const Main = (): JSX.Element => {
             </motion.div>
           </motion.div>
 
-          {/* Animated particles */}
+          {/* Enhanced Cyber Particles */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {Array.from({ length: 20 }).map((_, i) => (
+            {/* Binary Rain Effect */}
+            {Array.from({ length: 30 }).map((_, i) => (
               <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-white/10 rounded-full"
+                key={`binary-${i}`}
+                className="absolute text-cyan-400/30 font-mono text-xs"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `-10%`,
+                }}
+                animate={{
+                  y: ['0vh', '110vh'],
+                  opacity: [0, 1, 0.7, 0]
+                }}
+                transition={{
+                  duration: Math.random() * 8 + 4,
+                  repeat: Infinity,
+                  delay: Math.random() * 5,
+                  ease: "linear"
+                }}
+              >
+                {Math.random() > 0.5 ? '1' : '0'}
+              </motion.div>
+            ))}
+            
+            {/* Floating Code Fragments */}
+            {Array.from({ length: 15 }).map((_, i) => (
+              <motion.div
+                key={`code-${i}`}
+                className="absolute text-purple-400/20 font-mono text-xs"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
                 }}
                 animate={{
-                  y: [0, -100, 0],
-                  opacity: [0, 1, 0],
-                  scale: [0, 1, 0]
+                  x: [0, Math.random() * 50 - 25],
+                  y: [0, Math.random() * 50 - 25],
+                  opacity: [0.2, 0.6, 0.2],
+                  rotate: [0, Math.random() * 10 - 5]
                 }}
                 transition={{
-                  duration: Math.random() * 3 + 2,
+                  duration: Math.random() * 6 + 3,
+                  repeat: Infinity,
+                  delay: Math.random() * 3,
+                  ease: "easeInOut"
+                }}
+              >
+                {'</>'}_{Math.floor(Math.random() * 999)}
+              </motion.div>
+            ))}
+            
+            {/* Cyber Orbs */}
+            {Array.from({ length: 12 }).map((_, i) => (
+              <motion.div
+                key={`orb-${i}`}
+                className="absolute w-3 h-3 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 rounded-full blur-sm"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  scale: [0.5, 1.2, 0.5],
+                  opacity: [0.3, 0.8, 0.3],
+                  x: [0, Math.random() * 100 - 50],
+                  y: [0, Math.random() * 100 - 50]
+                }}
+                transition={{
+                  duration: Math.random() * 4 + 3,
                   repeat: Infinity,
                   delay: Math.random() * 2,
                   ease: "easeInOut"
