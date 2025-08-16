@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Russo+One&family=Rubik+Mono+One&family=Ubuntu:wght@400;700&display=swap');
+
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -5,11 +8,27 @@
   .all-\[unset\] {
     all: unset;
   }
-}
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+  .hero-gradient {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(52, 41, 211, 0.3) 0%,
+      rgba(27, 21, 109, 0.1) 50%,
+      transparent 100%
+    );
+  }
+
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12.5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+                 0 0 40px rgba(52, 41, 211, 0.2);
+  }
+}
 
 @layer base {
   :root {
