@@ -491,7 +491,7 @@ export const Main = (): JSX.Element => {
         </motion.header>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 text-center">
+        <main className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 text-center min-h-screen">
           <motion.div
             className="max-w-6xl mx-auto space-y-8 sm:space-y-12"
             initial="hidden"
