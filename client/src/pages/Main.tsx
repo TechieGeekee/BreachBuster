@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Slider } from "@/components/ui/slider";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { Shield, Copy, RefreshCw, Lock, Eye, EyeOff } from "lucide-react";
 
 const navigationItems = [
   { name: "Home", active: true },
@@ -14,6 +20,308 @@ const navigationItems = [
   { name: "Contact", active: false },
   { name: "Support", active: false },
 ];
+
+const typingPhrases = [
+  "Expose the leaks before they expose you",
+  "Secure your digital fortress today",
+  "Hunt down vulnerabilities relentlessly",
+  "Stay ahead of cyber threats",
+  "Protect what matters most"
+];
+
+const TypingEffect = (): JSX.Element => {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const currentPhrase = typingPhrases[currentPhraseIndex];
+    
+    if (isTyping && !isPaused) {
+      if (currentText.length < currentPhrase.length) {
+        const timeout = setTimeout(() => {
+          setCurrentText(currentPhrase.slice(0, currentText.length + 1));
+        }, 100);
+        return () => clearTimeout(timeout);
+      } else {
+        // Finished typing, pause then start deleting
+        const timeout = setTimeout(() => {
+          setIsPaused(true);
+          setTimeout(() => {
+            setIsTyping(false);
+            setIsPaused(false);
+          }, 2000);
+        }, 500);
+        return () => clearTimeout(timeout);
+      }
+    } else if (!isTyping && !isPaused) {
+      if (currentText.length > 0) {
+        const timeout = setTimeout(() => {
+          setCurrentText(currentText.slice(0, -1));
+        }, 50);
+        return () => clearTimeout(timeout);
+      } else {
+        // Finished deleting, move to next phrase
+        setCurrentPhraseIndex((prev) => (prev + 1) % typingPhrases.length);
+        setIsTyping(true);
+      }
+    }
+  }, [currentText, isTyping, isPaused, currentPhraseIndex]);
+
+  return (
+    <motion.p 
+      className="font-['Passion_One'] font-normal text-white 
+                 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl
+                 leading-tight max-w-4xl mx-auto min-h-[120px] flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {currentText}
+      <motion.span
+        className="inline-block w-1 bg-white ml-2"
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 1, repeat: Infinity }}
+        style={{ height: "1em" }}
+      />
+    </motion.p>
+  );
+};
+
+const PasswordGenerator = (): JSX.Element => {
+  const [password, setPassword] = useState("");
+  const [passwordLength, setPasswordLength] = useState([16]);
+  const [includeUppercase, setIncludeUppercase] = useState(true);
+  const [includeLowercase, setIncludeLowercase] = useState(true);
+  const [includeNumbers, setIncludeNumbers] = useState(true);
+  const [includeSymbols, setIncludeSymbols] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const generatePassword = () => {
+    setIsGenerating(true);
+    
+    let charset = "";
+    if (includeUppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (includeLowercase) charset += "abcdefghijklmnopqrstuvwxyz";
+    if (includeNumbers) charset += "0123456789";
+    if (includeSymbols) charset += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+    
+    if (charset === "") {
+      setPassword("Please select at least one character type");
+      setIsGenerating(false);
+      return;
+    }
+
+    let newPassword = "";
+    for (let i = 0; i < passwordLength[0]; i++) {
+      newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    
+    setTimeout(() => {
+      setPassword(newPassword);
+      setIsGenerating(false);
+    }, 800);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(password);
+  };
+
+  return (
+    <motion.section 
+      className="w-full py-20 px-4 sm:px-6 lg:px-8 relative"
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <motion.h2 
+            className="font-['Passion_One'] text-white text-4xl sm:text-5xl lg:text-6xl mb-4"
+            animate={{ 
+              textShadow: [
+                "0 0 20px rgba(52,41,211,0.5)",
+                "0 0 40px rgba(139,69,193,0.8)",
+                "0 0 20px rgba(52,41,211,0.5)"
+              ]
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Shield className="inline-block mr-4 mb-2" size={48} />
+            FORTRESS PASSWORD GENERATOR
+          </motion.h2>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto">
+            Create impenetrable passwords that would take hackers centuries to crack
+          </p>
+        </motion.div>
+
+        <Card className="bg-black/40 border-purple-500/30 backdrop-blur-xl">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Lock className="text-purple-400" size={24} />
+              Security Configuration
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {/* Password Length */}
+            <div className="space-y-3">
+              <Label className="text-white text-lg flex items-center gap-2">
+                Password Length: <span className="text-purple-400 font-bold">{passwordLength[0]}</span>
+              </Label>
+              <Slider
+                value={passwordLength}
+                onValueChange={setPasswordLength}
+                max={50}
+                min={8}
+                step={1}
+                className="w-full"
+              />
+            </div>
+
+            {/* Character Options */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <motion.div 
+                className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 border border-blue-500/20"
+                whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              >
+                <Switch 
+                  checked={includeUppercase} 
+                  onCheckedChange={setIncludeUppercase}
+                />
+                <Label className="text-white cursor-pointer">Uppercase (A-Z)</Label>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 border border-blue-500/20"
+                whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              >
+                <Switch 
+                  checked={includeLowercase} 
+                  onCheckedChange={setIncludeLowercase}
+                />
+                <Label className="text-white cursor-pointer">Lowercase (a-z)</Label>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 border border-blue-500/20"
+                whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              >
+                <Switch 
+                  checked={includeNumbers} 
+                  onCheckedChange={setIncludeNumbers}
+                />
+                <Label className="text-white cursor-pointer">Numbers (0-9)</Label>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 border border-blue-500/20"
+                whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              >
+                <Switch 
+                  checked={includeSymbols} 
+                  onCheckedChange={setIncludeSymbols}
+                />
+                <Label className="text-white cursor-pointer">Symbols (!@#$)</Label>
+              </motion.div>
+            </div>
+
+            {/* Generate Button */}
+            <motion.div className="pt-4">
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button 
+                  onClick={generatePassword}
+                  disabled={isGenerating}
+                  className="w-full py-6 text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 border-2 border-purple-400/30"
+                >
+                  {isGenerating ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    >
+                      <RefreshCw size={24} />
+                    </motion.div>
+                  ) : (
+                    "GENERATE FORTRESS PASSWORD"
+                  )}
+                </Button>
+              </motion.div>
+            </motion.div>
+
+            {/* Generated Password */}
+            {password && (
+              <motion.div 
+                className="space-y-3 p-4 rounded-lg bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-400/30"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Label className="text-white text-lg font-bold">Your Fortress Password:</Label>
+                <div className="flex items-center space-x-2">
+                  <Input
+                    value={password}
+                    readOnly
+                    type={showPassword ? "text" : "password"}
+                    className="bg-black/50 text-white border-purple-400/50 font-mono text-lg"
+                  />
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="border-purple-400/50 hover:bg-purple-500/20"
+                  >
+                    {showPassword ? <EyeOff className="text-white" /> : <Eye className="text-white" />}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={copyToClipboard}
+                    className="border-purple-400/50 hover:bg-purple-500/20"
+                  >
+                    <Copy className="text-white" />
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+      
+      {/* Cyber Background Effects */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 15 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-purple-400/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [0, 1, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: Math.random() * 4 + 2,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+            }}
+          />
+        ))}
+      </div>
+    </motion.section>
+  );
+};
 
 export const Main = (): JSX.Element => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -201,17 +509,10 @@ export const Main = (): JSX.Element => {
               BREACH BUSTER
             </motion.h1>
 
-            {/* Subtitle */}
-            <motion.p 
-              className="font-['Passion_One'] font-normal text-white 
-                         text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl
-                         leading-tight max-w-4xl mx-auto"
-              variants={fadeInUp}
-            >
-              Expose the leaks before they
-              <br />
-              expose you..
-            </motion.p>
+            {/* Typing Effect Subtitle */}
+            <motion.div variants={fadeInUp}>
+              <TypingEffect />
+            </motion.div>
 
             {/* CTA Button */}
             <motion.div
@@ -279,6 +580,9 @@ export const Main = (): JSX.Element => {
             ))}
           </div>
         </main>
+
+        {/* Password Generator Section */}
+        <PasswordGenerator />
 
         {/* Mobile Navigation */}
         <motion.div 
