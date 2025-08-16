@@ -331,6 +331,183 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Password Generator Section -->
+            <div class="password-generator-section">
+                <div class="generator-background">
+                    <div class="matrix-rain"></div>
+                    <div class="cyber-grid"></div>
+                    <div class="security-beams">
+                        <div class="beam beam-1"></div>
+                        <div class="beam beam-2"></div>
+                        <div class="beam beam-3"></div>
+                    </div>
+                </div>
+                
+                <div class="generator-content">
+                    <div class="generator-container">
+                        <div class="generator-header">
+                            <div class="header-icon-container">
+                                <div class="lock-animation">
+                                    <div class="lock-body">🔐</div>
+                                    <div class="lock-waves">
+                                        <div class="wave wave-1"></div>
+                                        <div class="wave wave-2"></div>
+                                        <div class="wave wave-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="generator-title">Secure Password Generator</h2>
+                            <p class="generator-subtitle">Create unbreakable passwords with military-grade randomization</p>
+                        </div>
+                        
+                        <div class="generator-main">
+                            <div class="password-options">
+                                <div class="option-group">
+                                    <label class="option-label">
+                                        <span class="label-icon">📏</span>
+                                        Password Length
+                                    </label>
+                                    <div class="length-controls">
+                                        <input type="range" class="length-slider" id="length-slider" min="8" max="128" value="16">
+                                        <div class="length-display">
+                                            <span id="length-value">16</span>
+                                            <span class="length-unit">characters</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="options-grid">
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="uppercase" class="toggle-input" checked>
+                                            <label for="uppercase" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Uppercase Letters</span>
+                                            <span class="option-example">A-Z</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="lowercase" class="toggle-input" checked>
+                                            <label for="lowercase" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Lowercase Letters</span>
+                                            <span class="option-example">a-z</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="numbers" class="toggle-input" checked>
+                                            <label for="numbers" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Numbers</span>
+                                            <span class="option-example">0-9</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="symbols" class="toggle-input" checked>
+                                            <label for="symbols" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Special Symbols</span>
+                                            <span class="option-example">!@#$%^&*</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="ambiguous" class="toggle-input">
+                                            <label for="ambiguous" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Ambiguous Characters</span>
+                                            <span class="option-example">0O1lI|</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="password-output">
+                                <div class="output-container">
+                                    <div class="password-display">
+                                        <input type="text" class="password-field" id="password-field" readonly placeholder="Your secure password will appear here...">
+                                        <div class="field-overlay"></div>
+                                    </div>
+                                    
+                                    <div class="password-actions">
+                                        <button class="generate-btn" id="generate-btn">
+                                            <span class="btn-text">Generate Password</span>
+                                            <div class="btn-loading">
+                                                <div class="loading-dots">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-cyber-effect"></div>
+                                        </button>
+                                        
+                                        <button class="copy-btn" id="copy-btn" disabled>
+                                            <span class="copy-icon">📋</span>
+                                            <span class="copy-text">Copy</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="strength-meter">
+                                    <div class="strength-label">Password Strength</div>
+                                    <div class="strength-bar">
+                                        <div class="strength-fill" id="strength-fill"></div>
+                                        <div class="strength-indicators">
+                                            <div class="indicator" data-level="1"></div>
+                                            <div class="indicator" data-level="2"></div>
+                                            <div class="indicator" data-level="3"></div>
+                                            <div class="indicator" data-level="4"></div>
+                                            <div class="indicator" data-level="5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="strength-text" id="strength-text">Configure options and generate</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="generator-footer">
+                            <div class="security-tips">
+                                <div class="tip-item">
+                                    <span class="tip-icon">⚡</span>
+                                    <span>Generated offline for maximum security</span>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">🔒</span>
+                                    <span>Use unique passwords for each account</span>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">🛡️</span>
+                                    <span>Enable 2FA when available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <!-- Cyber Footer -->

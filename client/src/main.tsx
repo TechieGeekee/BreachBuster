@@ -132,6 +132,9 @@ function initializeApp() {
     // Initialize footer functionality
     initializeFooter();
     
+    // Initialize password generator
+    initializePasswordGenerator();
+    
     // Show initial page with animation
     showPage('home');
 }
@@ -1165,6 +1168,279 @@ if (hotlineLink) {
         // You can add actual calling functionality here
         console.log('Emergency hotline clicked!');
     });
+}
+
+// Initialize password generator functionality
+function initializePasswordGenerator() {
+    // Get all the elements
+    const lengthSlider = document.getElementById('length-slider') as HTMLInputElement;
+    const lengthValue = document.getElementById('length-value') as HTMLElement;
+    const generateBtn = document.getElementById('generate-btn') as HTMLButtonElement;
+    const passwordField = document.getElementById('password-field') as HTMLInputElement;
+    const copyBtn = document.getElementById('copy-btn') as HTMLButtonElement;
+    const strengthFill = document.getElementById('strength-fill') as HTMLElement;
+    const strengthText = document.getElementById('strength-text') as HTMLElement;
+    
+    if (!lengthSlider || !lengthValue || !generateBtn || !passwordField || !copyBtn || !strengthFill || !strengthText) {
+        console.error('Password generator elements not found');
+        return;
+    }
+    
+    // Length slider handler
+    lengthSlider.addEventListener('input', function() {
+        lengthValue.textContent = this.value;
+        updatePasswordStrength();
+    });
+    
+    // Toggle switches handlers
+    const toggles = document.querySelectorAll('.toggle-input');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('change', updatePasswordStrength);
+    });
+    
+    // Generate button handler
+    generateBtn.addEventListener('click', function() {
+        generatePassword();
+    });
+    
+    // Copy button handler
+    copyBtn.addEventListener('click', function() {
+        copyPassword();
+    });
+    
+    // Initial strength update
+    updatePasswordStrength();
+    
+    function generatePassword() {
+        const length = parseInt(lengthSlider.value);
+        const uppercase = (document.getElementById('uppercase') as HTMLInputElement).checked;
+        const lowercase = (document.getElementById('lowercase') as HTMLInputElement).checked;
+        const numbers = (document.getElementById('numbers') as HTMLInputElement).checked;
+        const symbols = (document.getElementById('symbols') as HTMLInputElement).checked;
+        const ambiguous = (document.getElementById('ambiguous') as HTMLInputElement).checked;
+        
+        // Check if at least one option is selected
+        if (!uppercase && !lowercase && !numbers && !symbols) {
+            showPasswordFeedback('Please select at least one character type', 'error');
+            return;
+        }
+        
+        // Start generation animation
+        generateBtn.classList.add('generating');
+        generateBtn.disabled = true;
+        passwordField.value = '';
+        copyBtn.disabled = true;
+        
+        // Simulate generation delay for dramatic effect
+        setTimeout(() => {
+            const password = createSecurePassword(length, {
+                uppercase,
+                lowercase,
+                numbers,
+                symbols,
+                ambiguous
+            });
+            
+            passwordField.value = password;
+            passwordField.classList.add('generated');
+            
+            // Update strength meter
+            updatePasswordStrength(password);
+            
+            // Reset button state
+            generateBtn.classList.remove('generating');
+            generateBtn.disabled = false;
+            copyBtn.disabled = false;
+            
+            // Remove generated class after animation
+            setTimeout(() => {
+                passwordField.classList.remove('generated');
+            }, 800);
+            
+            showPasswordFeedback('Secure password generated successfully!', 'success');
+        }, 1500);
+    }
+    
+    function createSecurePassword(length: number, options: {
+        uppercase: boolean;
+        lowercase: boolean;
+        numbers: boolean;
+        symbols: boolean;
+        ambiguous: boolean;
+    }): string {
+        let charset = '';
+        let password = '';
+        
+        // Define character sets
+        const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+        const numberChars = '0123456789';
+        const symbolChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+        const ambiguousChars = '0O1lI|';
+        
+        // Build charset based on options
+        if (options.uppercase) {
+            charset += options.ambiguous ? uppercaseChars : uppercaseChars.replace(/[O]/g, '');
+        }
+        if (options.lowercase) {
+            charset += options.ambiguous ? lowercaseChars : lowercaseChars.replace(/[l]/g, '');
+        }
+        if (options.numbers) {
+            charset += options.ambiguous ? numberChars : numberChars.replace(/[01]/g, '');
+        }
+        if (options.symbols) {
+            charset += options.ambiguous ? symbolChars : symbolChars.replace(/[|]/g, '');
+        }
+        
+        // Ensure password has at least one character from each selected type
+        let requiredChars = '';
+        if (options.uppercase) {
+            const chars = options.ambiguous ? uppercaseChars : uppercaseChars.replace(/[O]/g, '');
+            requiredChars += chars[Math.floor(Math.random() * chars.length)];
+        }
+        if (options.lowercase) {
+            const chars = options.ambiguous ? lowercaseChars : lowercaseChars.replace(/[l]/g, '');
+            requiredChars += chars[Math.floor(Math.random() * chars.length)];
+        }
+        if (options.numbers) {
+            const chars = options.ambiguous ? numberChars : numberChars.replace(/[01]/g, '');
+            requiredChars += chars[Math.floor(Math.random() * chars.length)];
+        }
+        if (options.symbols) {
+            const chars = options.ambiguous ? symbolChars : symbolChars.replace(/[|]/g, '');
+            requiredChars += chars[Math.floor(Math.random() * chars.length)];
+        }
+        
+        // Generate the rest of the password
+        const remainingLength = length - requiredChars.length;
+        for (let i = 0; i < remainingLength; i++) {
+            password += charset[Math.floor(Math.random() * charset.length)];
+        }
+        
+        // Combine and shuffle
+        const combinedPassword = (requiredChars + password).split('');
+        for (let i = combinedPassword.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [combinedPassword[i], combinedPassword[j]] = [combinedPassword[j], combinedPassword[i]];
+        }
+        
+        return combinedPassword.join('');
+    }
+    
+    function updatePasswordStrength(password?: string) {
+        let strength = 0;
+        let strengthLabel = 'Configure options and generate';
+        let strengthColor = '#666';
+        
+        if (password) {
+            const length = password.length;
+            const hasUpper = /[A-Z]/.test(password);
+            const hasLower = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSymbol = /[^A-Za-z0-9]/.test(password);
+            
+            // Calculate strength based on various factors
+            if (length >= 8) strength += 20;
+            if (length >= 12) strength += 10;
+            if (length >= 16) strength += 10;
+            if (length >= 24) strength += 10;
+            
+            if (hasUpper) strength += 15;
+            if (hasLower) strength += 15;
+            if (hasNumber) strength += 10;
+            if (hasSymbol) strength += 20;
+            
+            // Determine label and color
+            if (strength < 30) {
+                strengthLabel = 'Very Weak';
+                strengthColor = '#ff4444';
+            } else if (strength < 50) {
+                strengthLabel = 'Weak';
+                strengthColor = '#ff8800';
+            } else if (strength < 70) {
+                strengthLabel = 'Fair';
+                strengthColor = '#ffaa00';
+            } else if (strength < 90) {
+                strengthLabel = 'Strong';
+                strengthColor = '#88ff00';
+            } else {
+                strengthLabel = 'Very Strong';
+                strengthColor = '#00ff00';
+            }
+        } else {
+            // Preview strength based on current settings
+            const length = parseInt(lengthSlider.value);
+            const selectedTypes = Array.from(toggles).filter(t => (t as HTMLInputElement).checked).length;
+            
+            strength = Math.min(100, (length / 32) * 60 + (selectedTypes / 4) * 40);
+            
+            if (selectedTypes === 0) {
+                strengthLabel = 'Select character types';
+                strength = 0;
+            } else {
+                strengthLabel = `Estimated ${Math.round(strength)}% strength`;
+                strengthColor = `hsl(${strength * 1.2}, 70%, 50%)`;
+            }
+        }
+        
+        // Update UI
+        strengthFill.style.width = `${strength}%`;
+        strengthFill.style.background = strengthColor;
+        strengthText.textContent = strengthLabel;
+        strengthText.style.color = strengthColor;
+    }
+    
+    function copyPassword() {
+        if (!passwordField.value) return;
+        
+        navigator.clipboard.writeText(passwordField.value).then(() => {
+            copyBtn.classList.add('copied');
+            const copyText = copyBtn.querySelector('.copy-text') as HTMLElement;
+            const originalText = copyText.textContent;
+            
+            copyText.textContent = 'Copied!';
+            
+            setTimeout(() => {
+                copyBtn.classList.remove('copied');
+                copyText.textContent = originalText;
+            }, 2000);
+            
+            showPasswordFeedback('Password copied to clipboard!', 'success');
+        }).catch(() => {
+            // Fallback for older browsers
+            passwordField.select();
+            document.execCommand('copy');
+            showPasswordFeedback('Password copied to clipboard!', 'success');
+        });
+    }
+    
+    function showPasswordFeedback(message: string, type: string) {
+        const feedbackElement = document.createElement('div');
+        feedbackElement.className = `password-feedback ${type}`;
+        feedbackElement.textContent = message;
+        feedbackElement.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: bold;
+            z-index: 1000;
+            animation: feedbackSlide 0.3s ease-out;
+            ${type === 'success' ? 
+                'background: rgba(0, 255, 0, 0.2); border: 1px solid rgba(0, 255, 0, 0.5); color: #00ff00;' : 
+                'background: rgba(255, 68, 68, 0.2); border: 1px solid rgba(255, 68, 68, 0.5); color: #ff4444;'
+            }
+        `;
+        
+        document.body.appendChild(feedbackElement);
+        
+        setTimeout(() => {
+            if (feedbackElement.parentNode) {
+                feedbackElement.remove();
+            }
+        }, 3000);
+    }
 }
 
 // Performance optimization for animations

@@ -1603,6 +1603,651 @@ body {
     animation: scaleIn 0.6s ease-out forwards;
 }
 
+/* Password Generator Section */
+.password-generator-section {
+    position: relative;
+    margin: 4rem 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(15, 23, 42, 0.98));
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.generator-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.matrix-rain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(2px 2px at 25px 35px, rgba(0, 255, 0, 0.3), transparent),
+                radial-gradient(2px 2px at 75px 85px, rgba(0, 255, 255, 0.2), transparent),
+                radial-gradient(1px 1px at 125px 45px, rgba(0, 200, 255, 0.4), transparent);
+    background-size: 150px 200px;
+    animation: matrixRain 8s linear infinite;
+}
+
+.cyber-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridShift 15s linear infinite;
+    opacity: 0.3;
+}
+
+.security-beams {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.beam {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.6), transparent);
+    height: 2px;
+    width: 100%;
+    animation: beamScan 6s ease-in-out infinite;
+}
+
+.beam-1 {
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.beam-2 {
+    top: 50%;
+    animation-delay: 2s;
+}
+
+.beam-3 {
+    top: 80%;
+    animation-delay: 4s;
+}
+
+.generator-content {
+    position: relative;
+    z-index: 10;
+    padding: 3rem;
+}
+
+.generator-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Generator Header */
+.generator-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.header-icon-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.lock-animation {
+    position: relative;
+    display: inline-block;
+}
+
+.lock-body {
+    font-size: 4rem;
+    animation: lockPulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8));
+}
+
+.lock-waves {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wave {
+    position: absolute;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: waveExpand 3s ease-out infinite;
+}
+
+.wave-1 {
+    width: 80px;
+    height: 80px;
+    margin: -40px;
+    animation-delay: 0s;
+}
+
+.wave-2 {
+    width: 120px;
+    height: 120px;
+    margin: -60px;
+    animation-delay: 1s;
+}
+
+.wave-3 {
+    width: 160px;
+    height: 160px;
+    margin: -80px;
+    animation-delay: 2s;
+}
+
+.generator-title {
+    font-family: 'Passion One', sans-serif;
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    animation: titleGlow 4s ease-in-out infinite;
+}
+
+.generator-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+}
+
+/* Generator Main */
+.generator-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Password Options */
+.password-options {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.option-group {
+    margin-bottom: 2rem;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Passion One', sans-serif;
+    font-size: 1.3rem;
+    color: #00ffff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.label-icon {
+    font-size: 1.2rem;
+    animation: iconSpin 8s linear infinite;
+}
+
+.length-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.length-slider {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.length-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #00ffff, #0080ff);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    animation: thumbGlow 2s ease-in-out infinite;
+}
+
+.length-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #00ffff, #0080ff);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+.length-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    padding: 0.5rem;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.length-display #length-value {
+    font-family: 'Rubik Mono One', monospace;
+    font-size: 1.5rem;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.length-unit {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.options-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.option-item:hover {
+    background: rgba(0, 255, 255, 0.05);
+    border-color: rgba(0, 255, 255, 0.3);
+    transform: translateX(5px);
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.toggle-slider {
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    bottom: 2px;
+    background: #666;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-input:checked + .toggle-label {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: rgba(0, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.toggle-input:checked + .toggle-label .toggle-slider {
+    transform: translateX(30px);
+    background: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+.option-info {
+    flex: 1;
+}
+
+.option-name {
+    display: block;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+}
+
+.option-example {
+    display: block;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-family: 'Rubik Mono One', monospace;
+}
+
+/* Password Output */
+.password-output {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(15px);
+}
+
+.output-container {
+    margin-bottom: 2rem;
+}
+
+.password-display {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.password-field {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 15px;
+    color: #00ffff;
+    font-family: 'Rubik Mono One', monospace;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 2px;
+    word-break: break-all;
+    transition: all 0.3s ease;
+}
+
+.password-field:focus {
+    outline: none;
+    border-color: rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+.password-field.generated {
+    animation: passwordReveal 0.8s ease-out;
+}
+
+.field-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    border-radius: 15px;
+    opacity: 0;
+    animation: fieldScan 2s ease-in-out infinite;
+}
+
+.password-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.generate-btn {
+    flex: 1;
+    position: relative;
+    padding: 1.2rem 2rem;
+    background: linear-gradient(135deg, #00ffff, #0080ff);
+    border: none;
+    border-radius: 15px;
+    color: #000;
+    font-family: 'Passion One', sans-serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+}
+
+.generate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.5);
+}
+
+.generate-btn:active {
+    transform: translateY(0);
+}
+
+.generate-btn.generating {
+    background: linear-gradient(135deg, #ffaa00, #ff6600);
+    animation: generatePulse 1s ease-in-out infinite;
+}
+
+.btn-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.generate-btn.generating .btn-loading {
+    opacity: 1;
+}
+
+.generate-btn.generating .btn-text {
+    opacity: 0;
+}
+
+.loading-dots {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    background: #000;
+    border-radius: 50%;
+    animation: dotBounce 1.4s ease-in-out infinite both;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+.loading-dots span:nth-child(3) { animation-delay: 0s; }
+
+.btn-cyber-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.generate-btn:hover .btn-cyber-effect {
+    left: 100%;
+}
+
+.copy-btn {
+    padding: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copy-btn:hover:not(:disabled) {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: rgba(0, 255, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.copy-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.copy-btn.copied {
+    background: rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.6);
+    animation: copySuccess 0.6s ease-out;
+}
+
+/* Strength Meter */
+.strength-meter {
+    margin-top: 1.5rem;
+}
+
+.strength-label {
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.strength-bar {
+    position: relative;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff4444, #ffaa00, #00ff00);
+    border-radius: 6px;
+    transition: all 0.8s ease;
+    position: relative;
+}
+
+.strength-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: strengthScan 2s linear infinite;
+}
+
+.strength-indicators {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2px;
+}
+
+.indicator {
+    width: 2px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1px;
+}
+
+.strength-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Generator Footer */
+.generator-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.security-tips {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tip-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 25px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.tip-item:hover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.tip-icon {
+    font-size: 1.1rem;
+    animation: tipIconFloat 3s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .generator-main {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .generator-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .generator-content {
+        padding: 2rem 1rem;
+    }
+    
+    .generator-title {
+        font-size: 2rem;
+    }
+    
+    .password-actions {
+        flex-direction: column;
+    }
+    
+    .security-tips {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 /* Cyber Footer */
 .cyber-footer {
     position: relative;
@@ -2227,6 +2872,122 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Password Generator Animations */
+@keyframes matrixRain {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100px); }
+}
+
+@keyframes gridShift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+}
+
+@keyframes beamScan {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes lockPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 30px rgba(0, 255, 255, 1));
+    }
+}
+
+@keyframes waveExpand {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+    }
+    50% {
+        text-shadow: 0 0 40px rgba(0, 255, 255, 1), 0 0 60px rgba(0, 150, 255, 0.8);
+    }
+}
+
+@keyframes iconSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes thumbGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(0, 255, 255, 1);
+    }
+}
+
+@keyframes passwordReveal {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fieldScan {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes generatePulse {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(255, 170, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 15px 40px rgba(255, 170, 0, 0.6);
+    }
+}
+
+@keyframes dotBounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+@keyframes copySuccess {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes strengthScan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes tipIconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
 }
 
 /* Page transition classes */
