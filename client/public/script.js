@@ -1,5 +1,3 @@
-import "./index.css";
-
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize animations
@@ -41,8 +39,6 @@ function initializeAnimations() {
 // Create animated particles
 function createParticles() {
     const particlesContainer = document.querySelector('.particles-container');
-    if (!particlesContainer) return;
-    
     const particleCount = 20;
     
     for (let i = 0; i < particleCount; i++) {
@@ -50,7 +46,7 @@ function createParticles() {
     }
 }
 
-function createParticle(container: Element, index: number): void {
+function createParticle(container, index) {
     const particle = document.createElement('div');
     particle.className = 'particle';
     
@@ -72,9 +68,7 @@ function createParticle(container: Element, index: number): void {
     
     // Recreate particle after animation completes
     setTimeout(() => {
-        if (particle.parentNode) {
-            particle.remove();
-        }
+        particle.remove();
         createParticle(container, index);
     }, (duration + delay) * 1000);
 }
@@ -101,28 +95,28 @@ function addNavigationHandlers() {
     // Desktop navigation
     const desktopNavLinks = document.querySelectorAll('.nav-link');
     desktopNavLinks.forEach(link => {
-        link.addEventListener('click', function(e: Event) {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
             
             // Remove active class from all links
             desktopNavLinks.forEach(l => l.classList.remove('active'));
             
             // Add active class to clicked link
-            (this as HTMLElement).classList.add('active');
+            this.classList.add('active');
             
             // Add click animation
-            (this as HTMLElement).style.transform = 'scale(0.95)';
+            this.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                (this as HTMLElement).style.transform = '';
+                this.style.transform = '';
             }, 150);
         });
         
         // Hover effects
-        link.addEventListener('mouseenter', function(this: HTMLElement) {
+        link.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.1)';
         });
         
-        link.addEventListener('mouseleave', function(this: HTMLElement) {
+        link.addEventListener('mouseleave', function() {
             this.style.transform = '';
         });
     });
@@ -130,19 +124,19 @@ function addNavigationHandlers() {
     // Mobile navigation
     const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
     mobileNavItems.forEach(item => {
-        item.addEventListener('click', function(e: Event) {
+        item.addEventListener('click', function(e) {
             e.preventDefault();
             
             // Remove active class from all items
             mobileNavItems.forEach(i => i.classList.remove('active'));
             
             // Add active class to clicked item
-            (this as HTMLElement).classList.add('active');
+            this.classList.add('active');
             
             // Add click animation
-            (this as HTMLElement).style.transform = 'scale(0.9)';
+            this.style.transform = 'scale(0.9)';
             setTimeout(() => {
-                (this as HTMLElement).style.transform = '';
+                this.style.transform = '';
             }, 150);
         });
     });
@@ -150,9 +144,8 @@ function addNavigationHandlers() {
 
 function addCTAHandler() {
     const ctaButton = document.querySelector('.cta-button');
-    if (!ctaButton) return;
     
-    ctaButton.addEventListener('click', function(this: HTMLElement) {
+    ctaButton.addEventListener('click', function() {
         // Add click animation
         this.style.transform = 'scale(0.95)';
         
@@ -174,9 +167,7 @@ function addCTAHandler() {
         
         setTimeout(() => {
             this.style.transform = '';
-            if (ripple.parentNode) {
-                ripple.remove();
-            }
+            ripple.remove();
         }, 150);
         
         // You can add actual functionality here
@@ -184,12 +175,12 @@ function addCTAHandler() {
     });
     
     // Hover effects
-    ctaButton.addEventListener('mouseenter', function(this: HTMLElement) {
+    ctaButton.addEventListener('mouseenter', function() {
         this.style.transform = 'scale(1.05)';
         this.style.boxShadow = '0 20px 40px rgba(52, 41, 211, 0.3)';
     });
     
-    ctaButton.addEventListener('mouseleave', function(this: HTMLElement) {
+    ctaButton.addEventListener('mouseleave', function() {
         this.style.transform = '';
         this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
     });
@@ -197,9 +188,8 @@ function addCTAHandler() {
 
 function addThemeToggleHandler() {
     const themeToggle = document.querySelector('.theme-toggle');
-    if (!themeToggle) return;
     
-    themeToggle.addEventListener('click', function(this: HTMLElement) {
+    themeToggle.addEventListener('click', function() {
         // Add rotation animation
         this.style.transform = 'rotate(180deg) scale(0.9)';
         
@@ -212,12 +202,12 @@ function addThemeToggleHandler() {
     });
     
     // Hover effects
-    themeToggle.addEventListener('mouseenter', function(this: HTMLElement) {
+    themeToggle.addEventListener('mouseenter', function() {
         this.style.transform = 'scale(1.1)';
         this.style.background = 'rgba(255, 255, 255, 0.2)';
     });
     
-    themeToggle.addEventListener('mouseleave', function(this: HTMLElement) {
+    themeToggle.addEventListener('mouseleave', function() {
         this.style.transform = '';
         this.style.background = 'rgba(255, 255, 255, 0.1)';
     });
@@ -225,17 +215,16 @@ function addThemeToggleHandler() {
 
 function addLogoHoverHandler() {
     const logoContainer = document.querySelector('.logo-container');
-    if (!logoContainer) return;
     
-    logoContainer.addEventListener('mouseenter', function(this: HTMLElement) {
+    logoContainer.addEventListener('mouseenter', function() {
         this.style.transform = 'scale(1.05)';
     });
     
-    logoContainer.addEventListener('mouseleave', function(this: HTMLElement) {
+    logoContainer.addEventListener('mouseleave', function() {
         this.style.transform = '';
     });
     
-    logoContainer.addEventListener('click', function(this: HTMLElement) {
+    logoContainer.addEventListener('click', function() {
         // Add click animation
         this.style.transform = 'scale(0.95)';
         
@@ -253,15 +242,14 @@ function addScrollEffects() {
     function updateScrollEffects() {
         const scrollY = window.scrollY;
         const header = document.querySelector('.header');
-        if (!header) return;
         
         // Add background blur to header on scroll
         if (scrollY > 50) {
-            (header as HTMLElement).style.background = 'rgba(0, 0, 0, 0.8)';
-            (header as HTMLElement).style.backdropFilter = 'blur(10px)';
+            header.style.background = 'rgba(0, 0, 0, 0.8)';
+            header.style.backdropFilter = 'blur(10px)';
         } else {
-            (header as HTMLElement).style.background = 'transparent';
-            (header as HTMLElement).style.backdropFilter = 'none';
+            header.style.background = 'transparent';
+            header.style.backdropFilter = 'none';
         }
         
         ticking = false;
@@ -287,17 +275,16 @@ function startContinuousAnimations() {
 
 function animateTextGlow() {
     const ctaText = document.querySelector('.cta-text');
-    if (!ctaText) return;
     
     setInterval(() => {
-        (ctaText as HTMLElement).style.textShadow = '0 0 20px rgba(255,255,255,0.5)';
+        ctaText.style.textShadow = '0 0 20px rgba(255,255,255,0.5)';
         
         setTimeout(() => {
-            (ctaText as HTMLElement).style.textShadow = '0 0 30px rgba(52,41,211,0.8)';
+            ctaText.style.textShadow = '0 0 30px rgba(52,41,211,0.8)';
         }, 1000);
         
         setTimeout(() => {
-            (ctaText as HTMLElement).style.textShadow = '0 0 20px rgba(255,255,255,0.5)';
+            ctaText.style.textShadow = '0 0 20px rgba(255,255,255,0.5)';
         }, 2000);
     }, 2000);
 }
@@ -317,13 +304,13 @@ function addMouseMoveEffect() {
         if (orb1) {
             const moveX = (mouseX - 0.5) * 20;
             const moveY = (mouseY - 0.5) * 20;
-            (orb1 as HTMLElement).style.transform = `translate(${moveX}px, ${moveY}px)`;
+            orb1.style.transform = `translate(${moveX}px, ${moveY}px)`;
         }
         
         if (orb2) {
             const moveX = (mouseX - 0.5) * -15;
             const moveY = (mouseY - 0.5) * -15;
-            (orb2 as HTMLElement).style.transform = `translate(${moveX}px, ${moveY}px)`;
+            orb2.style.transform = `translate(${moveX}px, ${moveY}px)`;
         }
     });
 }
@@ -344,8 +331,6 @@ document.head.appendChild(style);
 window.addEventListener('resize', function() {
     // Adjust particle count based on screen size
     const particlesContainer = document.querySelector('.particles-container');
-    if (!particlesContainer) return;
-    
     const currentParticles = particlesContainer.children.length;
     const targetParticles = window.innerWidth < 768 ? 10 : 20;
     
