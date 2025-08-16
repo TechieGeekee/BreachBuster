@@ -97,9 +97,9 @@
                     <!-- Main Heading -->
                     <h1 class="main-heading">BREACH BUSTER</h1>
 
-                    <!-- Subtitle -->
+                    <!-- Enhanced Typing Effect Subtitle -->
                     <p class="subtitle typing-text" id="typing-subtitle">
-                        Expose the leaks before they expose you..
+                        <!-- Dynamic text will be inserted here -->
                     </p>
                     
                     <!-- Dynamic Stats -->
@@ -208,6 +208,136 @@
                                 <div class="badge">
                                     <span class="badge-icon">⚡</span>
                                     <span>Instant Results</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Generator Section - NOW INSIDE HOME PAGE -->
+                <div class="password-generator-section" style="margin-top: 4rem;">
+                    <div class="generator-background">
+                        <div class="matrix-rain"></div>
+                        <div class="cyber-grid"></div>
+                        <div class="security-beams">
+                            <div class="beam beam-1"></div>
+                            <div class="beam beam-2"></div>
+                            <div class="beam beam-3"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="generator-content">
+                        <div class="generator-container">
+                            <div class="generator-header">
+                                <div class="header-icon-container">
+                                    <div class="lock-animation rotating-shield-container">
+                                        <div class="lock-body rotating-shield">🛡️</div>
+                                        <div class="lock-waves">
+                                            <div class="wave wave-1"></div>
+                                            <div class="wave wave-2"></div>
+                                            <div class="wave wave-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="generator-title glowing-cyber-title">🛡️ FORTRESS PASSWORD GENERATOR</h2>
+                                <p class="generator-subtitle">Create impenetrable passwords that would take hackers centuries to crack</p>
+                            </div>
+                            
+                            <div class="generator-main">
+                                <div class="password-options">
+                                    <div class="option-group">
+                                        <label class="option-label">
+                                            <span class="label-icon">📏</span>
+                                            Password Length: <span id="length-value" class="value-display">16</span>
+                                        </label>
+                                        <div class="length-controls">
+                                            <input type="range" class="length-slider cyber-slider" id="length-slider" min="8" max="50" value="16">
+                                            <span class="length-unit">characters</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="options-grid">
+                                        <div class="option-item cyber-option">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="uppercase" class="toggle-input" checked>
+                                                <label for="uppercase" class="toggle-label">
+                                                    <span class="toggle-slider"></span>
+                                                </label>
+                                            </div>
+                                            <div class="option-info">
+                                                <span class="option-name">🔠 Uppercase Letters</span>
+                                                <span class="option-example">A-Z</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="option-item cyber-option">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="lowercase" class="toggle-input" checked>
+                                                <label for="lowercase" class="toggle-label">
+                                                    <span class="toggle-slider"></span>
+                                                </label>
+                                            </div>
+                                            <div class="option-info">
+                                                <span class="option-name">🔡 Lowercase Letters</span>
+                                                <span class="option-example">a-z</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="option-item cyber-option">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="numbers" class="toggle-input" checked>
+                                                <label for="numbers" class="toggle-label">
+                                                    <span class="toggle-slider"></span>
+                                                </label>
+                                            </div>
+                                            <div class="option-info">
+                                                <span class="option-name">🔢 Numbers</span>
+                                                <span class="option-example">0-9</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="option-item cyber-option">
+                                            <div class="toggle-switch">
+                                                <input type="checkbox" id="symbols" class="toggle-input" checked>
+                                                <label for="symbols" class="toggle-label">
+                                                    <span class="toggle-slider"></span>
+                                                </label>
+                                            </div>
+                                            <div class="option-info">
+                                                <span class="option-name">🔣 Special Characters</span>
+                                                <span class="option-example">!@#$</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="generate-section">
+                                        <button class="generate-button cyber-generate-btn" id="generate-password">
+                                            <span class="button-icon rotating-gear">⚙️</span>
+                                            <span class="button-text">GENERATE FORTRESS PASSWORD</span>
+                                            <div class="button-particles"></div>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="password-result" id="password-result" style="display: none;">
+                                        <div class="result-container">
+                                            <label class="result-label">🛡️ Your Fortress Password:</label>
+                                            <div class="password-display">
+                                                <input type="password" class="password-field" id="generated-password" readonly placeholder="Generate a password above...">
+                                                <button class="action-button toggle-visibility" id="toggle-password" title="Show/Hide Password">
+                                                    <span class="eye-icon">👁️</span>
+                                                </button>
+                                                <button class="action-button copy-password" id="copy-password" title="Copy Password">
+                                                    <span class="copy-icon">📋</span>
+                                                </button>
+                                            </div>
+                                            <div class="password-strength" id="password-strength">
+                                                <div class="strength-bar">
+                                                    <div class="strength-fill"></div>
+                                                </div>
+                                                <span class="strength-text">Encryption Strength: <span id="strength-level">Generate Password</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
