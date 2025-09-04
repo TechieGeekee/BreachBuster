@@ -1,0 +1,413 @@
+/* Enhanced Hero Section Styles */
+
+/* Holographic Overlay Effects */
+.holographic-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.holo-ring {
+    position: absolute;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring-outer {
+    width: 500px;
+    height: 500px;
+    animation: holoRotate 20s linear infinite;
+    border-style: dashed;
+}
+
+.ring-middle {
+    width: 350px;
+    height: 350px;
+    animation: holoRotate 15s linear infinite reverse;
+    border-color: rgba(255, 0, 255, 0.4);
+}
+
+.ring-inner {
+    width: 200px;
+    height: 200px;
+    animation: holoRotate 10s linear infinite;
+    border-color: rgba(0, 255, 0, 0.3);
+    border-style: dotted;
+}
+
+/* Energy Field Effects */
+.energy-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.energy-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 255, 255, 0.5);
+}
+
+.pulse-1 {
+    width: 100px;
+    height: 100px;
+    animation: energyPulse 4s infinite;
+}
+
+.pulse-2 {
+    width: 200px;
+    height: 200px;
+    animation: energyPulse 4s infinite 1.3s;
+}
+
+.pulse-3 {
+    width: 300px;
+    height: 300px;
+    animation: energyPulse 4s infinite 2.6s;
+}
+
+/* Title Arena */
+.title-arena {
+    position: relative;
+    z-index: 15;
+    margin-bottom: 4rem;
+}
+
+.title-underglow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse, rgba(0, 255, 255, 0.3) 30%, transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    animation: underglowPulse 3s infinite;
+}
+
+/* HUD Systems */
+.hud-systems {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hud-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.hud-module {
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(0, 50, 100, 0.2));
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.hud-module:hover {
+    border-color: rgba(0, 255, 255, 0.7);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+}
+
+.hud-module::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    animation: scanline 3s infinite;
+}
+
+.module-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.module-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));
+}
+
+.module-title {
+    font-family: 'Russo One', sans-serif;
+    font-size: 1rem;
+    color: #00ffff;
+    letter-spacing: 0.1em;
+}
+
+.module-status {
+    margin-bottom: 1rem;
+}
+
+.status-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff00, #00ffff);
+    border-radius: 4px;
+    animation: barFill 2s ease-out;
+    position: relative;
+}
+
+.bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6));
+    animation: barShimmer 2s infinite;
+}
+
+.status-text {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #00ff00;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    animation: textGlow 2s infinite;
+}
+
+.data-stream {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    overflow: hidden;
+}
+
+.stream-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 255, 255, 0.3);
+}
+
+.stream-pulse {
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    animation: streamFlow 2s infinite;
+}
+
+/* Central Command */
+.central-command {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.command-ring {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 3px solid rgba(0, 255, 255, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(0, 50, 100, 0.3), transparent);
+    animation: commandRotate 8s linear infinite;
+    margin:100px auto -150px auto;
+}
+
+.inner-core {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #00ffff;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent);
+    animation: coreGlow 3s infinite;
+}
+
+.energy-readout {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: monospace;
+}
+
+.readout-text {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.2rem;
+}
+
+.readout-value {
+    font-size: 1.4rem;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    animation: valueFlicker 2s infinite;
+}
+
+/* Animations */
+@keyframes holoRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes energyPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes underglowPulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes bracketFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+    75% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scanline {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes barFill {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes barShimmer {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes streamFlow {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes commandRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes coreGlow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(0, 255, 255, 1);
+        transform: scale(1.05);
+    }
+}
+
+@keyframes valueFlicker {
+    0%, 100% { opacity: 1; }
+    25% { opacity: 0.8; }
+    50% { opacity: 1; }
+    75% { opacity: 0.9; }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(0, 255, 0, 1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .holographic-overlay {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .ring-outer {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .ring-middle {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .ring-inner {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .hud-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .subtitle-bracket {
+        font-size: 2rem;
+    }
+    
+    .subtitle-line-2 {
+        font-size: 1.1rem;
+    }
+    
+    .command-ring {
+        width: 150px;
+        height: 150px;
+    }
+}

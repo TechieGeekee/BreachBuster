@@ -1,0 +1,12 @@
+# Environment Variables for Breach Buster App
+
+# SendGrid API Key for email functionality
+# Get your free API key from: https://sendgrid.com/
+SENDGRID_API_KEY=your_sendgrid_api_key_here
+
+# Neon Database URL
+# Get your free database from: https://neon.tech/
+DATABASE_URL=postgresql://username:password@hostname:port/database
+
+# Optional: Node Environment
+NODE_ENV=development

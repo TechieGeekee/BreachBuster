@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Report - BreachBuster | Report Security Issues & Vulnerabilities</title>
+    <meta name="description" content="Report bugs, security issues, and vulnerabilities to help improve BreachBuster's cybersecurity platform. Contribute to making password security better for everyone.">
+    <meta name="keywords" content="BreachBuster bug report, security vulnerability report, cybersecurity bug, password security issue, report breach, security feedback">
+    <meta name="author" content="BreachBuster Security Team">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="canonical" href="https://breachbuster.tech/bug-report">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Bug Report - BreachBuster Security Platform">
+    <meta property="og:description" content="Report bugs and security issues to help improve BreachBuster's cybersecurity platform.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://breachbuster.tech/bug-report">
+    <meta property="og:image" content="https://breachbuster.tech/favicon.ico">
+    <meta property="og:site_name" content="BreachBuster">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Bug Report - BreachBuster">
+    <meta name="twitter:description" content="Report bugs and security issues to help improve BreachBuster.">
+    <meta name="twitter:image" content="https://breachbuster.tech/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Russo+One&family=Rubik+Mono+One&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background - Similar to main page */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #000 0%, #0f172a 25%, #1e293b 50%, #0f172a 75%, #000 100%);
+        }
+
+        /* Moving Grid Pattern */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 25s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            opacity: 0.6;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 20s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: -2s; animation-duration: 18s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: -4s; animation-duration: 22s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: -6s; animation-duration: 16s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: -8s; animation-duration: 24s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: -10s; animation-duration: 19s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: -12s; animation-duration: 21s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: -14s; animation-duration: 17s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: -16s; animation-duration: 23s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Gradient Orbs */
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: orbFloat 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #00ffff 0%, #0066ff 50%, transparent 70%);
+            top: 20%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #ff00ff 0%, #6600ff 50%, transparent 70%);
+            top: 60%;
+            right: -10%;
+            animation-delay: -10s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #00ff88 0%, #0088ff 50%, transparent 70%);
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -5s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -80px) scale(1.1); }
+            66% { transform: translate(-80px, 60px) scale(0.9); }
+        }
+
+        /* Header */
+        .header {
+            padding: 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Original Logo Design */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-b {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 2.5rem;
+            color: #fff;
+            transform: rotate(180deg);
+            animation: logoRotate 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        @keyframes logoRotate {
+            0%, 100% { transform: rotate(180deg); }
+            50% { transform: rotate(170deg); }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Russo One', sans-serif;
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.1;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+            transform: translateX(-2px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        .page-title h1 {
+            font-family: 'Passion One', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #00ffff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .page-title p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 30px rgba(0, 255, 255, 0.5); }
+            100% { text-shadow: 0 0 50px rgba(0, 255, 255, 0.8); }
+        }
+
+        /* Form Card */
+        .form-card {
+            background: rgba(0, 20, 40, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .form-section:nth-child(1) { animation-delay: 0.1s; }
+        .form-section:nth-child(2) { animation-delay: 0.2s; }
+        .form-section:nth-child(3) { animation-delay: 0.3s; }
+        .form-section:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #00ffff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 1rem;
+            background: rgba(0, 20, 40, 0.5);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            background: rgba(0, 30, 60, 0.7);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2300ffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        /* Submit Button */
+        .submit-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #00ffff, #0066ff);
+            border: 2px solid #00ffff;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            color: #000;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Status Message */
+        .status-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+            border: 2px solid;
+        }
+
+        .status-success {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: #00ff88;
+            color: #00ff88;
+        }
+
+        .status-error {
+            background: rgba(255, 68, 68, 0.1);
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-top: 2px solid #000;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tips Section */
+        .tips-card {
+            margin-top: 3rem;
+            background: rgba(0, 20, 40, 0.4);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .tips-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tip-item:hover {
+            background: rgba(0, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .tip-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+            background: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .tip-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .page-title h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-card {
+                padding: 1.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-b {
+                font-size: 2rem;
+            }
+
+            .logo-text {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-container">
+        <div class="grid-overlay"></div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <!-- Original Logo Design -->
+            <div class="logo">
+                <div class="logo-b">B</div>
+                <div class="logo-text">
+                    <span>reach</span>
+                    <span>uster</span>
+                </div>
+            </div>
+            <a href="/" class="back-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m12 19-7-7 7-7"/>
+                    <path d="M19 12H5"/>
+                </svg>
+                Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>INCIDENT REPORT</h1>
+            <p>Submit detailed bug reports to help improve system security and functionality</p>
+        </div>
+
+        <!-- Bug Report Form -->
+        <div class="form-card">
+            <form id="bug-report-form">
+                <!-- Reporter Information -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        👤 REPORTER IDENTIFICATION
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="reporter_name">Name/Handle</label>
+                            <input type="text" id="reporter_name" name="reporter_name" class="form-input" placeholder="Enter your name or handle..." required data-testid="input-reporter-name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="reporter_email">Contact Email</label>
+                            <input type="email" id="reporter_email" name="reporter_email" class="form-input" placeholder="your@email.com" required data-testid="input-reporter-email">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Issue Classification -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        🎯 THREAT ASSESSMENT
+                    </h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="severity">Bug Severity</label>
+                            <select id="severity" name="severity" class="form-select" required data-testid="select-severity">
+                                <option value="">Select severity level...</option>
+                                <option value="critical">🔴 CRITICAL - System compromised</option>
+                                <option value="high">🟠 HIGH - Major functionality broken</option>
+                                <option value="medium">🟡 MEDIUM - Minor issues affecting UX</option>
+                                <option value="low">🟢 LOW - Cosmetic or minor issues</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="category">Bug Category</label>
+                            <select id="category" name="category" class="form-select" required data-testid="select-category">
+                                <option value="">Select category...</option>
+                                <option value="security">🛡️ Security Vulnerability</option>
+                                <option value="performance">⚡ Performance Issue</option>
+                                <option value="ui">🎨 User Interface Bug</option>
+                                <option value="functionality">⚙️ Feature Not Working</option>
+                                <option value="compatibility">🌐 Browser/Device Compatibility</option>
+                                <option value="other">❓ Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Issue Details -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        📝 INCIDENT DETAILS
+                    </h2>
+                    <div class="form-group">
+                        <label class="form-label" for="summary">Short Summary</label>
+                        <input type="text" id="summary" name="summary" class="form-input" placeholder="Brief description of the issue..." required data-testid="input-summary">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="description">Detailed Description</label>
+                        <textarea id="description" name="description" class="form-textarea" placeholder="Provide detailed information about the bug:&#10;• What were you trying to do?&#10;• What happened instead?&#10;• Steps to reproduce the issue&#10;• Expected vs actual behavior&#10;• Any error messages?" required data-testid="textarea-description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="environment">Environment Info</label>
+                        <textarea id="environment" name="environment" class="form-textarea" placeholder="Browser, OS, device info (optional)..." data-testid="textarea-environment"></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="submit-container">
+                    <button type="submit" class="submit-btn" id="submit-btn" data-testid="button-submit-bug-report">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19l7-7-7-7"/>
+                            <path d="M5 12h14"/>
+                        </svg>
+                        TRANSMIT REPORT
+                    </button>
+                    <div id="status-message" class="status-message"></div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-card">
+            <h3 class="tips-title">💡 REPORTING GUIDELINES</h3>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <div class="tip-dot"></div>
+                    <div class="tip-text">Be specific about what you were doing when the bug occurred</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-dot"></div>
+                    <div class="tip-text">Include steps to reproduce the issue if possible</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-dot"></div>
+                    <div class="tip-text">Screenshots or error messages help us debug faster</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-dot"></div>
+                    <div class="tip-text">Critical security issues are prioritized immediately</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Enhanced JavaScript with animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('bug-report-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const statusMessage = document.getElementById('status-message');
+
+            // Add enhanced focus animations
+            const inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 15px 35px rgba(0, 255, 255, 0.2)';
+                });
+
+                input.addEventListener('blur', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.1)';
+                });
+            });
+
+            // Form submission with enhanced animations
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Enhanced loading state
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<div class="loading-spinner"></div> TRANSMITTING...';
+                submitBtn.disabled = true;
+
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    // Submit to API
+                    const response = await fetch('/api/bug-report', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        // Success animation
+                        statusMessage.className = 'status-message status-success';
+                        statusMessage.textContent = '✅ REPORT TRANSMITTED SUCCESSFULLY! Security team notified.';
+                        statusMessage.style.display = 'block';
+                        form.reset();
+                        
+                        // Success pulse effect
+                        submitBtn.style.background = 'linear-gradient(135deg, #00ff88, #00aa44)';
+                        setTimeout(() => {
+                            submitBtn.style.background = 'linear-gradient(135deg, #00ffff, #0066ff)';
+                        }, 2000);
+                    } else {
+                        // Handle error response
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || `HTTP ${response.status}`);
+                    }
+
+                } catch (error) {
+                    // Error animation
+                    console.error('Bug report transmission failed:', error);
+                    
+                    statusMessage.className = 'status-message status-error';
+                    statusMessage.textContent = `❌ ${error.message}`;
+                    statusMessage.style.display = 'block';
+                    
+                    // Error shake effect
+                    submitBtn.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        submitBtn.style.animation = '';
+                    }, 500);
+                }
+
+                // Reset button
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+
+                // Hide status after 6 seconds
+                setTimeout(() => {
+                    statusMessage.style.display = 'none';
+                }, 6000);
+            });
+
+            console.log('🛡️ Enhanced bug report system initialized');
+        });
+
+        // Add shake animation for errors
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add hover effects to form sections
+        document.querySelectorAll('.form-section').forEach(section => {
+            section.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+
+            section.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

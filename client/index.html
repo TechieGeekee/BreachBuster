@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BreachBuster - Password Security & Breach Detection Tool | Check Password Leaks</title>
+    <meta name="description" content="BreachBuster is the world's leading password security and breach detection tool. Instantly check if your passwords are compromised in data breaches. Free password checker and generator with real-time security analysis.">
+    <meta name="keywords" content="BreachBuster, password security, breach detection, password checker, data breach, cybersecurity, password generator, security scanner, password leak, have i been pwned alternative">
+    <meta name="author" content="BreachBuster Security Team">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="canonical" href="https://breachbuster.tech">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="BreachBuster - Password Security & Breach Detection Tool">
+    <meta property="og:description" content="Check if your passwords are compromised in data breaches. Free password security checker and generator. Protect yourself from cybersecurity threats with BreachBuster.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://breachbuster.tech">
+    <meta property="og:image" content="https://breachbuster.tech/favicon.ico">
+    <meta property="og:site_name" content="BreachBuster">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BreachBuster - Password Security & Breach Detection Tool">
+    <meta name="twitter:description" content="Check if your passwords are compromised in data breaches. Free password security checker and generator.">
+    <meta name="twitter:image" content="https://breachbuster.tech/favicon.ico">
+    <meta name="twitter:site" content="@BreachBuster">
+    <meta name="twitter:creator" content="@BreachBuster">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#00ff41">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/favicon.ico">
+    
+    <!-- Performance Optimization -->
+    <link rel="dns-prefetch" href="//api.pwnedpasswords.com">
+    <link rel="dns-prefetch" href="//haveibeenpwned.com">
+    <link rel="preconnect" href="https://api.pwnedpasswords.com" crossorigin>
+    <link rel="preconnect" href="https://haveibeenpwned.com" crossorigin>
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="preload" href="/hero-enhancements.css" as="style">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="geo.region" content="US">
+    <meta name="geo.placename" content="United States">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "BreachBuster",
+      "description": "BreachBuster is the world's leading password security and breach detection tool. Instantly check if your passwords are compromised in data breaches.",
+      "url": "https://breachbuster.tech",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "BreachBuster Security",
+        "url": "https://breachbuster.tech"
+      },
+      "keywords": "BreachBuster, password security, breach detection, password checker, data breach, cybersecurity, password generator, security scanner",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "1247"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://breachbuster.tech/?q={search_term}",
+        "query-input": "required name=search_term"
+      },
+      "sameAs": [
+        "https://twitter.com/BreachBuster",
+        "https://github.com/BreachBuster",
+        "https://linkedin.com/company/breachbuster"
+      ],
+      "mainEntity": {
+        "@type": "WebSite",
+        "name": "BreachBuster",
+        "url": "https://breachbuster.tech",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://breachbuster.tech/?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Russo+One&family=Rubik+Mono+One&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS Stylesheet -->
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/hero-enhancements.css">
+</head>
+<body>
+    <!-- Initial Loading Screen to prevent FOUC -->
+    <div id="initial-loading" class="initial-loading">
+        <div class="initial-spinner"></div>
+        <div class="initial-text">Initializing BreachBuster...</div>
+    </div>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <div class="loading-logo-b">B</div>
+                <div class="loading-logo-text">
+                    <span>reach</span>
+                    <span>uster</span>
+                </div>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+            <div class="loading-text">Initializing Security Protocols...</div>
+        </div>
+        <div class="loading-particles">
+            <!-- Particles will be generated by JavaScript -->
+        </div>
+    </div>
+    <!-- Animated Background -->
+    <div class="background-container">
+        <div class="hero-gradient"></div>
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <!-- Logo -->
+                <div class="logo-container">
+                    <div class="logo-b">B</div>
+                    <div class="logo-text">
+                        <span>reach</span>
+                        <span>uster</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="desktop-nav">
+                    <div class="nav-container">
+                        <ul class="nav-list">
+                            <li class="nav-item">
+                                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#about" class="nav-link" data-page="about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#support" class="nav-link" data-page="support">Support</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Settings Dropdown -->
+                <div class="settings-container">
+                    <button class="settings-toggle" data-testid="button-settings">
+                        <svg class="settings-icon" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="currentColor" d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11.03L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11.03L19.5,12L19.43,12.97L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"/>
+                        </svg>
+                    </button>
+                    <div class="settings-dropdown" data-testid="dropdown-settings">
+                        <div class="dropdown-content">
+                            <div class="setting-item" data-testid="setting-theme">
+                                <div class="setting-info">
+                                    <span class="setting-icon">🌓</span>
+                                    <span class="setting-name">Theme</span>
+                                </div>
+                                <div class="modern-toggle">
+                                    <input type="checkbox" id="theme-toggle-switch" class="toggle-input" data-testid="toggle-theme">
+                                    <label for="theme-toggle-switch" class="toggle-label">
+                                        <span class="toggle-track">
+                                            <span class="toggle-thumb"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="setting-item" data-testid="setting-animations">
+                                <div class="setting-info">
+                                    <span class="setting-icon">✨</span>
+                                    <span class="setting-name">Animations</span>
+                                </div>
+                                <div class="modern-toggle">
+                                    <input type="checkbox" id="animations-toggle-switch" class="toggle-input" checked data-testid="toggle-animations">
+                                    <label for="animations-toggle-switch" class="toggle-label">
+                                        <span class="toggle-track">
+                                            <span class="toggle-thumb"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div id="home-page" class="page active">
+                <div class="content-container">
+                    <!-- Main Heading -->
+                    <h1 class="main-heading">BREACH BUSTER</h1>
+
+                    <!-- Subtitle -->
+                    <p class="subtitle typing-text" id="typing-subtitle"></p>
+                    
+                    <!-- Dynamic Stats -->
+                    <div class="dynamic-stats">
+                        <div class="stat-counter floating-element">
+                            <div class="counter" id="threats-counter" data-target="1247">0</div>
+                            <div class="counter-label">Threats Blocked Till Now</div>
+                        </div>
+                        <div class="stat-counter floating-element">
+                            <div class="counter" id="scans-counter" data-target="8392">0</div>
+                            <div class="counter-label">Security Scans Performed</div>
+                        </div>
+                        <div class="stat-counter floating-element">
+                            <div class="counter" id="users-counter" data-target="25738">0</div>
+                            <div class="counter-label">Protected Users</div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- Security Importance Section -->
+                    <div class="security-section">
+                        <div class="security-content">
+                            <div class="security-icon-container">
+                                <div class="cyber-shield">
+                                    <div class="shield-layers">
+                                        <div class="shield-layer layer-1"></div>
+                                        <div class="shield-layer layer-2"></div>
+                                        <div class="shield-layer layer-3"></div>
+                                    </div>
+                                    <div class="shield-core">🛡️</div>
+                                </div>
+                                <div class="cyber-particles">
+                                    <!-- Animated cyber particles -->
+                                </div>
+                            </div>
+                            <div class="security-text">
+                                <h2 class="security-heading">Why Security Matters</h2>
+                                <p class="security-description">
+                                    In today's digital landscape, <span class="highlight-text">data breaches</span> happen every 39 seconds. 
+                                    Your personal information could be exposed right now without you knowing. 
+                                    <span class="cyber-threat">Stay protected</span> before it's too late.
+                                </p>
+                                <div class="threat-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-number">4.1B</span>
+                                        <span class="stat-label">Records Exposed</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">39s</span>
+                                        <span class="stat-label">Attack Frequency</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">$9.4M</span>
+                                        <span class="stat-label">Average Cost</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Password Breach Check Section -->
+                    <div class="cyber-breach-check-section" id="password-breach-check">
+                        <div class="cyber-scanner-background">
+                            <div class="scanning-grid"></div>
+                            <div class="data-streams">
+                                <div class="stream stream-1"></div>
+                                <div class="stream stream-2"></div>
+                                <div class="stream stream-3"></div>
+                            </div>
+                            <div class="neural-network">
+                                <div class="neural-node node-1"></div>
+                                <div class="neural-node node-2"></div>
+                                <div class="neural-node node-3"></div>
+                                <div class="neural-connection connection-1"></div>
+                                <div class="neural-connection connection-2"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="cyber-breach-content">
+                            <div class="cyber-header">
+                                <div class="header-glow">
+                                    <h2 class="cyber-title">
+                                        <span class="title-bracket">[</span>
+                                        <span class="title-main">PASSWORD EXPOSURE SCANNER</span>
+                                        <span class="title-bracket">]</span>
+                                    </h2>
+                                    <div class="cyber-subtitle">
+                                        <span class="cyber-text">INITIALIZING BREACH DATABASE CONNECTION...</span>
+                                        <div class="loading-dots">
+                                            <span></span><span></span><span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="cyber-scanner-interface">
+                                <div class="scanner-terminal">
+                                    <div class="terminal-header">
+                                        <div class="terminal-controls">
+                                            <span class="control-dot red"></span>
+                                            <span class="control-dot yellow"></span>
+                                            <span class="control-dot green"></span>
+                                        </div>
+                                        <div class="terminal-title">BREACH_SCANNER_V2.0</div>
+                                    </div>
+                                    
+                                    <div class="terminal-body">
+                                        <div class="password-input-section">
+                                            <div class="input-label">
+                                                <span class="label-icon">🔐</span>
+                                                <span>ENTER TARGET PASSWORD:</span>
+                                            </div>
+                                            <div class="cyber-input-container">
+                                                <input 
+                                                    type="password" 
+                                                    class="cyber-input" 
+                                                    id="password-input" 
+                                                    placeholder="Type password to scan..." 
+                                                    autocomplete="off"
+                                                    data-testid="input-password-check"
+                                                >
+                                                <div class="input-effects">
+                                                    <div class="input-glow"></div>
+                                                    <div class="typing-cursor"></div>
+                                                </div>
+                                                <button type="button" class="visibility-toggle" id="password-toggle" data-testid="button-toggle-password">
+                                                    <svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20">
+                                                        <path fill="currentColor" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Real-time Password Strength Analysis -->
+                                        <div class="password-analysis" id="password-analysis" style="display: none;">
+                                            <div class="analysis-header">
+                                                <span class="analysis-title">SECURITY ANALYSIS:</span>
+                                                <span class="strength-status" id="strength-status">ANALYZING...</span>
+                                            </div>
+                                            <div class="strength-meter">
+                                                <div class="meter-segments">
+                                                    <div class="segment" data-level="1"></div>
+                                                    <div class="segment" data-level="2"></div>
+                                                    <div class="segment" data-level="3"></div>
+                                                    <div class="segment" data-level="4"></div>
+                                                    <div class="segment" data-level="5"></div>
+                                                </div>
+                                                <div class="meter-fill" id="strength-meter-fill"></div>
+                                            </div>
+                                            <div class="security-requirements">
+                                                <div class="req-item" id="req-length">
+                                                    <span class="req-icon">○</span>
+                                                    <span>12+ CHARACTERS</span>
+                                                </div>
+                                                <div class="req-item" id="req-uppercase">
+                                                    <span class="req-icon">○</span>
+                                                    <span>UPPERCASE LETTERS</span>
+                                                </div>
+                                                <div class="req-item" id="req-lowercase">
+                                                    <span class="req-icon">○</span>
+                                                    <span>LOWERCASE LETTERS</span>
+                                                </div>
+                                                <div class="req-item" id="req-numbers">
+                                                    <span class="req-icon">○</span>
+                                                    <span>NUMERIC DIGITS</span>
+                                                </div>
+                                                <div class="req-item" id="req-symbols">
+                                                    <span class="req-icon">○</span>
+                                                    <span>SPECIAL SYMBOLS</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Scan Button -->
+                                        <div class="scan-button-container">
+                                            <button class="cyber-scan-button" id="breach-check-btn" data-testid="button-check-password">
+                                                <div class="button-content">
+                                                    <div class="button-icon">🛡️</div>
+                                                    <div class="button-text" id="button-text">INITIATE BREACH SCAN</div>
+                                                    <div class="button-arrow">→</div>
+                                                </div>
+                                                <div class="button-effects">
+                                                    <div class="scanning-line" id="scanning-line"></div>
+                                                    <div class="energy-pulse"></div>
+                                                </div>
+                                            </button>
+                                        </div>
+                                        
+                                        <!-- Scan Results Terminal -->
+                                        <div class="results-terminal" id="results-terminal" style="display: none;">
+                                            <div class="results-header">
+                                                <div class="results-icon" id="results-icon">🔍</div>
+                                                <div class="results-title">SCAN RESULTS</div>
+                                                <div class="results-timestamp" id="results-timestamp"></div>
+                                            </div>
+                                            <div class="results-content" id="results-content">
+                                                <!-- Results will be populated here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Cyber Security Badges -->
+                                <div class="cyber-security-badges">
+                                    <div class="security-badge">
+                                        <div class="badge-icon">🔐</div>
+                                        <div class="badge-text">
+                                            <div class="badge-title">ENCRYPTED</div>
+                                            <div class="badge-desc">SHA-1 HASHED</div>
+                                        </div>
+                                    </div>
+                                    <div class="security-badge">
+                                        <div class="badge-icon">⚡</div>
+                                        <div class="badge-text">
+                                            <div class="badge-title">REAL-TIME</div>
+                                            <div class="badge-desc">INSTANT SCAN</div>
+                                        </div>
+                                    </div>
+                                    <div class="security-badge">
+                                        <div class="badge-icon">🔒</div>
+                                        <div class="badge-text">
+                                            <div class="badge-title">PRIVACY</div>
+                                            <div class="badge-desc">K-ANONYMITY</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cyber Password Generator Section -->
+                    <div class="cyber-password-generator-section" id="password-generator">
+                        <div class="password-generator-content">
+                            <!-- Header -->
+                            <div class="cyber-header">
+                                <h2 class="generator-heading">STRONG PASSWORD GENERATOR</h2>
+                                <div class="cyber-line"></div>
+                            </div>
+                            
+                            <p class="generator-description">
+                                Generate ultra-secure passwords with military-grade randomization. 
+                                Fortify your digital fortress with unbreakable security keys.
+                            </p>
+                            
+                            <!-- Password Display -->
+                            <div class="password-display-container">
+                                <div class="password-display">
+                                    <div class="password-output" id="password-output">
+                                        <div class="generating-animation" id="generating-animation">
+                                            <span class="generating-text">GENERATING...</span>
+                                            <div class="cyber-loader" id="cyber-loader"></div>
+                                        </div>
+                                        <span class="password-text" id="password-text" style="display: none;"></span>
+                                    </div>
+                                    <div class="password-actions">
+                                        <button class="action-btn copy-btn" id="copy-btn" onclick="copyPassword()">
+                                            <span class="btn-icon">📋</span>
+                                            <span class="btn-text">COPY</span>
+                                        </button>
+                                        <button class="action-btn generate-btn" id="generate-btn" onclick="generatePassword()">
+                                            <span class="btn-icon">🔄</span>
+                                            <span class="btn-text">GENERATE</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Password Controls -->
+                            <div class="password-controls">
+                                <div class="controls-grid">
+                                    <div class="control-group">
+                                        <label class="control-label">
+                                            Password Length: <span class="length-value" id="length-value">16</span>
+                                        </label>
+                                        <input
+                                            type="range"
+                                            min="8"
+                                            max="32"
+                                            value="16"
+                                            class="cyber-slider"
+                                            id="password-length"
+                                            oninput="updateLength(this.value)"
+                                        />
+                                    </div>
+                                    
+                                    <div class="checkbox-grid">
+                                        <label class="cyber-checkbox">
+                                            <input type="checkbox" id="uppercase" checked onchange="updatePassword()">
+                                            <span class="checkmark"></span>
+                                            <span class="checkbox-label">Uppercase (A-Z)</span>
+                                        </label>
+                                        
+                                        <label class="cyber-checkbox">
+                                            <input type="checkbox" id="lowercase" checked onchange="updatePassword()">
+                                            <span class="checkmark"></span>
+                                            <span class="checkbox-label">Lowercase (a-z)</span>
+                                        </label>
+                                        
+                                        <label class="cyber-checkbox">
+                                            <input type="checkbox" id="numbers" checked onchange="updatePassword()">
+                                            <span class="checkmark"></span>
+                                            <span class="checkbox-label">Numbers (0-9)</span>
+                                        </label>
+                                        
+                                        <label class="cyber-checkbox">
+                                            <input type="checkbox" id="symbols" checked onchange="updatePassword()">
+                                            <span class="checkmark"></span>
+                                            <span class="checkbox-label">Symbols (!@#$%)</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Security Info -->
+                            <div class="security-info">
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <div class="info-icon">🔒</div>
+                                        <div class="info-text">
+                                            <span class="info-title">Highly Secure</span>
+                                            <span class="info-desc">Generated using secure randomization</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-icon">🛡️</div>
+                                        <div class="info-text">
+                                            <span class="info-title">Zero Storage</span>
+                                            <span class="info-desc">Passwords never stored or transmitted</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <div class="info-icon">⚡</div>
+                                        <div class="info-text">
+                                            <span class="info-title">Instant Generation</span>
+                                            <span class="info-desc">Real-time password creation & Wait free</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Cyber Background Effects -->
+                        <div class="cyber-atmosphere">
+                            <div class="neural-network">
+                                <div class="neural-node node-1"></div>
+                                <div class="neural-node node-2"></div>
+                                <div class="neural-node node-3"></div>
+                                <div class="neural-node node-4"></div>
+                            </div>
+                            <div class="data-streams">
+                                <div class="stream stream-1"></div>
+                                <div class="stream stream-2"></div>
+                                <div class="stream stream-3"></div>
+                            </div>
+                            <div class="holographic-grid"></div>
+                            <div class="energy-pulses">
+                                <div class="pulse pulse-1"></div>
+                                <div class="pulse pulse-2"></div>
+                                <div class="pulse pulse-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animated Particles -->
+                <div class="particles-container">
+                    <!-- Particles will be generated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- About Page -->
+            <div id="about-page" class="page">
+                <!-- Cyber Background Effects -->
+                <div class="cyber-background-container">
+                    <div class="matrix-rain-bg"></div>
+                    <div class="cyber-grid-overlay"></div>
+                    <div class="scanning-beams">
+                        <div class="scan-beam beam-1"></div>
+                        <div class="scan-beam beam-2"></div>
+                        <div class="scan-beam beam-3"></div>
+                    </div>
+                    <div class="floating-particles">
+                        <!-- Dynamic particles will be generated here -->
+                    </div>
+                </div>
+
+                <div class="content-container">
+                    <!-- Hero Section with Dynamic Title -->
+                    <div class="about-hero-section">
+                        <div class="holographic-overlay">
+                            <div class="holo-ring ring-outer"></div>
+                            <div class="holo-ring ring-middle"></div>
+                            <div class="holo-ring ring-inner"></div>
+                        </div>
+                        
+                        <div class="energy-field">
+                            <div class="energy-pulse pulse-1"></div>
+                            <div class="energy-pulse pulse-2"></div>
+                            <div class="energy-pulse pulse-3"></div>
+                        </div>
+                        
+                        <div class="hero-content">
+                            <div class="title-arena">
+                                <div class="glitch-container">
+                                    <h1 class="page-heading glitch-text" data-text="BREACH BUSTER">
+                                        BREACH BUSTER
+                                    </h1>
+                                    <div class="title-underglow"></div>
+                                </div>
+                                
+                                <div class="hero-subtitle-enhanced">
+                                    <div class="subtitle-bracket">[</div>
+                                    <div class="subtitle-content">
+                                        <span class="subtitle-line-1">ADVANCED</span>
+                                        <span class="subtitle-line-2">CYBERSECURITY DEFENSE</span>
+                                        <span class="subtitle-line-3">PLATFORM</span>
+                                    </div>
+                                    <div class="subtitle-bracket">]</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Enhanced HUD Status Display -->
+                            <div class="hud-systems">
+                                <div class="hud-grid">
+                                    <div class="hud-module threat-detection">
+                                        <div class="module-header">
+                                            <div class="module-icon">🔍</div>
+                                            <div class="module-title">THREAT DETECTION</div>
+                                        </div>
+                                        <div class="module-status active">
+                                            <div class="status-bar">
+                                                <div class="bar-fill" data-percentage="100"></div>
+                                            </div>
+                                            <div class="status-text">ACTIVE</div>
+                                        </div>
+                                        <div class="data-stream">
+                                            <div class="stream-line"></div>
+                                            <div class="stream-pulse"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="hud-module ai-analysis">
+                                        <div class="module-header">
+                                            <div class="module-icon">🧠</div>
+                                            <div class="module-title">AI ANALYSIS</div>
+                                        </div>
+                                        <div class="module-status active">
+                                            <div class="status-bar">
+                                                <div class="bar-fill" data-percentage="100"></div>
+                                            </div>
+                                            <div class="status-text">ONLINE</div>
+                                        </div>
+                                        <div class="data-stream">
+                                            <div class="stream-line"></div>
+                                            <div class="stream-pulse"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="hud-module defense-systems">
+                                        <div class="module-header">
+                                            <div class="module-icon">🛡️</div>
+                                            <div class="module-title">DEFENSE SYSTEMS</div>
+                                        </div>
+                                        <div class="module-status active">
+                                            <div class="status-bar">
+                                                <div class="bar-fill" data-percentage="100"></div>
+                                            </div>
+                                            <div class="status-text">OPERATIONAL</div>
+                                        </div>
+                                        <div class="data-stream">
+                                            <div class="stream-line"></div>
+                                            <div class="stream-pulse"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Central Command Display -->
+                                <div class="central-command">
+                                    <div class="command-ring">
+                                        <div class="inner-core"></div>
+                                        <div class="energy-readout">
+                                            <div class="readout-text">SYSTEM INTEGRITY:</div>
+                                            <div class="readout-value">100%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mission Statement -->
+                    <div class="mission-section">
+                        <div class="section-header">
+                            <div class="section-icon-container">
+                                <div class="rotating-shield">
+                                    <div class="shield-outer">🛡️</div>
+                                    <div class="shield-glow"></div>
+                                </div>
+                            </div>
+                            <h2 class="section-title1">Our Mission</h2>
+                        </div>
+                        <div class="mission-content">
+                            <p class="mission-text">
+                                In an era where <span class="highlight-cyber">cyber threats evolve every second</span>, 
+                                Breach Buster stands as your digital guardian, employing cutting-edge AI and machine learning 
+                                to detect, analyze, and neutralize security threats before they can compromise your data. 
+                                We're not just monitoring—we're <span class="highlight-glow">actively defending</span> your digital future.
+                            </p>
+                            <div class="mission-stats">
+                                <div class="stat-block">
+                                    <div class="stat-value"><span class="counter" data-target="99"></span>%</div>
+                                    <div class="stat-label">Threat Detection Rate</div>
+                                </div>
+                                <div class="stat-block">
+                                    <div class="stat-value"><span class="counter" data-target="0.003">0</span>s</div>
+                                    <div class="stat-label">Average Response Time</div>
+                                </div>
+                                <div class="stat-block">
+                                    <div class="stat-value counter" data-target="2.4">0</div>
+                                    <div class="stat-label">Million+ Protected Users</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technology Stack -->
+                    <div class="technology-section">
+                        <div class="section-header">
+                            <div class="section-icon-container">
+                                <div class="tech-cube">
+                                    <div class="cube-face front">⚡</div>
+                                    <div class="cube-face back">🔬</div>
+                                    <div class="cube-face right">🤖</div>
+                                    <div class="cube-face left">🧠</div>
+                                    <div class="cube-face top">💻</div>
+                                    <div class="cube-face bottom">🔮</div>
+                                </div>
+                            </div>
+                            <h2 class="section-title1">Advanced Technology Stack</h2>
+                        </div>
+                        <div class="tech-grid">
+                            <div class="tech-card" data-tech="ai">
+                                <div class="tech-icon-container">
+                                    <div class="tech-icon ai-icon">🧠</div>
+                                    <div class="tech-glow"></div>
+                                </div>
+                                <h3>Neural Networks</h3>
+                                <p>Deep learning algorithms analyze patterns in real-time to predict and prevent security breaches</p>
+                                <div class="tech-meter">
+                                    <div class="meter-fill" data-fill="95"></div>
+                                    <span class="meter-label">AI Accuracy: 95%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-card" data-tech="quantum">
+                                <div class="tech-icon-container">
+                                    <div class="tech-icon quantum-icon">🔬</div>
+                                    <div class="tech-glow"></div>
+                                </div>
+                                <h3>Quantum Encryption</h3>
+                                <p>Military-grade quantum cryptography ensures your data remains unbreachable and is secure.</p>
+                                <div class="tech-meter">
+                                    <div class="meter-fill" data-fill="100"></div>
+                                    <span class="meter-label">Security Level: Max</span>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-card" data-tech="blockchain">
+                                <div class="tech-icon-container">
+                                    <div class="tech-icon blockchain-icon">⛓️</div>
+                                    <div class="tech-glow"></div>
+                                </div>
+                                <h3>Blockchain Verification</h3>
+                                <p>Immutable ledger technology validates every security event and maintains integrity</p>
+                                <div class="tech-meter">
+                                    <div class="meter-fill" data-fill="88"></div>
+                                    <span class="meter-label">Verification: 88%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="tech-card" data-tech="edge">
+                                <div class="tech-icon-container">
+                                    <div class="tech-icon edge-icon">⚡</div>
+                                    <div class="tech-glow"></div>
+                                </div>
+                                <h3>Edge Computing</h3>
+                                <p>Distributed processing power delivers instant threat response at network edge points</p>
+                                <div class="tech-meter">
+                                    <div class="meter-fill" data-fill="92"></div>
+                                    <span class="meter-label">Performance: 92%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Creator Section Enhanced -->
+                    <div class="creator-section-enhanced">
+                        <div class="section-header">
+                            <div class="section-icon-container">
+                                <div class="creator-avatar-container">
+                                    <div class="avatar-glow"></div>
+                                    <div class="avatar-rings">
+                                        <div class="ring ring-1"></div>
+                                        <div class="ring ring-2"></div>
+                                        <div class="ring ring-3"></div>
+                                    </div>
+                                    <div class="creator-avatar">👨‍💻</div>
+                                </div>
+                            </div>
+                            <h2 class="section-title1">Creator & Visionary</h2>
+                        </div>
+                        
+                        <div class="creator-enhanced-card">
+                            <div class="creator-profile">
+                                <div class="profile-header">
+                                    <h3 class="creator-name-enhanced">ABHINAV K</h3>
+                                    <div class="title-container">
+                                        <div class="title-badge">Cybersecurity Architect</div>
+                                        <div class="title-badge">Ethical Hacker</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="creator-bio">
+                                    <p>
+                                        With over <span class="highlight-years">4+ years</span> of experience in cybersecurity and AI development, 
+                                        Abhinav has dedicated his career to creating innovative security solutions that stay ahead of evolving threats. 
+                                        His expertise spans from <span class="highlight-skill">machine learning algorithms</span> to 
+                                        <span class="highlight-skill">quantum cryptography</span>, making him a pioneer in next-generation cybersecurity.
+                                    </p>
+                                </div>
+                                
+                                <div class="expertise-grid">
+                                    <div class="expertise-item">
+                                        <div class="expertise-icon">🛡️</div>
+                                        <span>Threat Analysis</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-fill" data-skill="98"></div>
+                                        </div>
+                                    </div>
+                                    <div class="expertise-item">
+                                        <div class="expertise-icon">🤖</div>
+                                        <span>AI Development</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-fill" data-skill="95"></div>
+                                        </div>
+                                    </div>
+                                    <div class="expertise-item">
+                                        <div class="expertise-icon">🔐</div>
+                                        <span>Cryptography</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-fill" data-skill="92"></div>
+                                        </div>
+                                    </div>
+                                    <div class="expertise-item">
+                                        <div class="expertise-icon">⚡</div>
+                                        <span>System Architecture</span>
+                                        <div class="skill-bar">
+                                            <div class="skill-fill" data-skill="89"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="creator-achievements">
+                                    <div class="achievement-item">
+                                        <div class="achievement-icon">🏆</div>
+                                        <div class="achievement-text">
+                                            <h4>Security Innovation Award 2024</h4>
+                                            <p>Recognized for breakthrough AI threat detection</p>
+                                        </div>
+                                    </div>
+                                    <div class="achievement-item">
+                                        <div class="achievement-icon">🎯</div>
+                                        <div class="achievement-text">
+                                            <h4>Zero-Day Exploit Prevention</h4>
+                                            <p>Successfully prevented 2.4M+ attacks this year</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="creator-social-enhanced">
+                                    <a href="#" class="social-btn-enhanced linkedin" data-platform="linkedin">
+                                        <div class="social-icon-bg">💼</div>
+                                        <span class="social-text">Connect on LinkedIn</span>
+                                        <div class="social-hover-effect"></div>
+                                    </a>
+                                    <a href="#" class="social-btn-enhanced twitter" data-platform="twitter">
+                                        <div class="social-icon-bg">🐦</div>
+                                        <span class="social-text">Follow Updates</span>
+                                        <div class="social-hover-effect"></div>
+                                    </a>
+                                    <a href="#" class="social-btn-enhanced github" data-platform="github">
+                                        <div class="social-icon-bg">💻</div>
+                                        <span class="social-text">View Projects</span>
+                                        <div class="social-hover-effect"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Features Grid -->
+                    <div class="features-section-enhanced">
+                        <div class="section-header">
+                            <div class="section-icon-container">
+                                <div class="features-icon-container">
+                                    <div class="feature-core">⚡</div>
+                                    <div class="feature-orbits">
+                                        <div class="orbit orbit-1">
+                                            <div class="orbit-item">🔍</div>
+                                        </div>
+                                        <div class="orbit orbit-2">
+                                            <div class="orbit-item">🛡️</div>
+                                        </div>
+                                        <div class="orbit orbit-3">
+                                            <div class="orbit-item">📊</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="section-title1">Core Security Features</h2>
+                        </div>
+                        
+                        <div class="features-grid-enhanced">
+                            <div class="feature-card-enhanced" data-feature="detection">
+                                <div class="card-background-effect"></div>
+                                <div class="feature-header">
+                                    <div class="feature-icon-enhanced">
+                                        <div class="icon-glow detection-glow"></div>
+                                        <span>🔍</span>
+                                    </div>
+                                    <h3>AI-Powered Threat Detection</h3>
+                                </div>
+                                <div class="feature-content">
+                                    <p>Our advanced neural networks analyze millions of data points in real-time, identifying potential threats with unprecedented accuracy before they can cause damage.</p>
+                                    <div class="feature-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-number"><span class="counter" data-target="99">0</span>%</span>
+                                            <span class="metric-label">Detection Rate</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-number"><span class="counter" data-target="15">0</span>M+</span>
+                                            <span class="metric-label">Threats Blocked</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-progress="99"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-card-enhanced" data-feature="monitoring">
+                                <div class="card-background-effect"></div>
+                                <div class="feature-header">
+                                    <div class="feature-icon-enhanced">
+                                        <div class="icon-glow monitoring-glow"></div>
+                                        <span>⚡</span>
+                                    </div>
+                                    <h3>Real-Time Cyber Monitoring</h3>
+                                </div>
+                                <div class="feature-content">
+                                    <p>24/7 continuous surveillance with instant alert systems that ensure your digital assets are protected around the clock with zero downtime.</p>
+                                    <div class="feature-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-number"><span class="counter" data-target="0.003">0</span>s</span>
+                                            <span class="metric-label">Response Time</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-number"><span class="counter" data-target="24">0</span>/7</span>
+                                            <span class="metric-label">Monitoring</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-progress="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-card-enhanced" data-feature="security">
+                                <div class="card-background-effect"></div>
+                                <div class="feature-header">
+                                    <div class="feature-icon-enhanced">
+                                        <div class="icon-glow security-glow"></div>
+                                        <span>🛡️</span>
+                                    </div>
+                                    <h3>Military-Grade Protection</h3>
+                                </div>
+                                <div class="feature-content">
+                                    <p>Quantum encryption and advanced cryptographic protocols provide enterprise-level security that exceeds government and military standards.</p>
+                                    <div class="feature-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-number"><span class="counter" data-target="2048">0</span>-bit</span>
+                                            <span class="metric-label">Encryption</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-number">SOC <span class="counter" data-target="2">0</span></span>
+                                            <span class="metric-label">Compliant</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-progress="95"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-card-enhanced" data-feature="analytics">
+                                <div class="card-background-effect"></div>
+                                <div class="feature-header">
+                                    <div class="feature-icon-enhanced">
+                                        <div class="icon-glow analytics-glow"></div>
+                                        <span>📊</span>
+                                    </div>
+                                    <h3>Intelligent Analytics</h3>
+                                </div>
+                                <div class="feature-content">
+                                    <p>Comprehensive threat intelligence and predictive analytics provide actionable insights to strengthen your security posture continuously.</p>
+                                    <div class="feature-metrics">
+                                        <div class="metric-item">
+                                            <span class="metric-number"><span class="counter" data-target="500">0</span>K+</span>
+                                            <span class="metric-label">Data Points</span>
+                                        </div>
+                                        <div class="metric-item">
+                                            <span class="metric-number"><span class="counter" data-target="95">0</span>%</span>
+                                            <span class="metric-label">Accuracy</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" data-progress="92"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Section -->
+                    <div class="timeline-section">
+                        <div class="section-header">
+                            <div class="section-icon-container">
+                                <div class="timeline-icon">🚀</div>
+                            </div>
+                            <h2 class="section-title1">Development Journey</h2>
+                        </div>
+                        
+                        <div class="timeline-container">
+                            <div class="timeline-line"></div>
+                            
+                            <div class="timeline-item" data-year="2022">
+                                <div class="timeline-marker">
+                                    <div class="marker-glow"></div>
+                                    <span>💡</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Project Conception</h4>
+                                    <p>Initial research and development of AI-powered threat detection algorithms</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item" data-year="2023">
+                                <div class="timeline-marker">
+                                    <div class="marker-glow"></div>
+                                    <span>🧠</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>AI Integration</h4>
+                                    <p>Implementation of machine learning models for pattern recognition and threat prediction</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item" data-year="2024">
+                                <div class="timeline-marker">
+                                    <div class="marker-glow"></div>
+                                    <span>🔐</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Quantum Security</h4>
+                                    <p>Integration of quantum encryption and advanced cryptographic protocols</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item" data-year="2025">
+                                <div class="timeline-marker active">
+                                    <div class="marker-glow"></div>
+                                    <span>🚀</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <h4>Global Launch</h4>
+                                    <p>Official release of Breach Buster with full-scale threat protection capabilities</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Certifications -->
+                    <div class="certifications-section">
+                        <div class="section-header">
+                            <div class="section-icon-container">
+                                <div class="timeline-icon" >🏅</div>
+                            </div>
+                            <h2 class="section-title1">Security Certifications</h2>
+                        </div>
+                        
+                        <div class="certifications-grid">
+                            <div class="cert-item">
+                                <div class="cert-icon">🔒</div>
+                                <h4>ISO 27001</h4>
+                                <p>Information Security Management</p>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-icon">🛡️</div>
+                                <h4>SOC 2 Type II</h4>
+                                <p>Security & Availability Controls</p>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-icon">🌐</div>
+                                <h4>GDPR Compliant</h4>
+                                <p>Data Protection Regulation</p>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-icon">⚖️</div>
+                                <h4>HIPAA Ready</h4>
+                                <p>Healthcare Data Security</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contact Page -->
+            <div id="contact-page" class="page">
+                <div class="content-container">
+                    <h1 class="page-heading">Get In Touch</h1>
+                    
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <h3>Email Us</h3>
+                                <p>security@breachbuster.com</p>
+                                <span>We respond within 24 hours</span>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">📱</div>
+                                <h3>Call Us</h3>
+                                <p>+91 9495909680</p>
+                                <span>Available time 9AM - 9PM</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form">
+                            <form class="security-form">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Your Name" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" placeholder="Your Email" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Company" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="Message" class="form-textarea" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="submit-button">
+                                    <span>Send Message</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Page -->
+            <div id="support-page" class="page">
+                <div class="content-container">
+                    <h1 class="page-heading">Security Support Center</h1>
+                    
+                    <div class="support-content">
+                        <div class="support-categories">
+                            <div class="support-category">
+                                <div class="category-icon">💡</div>
+                                <h3>Technical Support</h3>
+                                <p>Help with setup, configuration, and troubleshooting of your security systems.</p>
+                                <button class="support-button technical" data-url="https://discord.gg/VSBrFHrz">Get Technical Help</button>
+                            </div>
+                            
+                            <div class="support-category">
+                                <div class="category-icon">📚</div>
+                                <h3>Documentation</h3>
+                                <p>Comprehensive guides, tutorials, and best practices for cybersecurity knowledge.</p>
+                                <button class="support-button docs" data-url="https://discord.gg/asdasdhasdh">Browse Documentation</button>
+                            </div>
+                        </div>
+                        
+                        <div class="support-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">99.9%</div>
+                                <div class="stat-label">Uptime Guarantee</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">&lt; 2min</div>
+                                <div class="stat-label">Average Response Time</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Security Monitoring</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Password Generator Section -->
+                    <div class="password-generator-section" id="password-generator-section">
+                        <div class="generator-background">
+                            <div class="matrix-rain"></div>
+                            <div class="cyber-grid"></div>
+                            <div class="security-beams">
+                                <div class="beam beam-1"></div>
+                                <div class="beam beam-2"></div>
+                                <div class="beam beam-3"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="generator-content">
+                    <div class="generator-container">
+                        <div class="generator-header">
+                            <div class="header-icon-container">
+                                <div class="lock-animation">
+                                    <div class="lock-body">🔐</div>
+                                    <div class="lock-waves">
+                                        <div class="wave wave-1"></div>
+                                        <div class="wave wave-2"></div>
+                                        <div class="wave wave-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="generator-title">Secure Password Generator</h2>
+                            <p class="generator-subtitle">Create unbreakable passwords with military-grade randomization</p>
+                        </div>
+                        
+                        <div class="generator-main">
+                            <div class="password-options">
+                                <div class="option-group">
+                                    <label class="option-label">
+                                        <span class="label-icon">📏</span>
+                                        Password Length
+                                    </label>
+                                    <div class="length-controls">
+                                        <input type="range" class="length-slider" id="length-slider" min="8" max="128" value="16">
+                                        <div class="length-display">
+                                            <span id="length-value">16</span>
+                                            <span class="length-unit">characters</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="options-grid">
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="uppercase" class="toggle-input" checked>
+                                            <label for="uppercase" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Uppercase Letters</span>
+                                            <span class="option-example">A-Z</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="lowercase" class="toggle-input" checked>
+                                            <label for="lowercase" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Lowercase Letters</span>
+                                            <span class="option-example">a-z</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="numbers" class="toggle-input" checked>
+                                            <label for="numbers" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Numbers</span>
+                                            <span class="option-example">0-9</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="symbols" class="toggle-input" checked>
+                                            <label for="symbols" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Special Symbols</span>
+                                            <span class="option-example">!@#$%^&*</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="option-item">
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="ambiguous" class="toggle-input">
+                                            <label for="ambiguous" class="toggle-label">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        <div class="option-info">
+                                            <span class="option-name">Ambiguous Characters</span>
+                                            <span class="option-example">0O1lI|</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="password-output">
+                                <div class="output-container">
+                                    <div class="password-display">
+                                        <input type="text" class="password-field" id="password-field" readonly placeholder="Your secure password will appear here...">
+                                        <div class="field-overlay"></div>
+                                    </div>
+                                    
+                                    <div class="password-actions">
+                                        <button class="generate-btn" id="generate-btn">
+                                            <span class="btn-text">Generate Password</span>
+                                            <div class="btn-loading">
+                                                <div class="loading-dots">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div class="btn-cyber-effect"></div>
+                                        </button>
+                                        
+                                        <button class="copy-btn" id="copy-btn" disabled>
+                                            <span class="copy-icon">📋</span>
+                                            <span class="copy-text">Copy</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="strength-meter">
+                                    <div class="strength-label">Password Strength</div>
+                                    <div class="strength-bar">
+                                        <div class="strength-fill" id="strength-fill"></div>
+                                        <div class="strength-indicators">
+                                            <div class="indicator" data-level="1"></div>
+                                            <div class="indicator" data-level="2"></div>
+                                            <div class="indicator" data-level="3"></div>
+                                            <div class="indicator" data-level="4"></div>
+                                            <div class="indicator" data-level="5"></div>
+                                        </div>
+                                    </div>
+                                    <div class="strength-text" id="strength-text">Configure options and generate</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="generator-footer">
+                            <div class="security-tips">
+                                <div class="tip-item">
+                                    <span class="tip-icon">⚡</span>
+                                    <span>Generated offline for maximum security</span>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">🔒</span>
+                                    <span>Use unique passwords for each account</span>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">🛡️</span>
+                                    <span>Enable 2FA when available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Policy Page -->
+            <div id="privacy-page" class="page">
+                <!-- Cyber Background Effects -->
+                <div class="privacy-background">
+                    <div class="data-streams">
+                        <div class="stream privacy-stream-1"></div>
+                        <div class="stream privacy-stream-2"></div>
+                        <div class="stream privacy-stream-3"></div>
+                    </div>
+                    <div class="security-mesh"></div>
+                    <div class="floating-shields">
+                        <div class="shield shield-1">🛡️</div>
+                        <div class="shield shield-2">🔒</div>
+                        <div class="shield shield-3">🔐</div>
+                    </div>
+                </div>
+
+                <div class="content-container">
+                    <!-- Privacy Header -->
+                    <div class="privacy-header">
+                        <div class="privacy-title-container">
+                            <div class="privacy-icon-large">
+                                <div class="shield-animation">
+                                    <div class="shield-outer"></div>
+                                    <div class="shield-inner">🛡️</div>
+                                    <div class="shield-pulse"></div>
+                                </div>
+                            </div>
+                            <h1 class="privacy-title">PRIVACY POLICY</h1>
+                            <div class="privacy-subtitle">Your Data. Your Rights. Our Commitment.</div>
+                            <div class="last-updated">Last Updated: January 29, 2025</div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Navigation -->
+                    <div class="privacy-nav-container">
+                        <nav class="privacy-nav">
+                            <div class="nav-title">Quick Navigation</div>
+                            <ul class="privacy-nav-list">
+                                <li><a href="#info-collection" class="privacy-nav-link">Information Collection</a></li>
+                                <li><a href="#data-usage" class="privacy-nav-link">Data Usage</a></li>
+                                <li><a href="#data-protection" class="privacy-nav-link">Data Protection</a></li>
+                                <li><a href="#cookies" class="privacy-nav-link">Cookies & Tracking</a></li>
+                                <li><a href="#third-party" class="privacy-nav-link">Third-Party Services</a></li>
+                                <li><a href="#user-rights" class="privacy-nav-link">Your Rights</a></li>
+                                <li><a href="#contact" class="privacy-nav-link">Contact Information</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Privacy Content -->
+                    <div class="privacy-content">
+                        <!-- Introduction Section -->
+                        <section class="privacy-section intro-section">
+                            <div class="section-header">
+                                <div class="section-icon">🌐</div>
+                                <h2>Introduction</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <p class="intro-text">At BreachBuster, your privacy and data security are our highest priorities. This Privacy Policy explains how we collect, use, protect, and handle your personal information when you use our cybersecurity services and platform.</p>
+                                
+                                <div class="highlight-box">
+                                    <div class="highlight-icon">⚡</div>
+                                    <div class="highlight-content">
+                                        <h4>Zero-Knowledge Architecture</h4>
+                                        <p>We employ advanced encryption and zero-knowledge principles to ensure your sensitive data remains private and secure.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Information Collection Section -->
+                        <section id="info-collection" class="privacy-section">
+                            <div class="section-header">
+                                <div class="section-icon">📊</div>
+                                <h2>Information We Collect</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="info-categories">
+                                    <div class="info-category">
+                                        <div class="category-icon">👤</div>
+                                        <h3>Personal Information</h3>
+                                        <ul>
+                                            <li>Name and contact information</li>
+                                            <li>Email address for account creation</li>
+                                            <li>Company information (optional)</li>
+                                            <li>Account credentials (encrypted)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="info-category">
+                                        <div class="category-icon">📱</div>
+                                        <h3>Technical Information</h3>
+                                        <ul>
+                                            <li>Device and browser information</li>
+                                            <li>IP address and location data</li>
+                                            <li>Usage patterns and preferences</li>
+                                            <li>Security scan results (anonymized)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="info-category">
+                                        <div class="category-icon">🔍</div>
+                                        <h3>Security Data</h3>
+                                        <ul>
+                                            <li>Vulnerability assessment data</li>
+                                            <li>Breach monitoring results</li>
+                                            <li>Security event logs</li>
+                                            <li>Threat intelligence data</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Data Usage Section -->
+                        <section id="data-usage" class="privacy-section">
+                            <div class="section-header">
+                                <div class="section-icon">🎯</div>
+                                <h2>How We Use Your Data</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="usage-grid">
+                                    <div class="usage-card">
+                                        <div class="usage-icon">🛡️</div>
+                                        <h4>Security Services</h4>
+                                        <p>Provide breach monitoring, vulnerability assessments, and threat detection services.</p>
+                                    </div>
+                                    
+                                    <div class="usage-card">
+                                        <div class="usage-icon">⚙️</div>
+                                        <h4>Service Improvement</h4>
+                                        <p>Enhance our platform capabilities and develop new security features.</p>
+                                    </div>
+                                    
+                                    <div class="usage-card">
+                                        <div class="usage-icon">📧</div>
+                                        <h4>Communication</h4>
+                                        <p>Send security alerts, service updates, and important notifications.</p>
+                                    </div>
+                                    
+                                    <div class="usage-card">
+                                        <div class="usage-icon">📊</div>
+                                        <h4>Analytics</h4>
+                                        <p>Analyze usage patterns to optimize performance and user experience.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Data Protection Section -->
+                        <section id="data-protection" class="privacy-section">
+                            <div class="section-header">
+                                <div class="section-icon">🔒</div>
+                                <h2>Data Protection & Security</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="protection-measures">
+                                    <div class="measure-item">
+                                        <div class="measure-icon">🔐</div>
+                                        <div class="measure-content">
+                                            <h4>End-to-End Encryption</h4>
+                                            <p>All data is encrypted using AES-256 encryption both in transit and at rest.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="measure-item">
+                                        <div class="measure-icon">🏢</div>
+                                        <div class="measure-content">
+                                            <h4>Secure Infrastructure</h4>
+                                            <p>Our servers are hosted in SOC 2 compliant data centers with 24/7 monitoring.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="measure-item">
+                                        <div class="measure-icon">👥</div>
+                                        <div class="measure-content">
+                                            <h4>Access Control</h4>
+                                            <p>Strict access controls ensure only authorized personnel can access your data.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="measure-item">
+                                        <div class="measure-icon">🔄</div>
+                                        <div class="measure-content">
+                                            <h4>Regular Audits</h4>
+                                            <p>Independent security audits and penetration testing conducted quarterly.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Cookies Section -->
+                        <section id="cookies" class="privacy-section">
+                            <div class="section-header">
+                                <div class="section-icon">🍪</div>
+                                <h2>Cookies & Tracking Technologies</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="cookies-info">
+                                    <p>We use cookies and similar technologies to enhance your experience and improve our services:</p>
+                                    
+                                    <div class="cookie-types">
+                                        <div class="cookie-type">
+                                            <div class="cookie-icon">⚡</div>
+                                            <h4>Essential Cookies</h4>
+                                            <p>Required for basic website functionality and security features.</p>
+                                        </div>
+                                        
+                                        <div class="cookie-type">
+                                            <div class="cookie-icon">📊</div>
+                                            <h4>Analytics Cookies</h4>
+                                            <p>Help us understand how you use our services to improve performance.</p>
+                                        </div>
+                                        
+                                        <div class="cookie-type">
+                                            <div class="cookie-icon">🎯</div>
+                                            <h4>Preference Cookies</h4>
+                                            <p>Remember your settings and preferences for a personalized experience.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Third-Party Services Section -->
+                        <section id="third-party" class="privacy-section">
+                            <div class="section-header">
+                                <div class="section-icon">🔗</div>
+                                <h2>Third-Party Services</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <p>We carefully select third-party partners who meet our strict security standards:</p>
+                                
+                                <div class="third-party-list">
+                                    <div class="third-party-item">
+                                        <div class="tp-icon">☁️</div>
+                                        <div class="tp-content">
+                                            <h4>Cloud Providers</h4>
+                                            <p>Enterprise-grade cloud infrastructure providers with security certifications.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="third-party-item">
+                                        <div class="tp-icon">📊</div>
+                                        <div class="tp-content">
+                                            <h4>Analytics Partners</h4>
+                                            <p>Privacy-focused analytics tools that help us improve our services.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="third-party-item">
+                                        <div class="tp-icon">💳</div>
+                                        <div class="tp-content">
+                                            <h4>Payment Processors</h4>
+                                            <p>PCI DSS compliant payment processors for secure transaction handling.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- User Rights Section -->
+                        <section id="user-rights" class="privacy-section">
+                            <div class="section-header">
+                                <div class="section-icon">⚖️</div>
+                                <h2>Your Privacy Rights</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="rights-grid">
+                                    <div class="right-card">
+                                        <div class="right-icon">👁️</div>
+                                        <h4>Right to Access</h4>
+                                        <p>Request a copy of all personal data we have about you.</p>
+                                    </div>
+                                    
+                                    <div class="right-card">
+                                        <div class="right-icon">✏️</div>
+                                        <h4>Right to Rectification</h4>
+                                        <p>Correct any inaccurate or incomplete personal information.</p>
+                                    </div>
+                                    
+                                    <div class="right-card">
+                                        <div class="right-icon">🗑️</div>
+                                        <h4>Right to Erasure</h4>
+                                        <p>Request deletion of your personal data under certain conditions.</p>
+                                    </div>
+                                    
+                                    <div class="right-card">
+                                        <div class="right-icon">🚫</div>
+                                        <h4>Right to Object</h4>
+                                        <p>Object to processing of your data for specific purposes.</p>
+                                    </div>
+                                    
+                                    <div class="right-card">
+                                        <div class="right-icon">📦</div>
+                                        <h4>Data Portability</h4>
+                                        <p>Receive your data in a structured, machine-readable format.</p>
+                                    </div>
+                                    
+                                    <div class="right-card">
+                                        <div class="right-icon">⏸️</div>
+                                        <h4>Right to Restrict</h4>
+                                        <p>Limit how we process your personal information.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Contact Section -->
+                        <section id="contact" class="privacy-section">
+                            <div class="section-header">
+                                <div class="section-icon">📧</div>
+                                <h2>Contact Our Privacy Team</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="contact-grid">
+                                    <div class="contact-method">
+                                        <div class="contact-icon">📧</div>
+                                        <h4>Email</h4>
+                                        <p>privacy@breachbuster.com</p>
+                                        <span>Response within 48 hours</span>
+                                    </div>
+                                    
+                                    <div class="contact-method">
+                                        <div class="contact-icon">📄</div>
+                                        <h4>Data Protection Officer</h4>
+                                        <p>dpo@breachbuster.com</p>
+                                        <span>For GDPR-related inquiries</span>
+                                    </div>
+                                    
+                                    <div class="contact-method">
+                                        <div class="contact-icon">📍</div>
+                                        <h4>Mailing Address</h4>
+                                        <p>BreachBuster Technologies<br>Privacy Department<br>123 Cyber Security Blvd<br>Silicon Valley, CA 94000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Privacy Footer -->
+                    <div class="privacy-footer">
+                        <div class="compliance-badges">
+                            <div class="compliance-badge">
+                                <div class="badge-icon">🛡️</div>
+                                <span>GDPR Compliant</span>
+                            </div>
+                            <div class="compliance-badge">
+                                <div class="badge-icon">🔒</div>
+                                <span>CCPA Compliant</span>
+                            </div>
+                            <div class="compliance-badge">
+                                <div class="badge-icon">⚖️</div>
+                                <span>SOC 2 Certified</span>
+                            </div>
+                        </div>
+                        
+                        <div class="privacy-notice">
+                            <p>This Privacy Policy is effective as of January 29, 2025. We may update this policy periodically. Any changes will be posted on this page with an updated revision date.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms of Service Page -->
+            <div id="terms-page" class="page">
+                <!-- Cyber Background Effects -->
+                <div class="terms-background">
+                    <div class="data-streams">
+                        <div class="stream terms-stream-1"></div>
+                        <div class="stream terms-stream-2"></div>
+                        <div class="stream terms-stream-3"></div>
+                    </div>
+                    <div class="security-mesh"></div>
+                    <div class="floating-shields">
+                        <div class="shield shield-1">⚖️</div>
+                        <div class="shield shield-2">📋</div>
+                        <div class="shield shield-3">🔒</div>
+                    </div>
+                </div>
+
+                <div class="content-container">
+                    <!-- Terms Header -->
+                    <div class="terms-header">
+                        <div class="terms-title-container">
+                            <div class="terms-icon-large">
+                                <div class="scale-animation">
+                                    <div class="scale-outer"></div>
+                                    <div class="scale-inner">⚖️</div>
+                                    <div class="scale-pulse"></div>
+                                </div>
+                            </div>
+                            <h1 class="terms-title">TERMS OF SERVICE</h1>
+                            <div class="terms-subtitle">Legal Framework. User Rights. Service Agreement.</div>
+                            <div class="last-updated">Last Updated: January 29, 2025</div>
+                        </div>
+                    </div>
+
+                    <!-- Terms Navigation -->
+                    <div class="terms-nav-container">
+                        <nav class="terms-nav">
+                            <div class="nav-title">Quick Navigation</div>
+                            <ul class="terms-nav-list">
+                                <li><a href="#acceptance" class="terms-nav-link">Acceptance of Terms</a></li>
+                                <li><a href="#services" class="terms-nav-link">Service Description</a></li>
+                                <li><a href="#user-obligations" class="terms-nav-link">User Obligations</a></li>
+                                <li><a href="#payment-terms" class="terms-nav-link">Payment Terms</a></li>
+                                <li><a href="#intellectual-property" class="terms-nav-link">Intellectual Property</a></li>
+                                <li><a href="#liability" class="terms-nav-link">Liability & Warranties</a></li>
+                                <li><a href="#termination" class="terms-nav-link">Termination</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Terms Content -->
+                    <div class="terms-content">
+                        <!-- Acceptance Section -->
+                        <section id="acceptance" class="terms-section intro-section">
+                            <div class="section-header">
+                                <div class="section-icon">✋</div>
+                                <h2>Acceptance of Terms</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <p class="intro-text">By accessing or using BreachBuster's cybersecurity services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                                
+                                <div class="highlight-box">
+                                    <div class="highlight-icon">⚡</div>
+                                    <div class="highlight-content">
+                                        <h4>Legal Binding Agreement</h4>
+                                        <p>These terms constitute a legally binding agreement between you and BreachBuster Technologies regarding your use of our cybersecurity platform and services.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Service Description Section -->
+                        <section id="services" class="terms-section">
+                            <div class="section-header">
+                                <div class="section-icon">🛡️</div>
+                                <h2>Service Description</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="service-categories">
+                                    <div class="service-category">
+                                        <div class="category-icon">🔍</div>
+                                        <h3>Threat Detection Services</h3>
+                                        <ul>
+                                            <li>Real-time breach monitoring and alerts</li>
+                                            <li>Vulnerability assessments and scanning</li>
+                                            <li>Threat intelligence and analysis</li>
+                                            <li>Security incident response</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="service-category">
+                                        <div class="category-icon">🔐</div>
+                                        <h3>Security Tools & Utilities</h3>
+                                        <ul>
+                                            <li>Password generation and management</li>
+                                            <li>Encryption and data protection tools</li>
+                                            <li>Security auditing and compliance</li>
+                                            <li>Network security monitoring</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="service-category">
+                                        <div class="category-icon">📚</div>
+                                        <h3>Support & Consulting</h3>
+                                        <ul>
+                                            <li>Expert cybersecurity consultation</li>
+                                            <li>Security training and education</li>
+                                            <li>24/7 technical support</li>
+                                            <li>Custom security solutions</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- User Obligations Section -->
+                        <section id="user-obligations" class="terms-section">
+                            <div class="section-header">
+                                <div class="section-icon">👤</div>
+                                <h2>User Obligations & Responsibilities</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="obligations-grid">
+                                    <div class="obligation-card">
+                                        <div class="obligation-icon">✅</div>
+                                        <h4>Lawful Use</h4>
+                                        <p>Use our services only for lawful purposes and in compliance with all applicable laws and regulations.</p>
+                                    </div>
+                                    
+                                    <div class="obligation-card">
+                                        <div class="obligation-icon">🔒</div>
+                                        <h4>Account Security</h4>
+                                        <p>Maintain the confidentiality of your account credentials and notify us immediately of any unauthorized access.</p>
+                                    </div>
+                                    
+                                    <div class="obligation-card">
+                                        <div class="obligation-icon">📊</div>
+                                        <h4>Accurate Information</h4>
+                                        <p>Provide accurate, current, and complete information when using our services and keep it updated.</p>
+                                    </div>
+                                    
+                                    <div class="obligation-card">
+                                        <div class="obligation-icon">🚫</div>
+                                        <h4>Prohibited Activities</h4>
+                                        <p>Do not use our services for malicious activities, attacks on other systems, or any form of cybercrime.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Payment Terms Section -->
+                        <section id="payment-terms" class="terms-section">
+                            <div class="section-header">
+                                <div class="section-icon">💳</div>
+                                <h2>Payment Terms & Billing</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="payment-info">
+                                    <div class="payment-policies">
+                                        <div class="policy-item">
+                                            <div class="policy-icon">💰</div>
+                                            <div class="policy-content">
+                                                <h4>Subscription Fees</h4>
+                                                <p>Service fees are billed in advance on a monthly or annual basis as selected during subscription.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="policy-item">
+                                            <div class="policy-icon">🔄</div>
+                                            <div class="policy-content">
+                                                <h4>Auto-Renewal</h4>
+                                                <p>Subscriptions automatically renew unless cancelled at least 24 hours before the current period ends.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="policy-item">
+                                            <div class="policy-icon">💸</div>
+                                            <div class="policy-content">
+                                                <h4>Refund Policy</h4>
+                                                <p>Refunds are available within 30 days of purchase for annual plans, subject to our refund policy terms.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="policy-item">
+                                            <div class="policy-icon">📈</div>
+                                            <div class="policy-content">
+                                                <h4>Price Changes</h4>
+                                                <p>We reserve the right to modify pricing with 30 days advance notice to existing subscribers.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Intellectual Property Section -->
+                        <section id="intellectual-property" class="terms-section">
+                            <div class="section-header">
+                                <div class="section-icon">©</div>
+                                <h2>Intellectual Property Rights</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="ip-sections">
+                                    <div class="ip-section">
+                                        <div class="ip-icon">🏢</div>
+                                        <h4>Our Intellectual Property</h4>
+                                        <p>All content, software, technologies, and materials provided through our services are owned by BreachBuster Technologies and protected by intellectual property laws. Users are granted a limited, non-exclusive license to use our services.</p>
+                                    </div>
+                                    
+                                    <div class="ip-section">
+                                        <div class="ip-icon">👥</div>
+                                        <h4>User Content</h4>
+                                        <p>You retain ownership of any content you provide to us. By using our services, you grant us a license to use this content solely for providing and improving our services to you.</p>
+                                    </div>
+                                    
+                                    <div class="ip-section">
+                                        <div class="ip-icon">⚖️</div>
+                                        <h4>DMCA Compliance</h4>
+                                        <p>We respect intellectual property rights and comply with the Digital Millennium Copyright Act. If you believe your work has been infringed, please contact us with proper documentation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Liability Section -->
+                        <section id="liability" class="terms-section">
+                            <div class="section-header">
+                                <div class="section-icon">🛡️</div>
+                                <h2>Liability & Warranties</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="liability-grid">
+                                    <div class="liability-card">
+                                        <div class="liability-icon">🚨</div>
+                                        <h4>Service Availability</h4>
+                                        <p>While we strive for maximum uptime, we cannot guarantee uninterrupted service availability and are not liable for temporary disruptions.</p>
+                                    </div>
+                                    
+                                    <div class="liability-card">
+                                        <div class="liability-icon">🔍</div>
+                                        <h4>Security Limitations</h4>
+                                        <p>Our services enhance security but cannot prevent all threats. Users maintain responsibility for their overall cybersecurity posture.</p>
+                                    </div>
+                                    
+                                    <div class="liability-card">
+                                        <div class="liability-icon">💼</div>
+                                        <h4>Limitation of Liability</h4>
+                                        <p>Our liability is limited to the amount paid for services in the 12 months preceding any claim, except where prohibited by law.</p>
+                                    </div>
+                                    
+                                    <div class="liability-card">
+                                        <div class="liability-icon">🎯</div>
+                                        <h4>Indemnification</h4>
+                                        <p>Users agree to indemnify BreachBuster against claims arising from misuse of our services or violation of these terms.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Termination Section -->
+                        <section id="termination" class="terms-section">
+                            <div class="section-header">
+                                <div class="section-icon">🔚</div>
+                                <h2>Termination & Account Closure</h2>
+                                <div class="section-line"></div>
+                            </div>
+                            <div class="section-content">
+                                <div class="termination-info">
+                                    <div class="termination-types">
+                                        <div class="termination-type">
+                                            <div class="termination-icon">👤</div>
+                                            <h4>User-Initiated Termination</h4>
+                                            <p>You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of your current billing period.</p>
+                                        </div>
+                                        
+                                        <div class="termination-type">
+                                            <div class="termination-icon">🏢</div>
+                                            <h4>Company-Initiated Termination</h4>
+                                            <p>We may terminate accounts for violations of these terms, non-payment, or misuse of our services with appropriate notice.</p>
+                                        </div>
+                                        
+                                        <div class="termination-type">
+                                            <div class="termination-icon">💾</div>
+                                            <h4>Data Retention</h4>
+                                            <p>After termination, we retain your data for 90 days to allow for account reactivation, then securely delete all personal information.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Terms Footer -->
+                    <div class="terms-footer">
+                        <div class="legal-notices">
+                            <div class="legal-notice">
+                                <div class="notice-icon">📍</div>
+                                <span>Governed by California State Law</span>
+                            </div>
+                            <div class="legal-notice">
+                                <div class="notice-icon">⚖️</div>
+                                <span>Dispute Resolution via Arbitration</span>
+                            </div>
+                            <div class="legal-notice">
+                                <div class="notice-icon">🌐</div>
+                                <span>International Users Subject to Local Laws</span>
+                            </div>
+                        </div>
+                        
+                        <div class="terms-notice">
+                            <p>These Terms of Service are effective as of January 29, 2025. We may update these terms periodically. Continued use of our services after changes constitutes acceptance of new terms.</p>
+                        </div>
+                        
+                        <div class="contact-legal">
+                            <h4>Legal Questions?</h4>
+                            <p>Contact our legal team at <strong>legal@breachbuster.com</strong> for any questions regarding these terms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 404 Error Page -->
+            <div id="404-page" class="page">
+                <div class="cyber-404-container">
+                    <!-- Background Effects -->
+                    <div class="cyber-bg-effects">
+                        <div class="cyber-grid"></div>
+                        <div class="cyber-particles"></div>
+                        <div class="gradient-overlay"></div>
+                    </div>
+
+                    <!-- Main 404 Content -->
+                    <div class="error-404-content">
+                        <!-- Status Indicator -->
+                        <div class="status-indicator">
+                            <span class="status-text">CONNECTION TERMINATED</span>
+                        </div>
+
+                        <!-- 404 Display -->
+                        <div class="error-code-display">
+                            <div class="error-code">404</div>
+                            <div class="error-divider"></div>
+                            <div class="error-message">
+                                <h1 class="error-title">ACCESS DENIED</h1>
+                                <p class="error-subtitle">The requested resource could not be located on this server</p>
+                            </div>
+                        </div>
+
+                        <!-- System Info Panel -->
+                        <div class="system-info-panel">
+                            <div class="info-header">
+                                <div class="info-icon"></div>
+                                <span>SYSTEM DIAGNOSTIC</span>
+                            </div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="label">STATUS</span>
+                                    <span class="value error">RESOURCE NOT FOUND</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">CODE</span>
+                                    <span class="value">HTTP_404</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">TIMESTAMP</span>
+                                    <span class="value" id="error-timestamp">--:--:--</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">ORIGIN</span>
+                                    <span class="value">SECURE_SERVER</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Panel -->
+                        <div class="action-panel">
+                            <button class="cyber-action-btn primary" data-page="home">
+                                <div class="btn-content">
+                                    <div class="btn-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                            <polyline points="9,22 9,12 15,12 15,22"/>
+                                        </svg>
+                                    </div>
+                                    <span class="btn-text">RETURN HOME</span>
+                                </div>
+                                <div class="btn-shine"></div>
+                            </button>
+
+                            <button class="cyber-action-btn secondary" onclick="window.history.back()">
+                                <div class="btn-content">
+                                    <div class="btn-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="m12 19-7-7 7-7"/>
+                                            <path d="M19 12H5"/>
+                                        </svg>
+                                    </div>
+                                    <span class="btn-text">GO BACK</span>
+                                </div>
+                                <div class="btn-shine"></div>
+                            </button>
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="additional-info">
+                            <p class="help-text">If you believe this is an error, please check the URL or contact system administrator</p>
+                            <div class="error-code-small">ERR_PAGE_NOT_FOUND</div>
+                        </div>
+                    </div>
+
+                    <!-- Cyber Overlay Effects -->
+                    <div class="cyber-overlay">
+                        <div class="scan-line"></div>
+                        <div class="noise-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Cyber Footer -->
+        <footer class="cyber-footer">
+            <div class="footer-background">
+                <div class="footer-grid"></div>
+                <div class="footer-particles"></div>
+                <div class="cyber-lines">
+                    <div class="line line-1"></div>
+                    <div class="line line-2"></div>
+                    <div class="line line-3"></div>
+                </div>
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-container">
+                    <!-- Main Footer Brand Section -->
+                    <div class="footer-brand">
+                        <div class="footer-logo-container">
+                            <div class="footer-logo-b">B</div>
+                            <div class="footer-logo-text">
+                                <span>reach</span>
+                                <span>uster</span>
+                            </div>
+                            <div class="logo-glow-effect"></div>
+                        </div>
+                        <p class="footer-tagline">
+                            Expose the leaks before they expose you.
+                            <span class="tagline-highlight">Stay protected.</span>
+                        </p>
+                        <div class="security-indicators">
+                            <div class="indicator-item active">
+                                <span class="indicator-dot"></span>
+                                <span class="indicator-text">Systems Online</span>
+                            </div>
+                            <div class="indicator-item active">
+                                <span class="indicator-dot"></span>
+                                <span class="indicator-text">24/7 Monitoring</span>
+                            </div>
+                            <div class="indicator-item active">
+                                <span class="indicator-dot"></span>
+                                <span class="indicator-text">Secure Connection</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer Links Grid -->
+                    <div class="footer-links-grid">
+                        <!-- Security Services -->
+                        <div class="footer-section">
+                            <h3 class="section-title">
+                                <span class="title-icon">🛡️</span>
+                                Security Services
+                            </h3>
+                            <ul class="footer-links">
+                                <li><a href="#password-generator" class="footer-link" data-testid="link-password-generator">Password Generator</a></li>
+                                <li><a href="#password-breach-check" class="footer-link" data-testid="link-check-exposure">Check Exposure</a></li>
+                                <li><a href="/pages/find-your-ip.html" class="footer-link" target="_blank">Detailed IP Scan</a></li>
+                                <li><a href="/pages/cybersecurity-quiz.html" class="footer-link" target="_blank">Cybersecurity Quiz</a></li>
+                                <li><a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-two-factor-authentication" class="footer-link" target="_blank">2FA Guide</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Enterprise Solutions -->
+                        <div class="footer-section">
+                            <h3 class="section-title">
+                                <span class="title-icon">🏢</span>
+                                Community
+                            </h3>
+                            <ul class="footer-links">
+                                <li><a href="/pages/bug-report.html" class="footer-link" target="_blank">Report Bug</a></li>
+                                <li><a href="/pages/copyright-claim.html" class="footer-link" target="_blank">Copyright Claim</a></li>
+                                <li><a href="#" class="footer-link">FAQ's</a></li>
+                                <li><a href="/pages/feedback.html" class="footer-link" target="_blank">Feedback</a></li>
+                                <li><a href="/pages/suggestions.html" class="footer-link" target="_blank">Suggestions</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Resources -->
+                        <div class="footer-section">
+                            <h3 class="section-title">
+                                <span class="title-icon">📚</span>
+                                Resources
+                            </h3>
+                            <ul class="footer-links">
+                                <li><a href="https://krebsonsecurity.com" class="footer-link" target="_blank" rel="noopener noreferrer">Krebs on Security</a></li>
+                                <li><a href="https://www.sans.org/reading-room" class="footer-link" target="_blank" rel="noopener noreferrer">SANS Reading Room</a></li>
+                                <li><a href="https://www.cisa.gov/cybersecurity" class="footer-link" target="_blank" rel="noopener noreferrer">CISA Cybersecurity</a></li>
+                                <li><a href="https://attack.mitre.org" class="footer-link" target="_blank" rel="noopener noreferrer">MITRE ATT&CK</a></li>
+                                <li><a href="https://thehackernews.com" class="footer-link" target="_blank" rel="noopener noreferrer">The Hacker News</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Company -->
+                        <div class="footer-section">
+                            <h3 class="section-title">
+                                <span class="title-icon">ℹ️</span>
+                                Company
+                            </h3>
+                            <ul class="footer-links">
+                                <li><a href="#support" class="footer-link" data-page="support">Support</a></li>
+                                <li><a href="#about" class="footer-link" data-page="about">About Us</a></li>
+                                <li><a href="#contact" class="footer-link" data-page="contact">Contact Us</a></li>
+                                <li><a href="#privacy" class="footer-link" data-page="privacy">Privacy Policy</a></li>
+                                <li><a href="#terms" class="footer-link" data-page="terms">Terms of Service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact & Social Section -->
+                <div class="footer-contact-section">
+                    <div class="footer-container">
+                        <div class="contact-grid">
+                            <div class="contact-info">
+                                <h3 class="contact-title">
+                                    <span class="contact-icon">🚨</span>
+                                    Emergency Security Hotline
+                                </h3>
+                                <div class="emergency-number">
+                                    
+                                    <a href="tel:+91 9680100687" class="hotline-link">
+                                    +91 9680100687</a>
+                                    <span class="availability">24/7 Incident Response</span>
+                                </div>
+                            </div>
+                            
+                            <div class="social-connect">
+                                <h3 class="social-title">Stay Connected</h3>
+                                <div class="social-links">
+                                    <a href="#" class="social-link" data-platform="twitter">
+                                        <span class="social-icon">𝕏</span>
+                                        <span class="social-label">Twitter</span>
+                                    </a>
+                                    <a href="#" class="social-link" data-platform="linkedin">
+                                        <span class="social-icon">💼</span>
+                                        <span class="social-label">LinkedIn</span>
+                                    </a>
+                                    <a href="#" class="social-link" data-platform="github">
+                                        <span class="social-icon">⚡</span>
+                                        <span class="social-label">GitHub</span>
+                                    </a>
+                                    <a href="#" class="social-link" data-platform="discord">
+                                        <span class="social-icon">💬</span>
+                                        <span class="social-label">Discord</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="newsletter-signup">
+                                <h3 class="newsletter-title">Security Alerts</h3>
+                                <p class="newsletter-desc">Get real-time threat notifications</p>
+                                <div class="newsletter-form">
+                                    <input type="email" class="newsletter-input" placeholder="your@email.com">
+                                    <button class="newsletter-btn">
+                                        <span>Subscribe</span>
+                                        <span class="btn-icon">⚡</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="footer-container">
+                        <div class="bottom-content">
+                            <div class="copyright">
+                                <span>© 2025 BreachBuster Technologies. All rights reserved.</span>
+                                <span class="security-notice">🔒 End-to-end encrypted • Zero-knowledge architecture</span>
+                            </div>
+                            <div class="footer-certifications">
+                                <div class="cert-badge">ISO 27001</div>
+                                <div class="cert-badge">SOC 2</div>
+                                <div class="cert-badge">GDPR</div>
+                                <div class="cert-badge">CCPA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Mobile Bottom Navigation -->
+        <nav class="mobile-bottom-nav">
+            <div class="mobile-nav-container">
+                <a href="#home" class="mobile-nav-item active" data-page="home" data-testid="mobile-nav-home">
+                    <div class="nav-icon-container">
+                        <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M12,3L2,12H5V20H19V12H22L12,3M12,8.75A1.25,1.25 0 0,1 13.25,10A1.25,1.25 0 0,1 12,11.25A1.25,1.25 0 0,1 10.75,10A1.25,1.25 0 0,1 12,8.75Z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Home</span>
+                </a>
+                
+                <a href="#about" class="mobile-nav-item" data-page="about" data-testid="mobile-nav-about">
+                    <div class="nav-icon-container">
+                        <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-label">About</span>
+                </a>
+                
+                <a href="#contact" class="mobile-nav-item" data-page="contact" data-testid="mobile-nav-contact">
+                    <div class="nav-icon-container">
+                        <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,8L12,13L4,8V6L12,11L20,6V8Z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Contact</span>
+                </a>
+                
+                <a href="#support" class="mobile-nav-item" data-page="support" data-testid="mobile-nav-support">
+                    <div class="nav-icon-container">
+                        <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                        </svg>
+                    </div>
+                    <span class="nav-label">Support</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Password Generator JavaScript -->
+    <script>
+        let isGenerating = false;
+        let currentPassword = '';
+        
+        // Password generation function
+        function generatePassword() {
+            if (isGenerating) return;
+            
+            const length = parseInt(document.getElementById('password-length').value);
+            const uppercase = document.getElementById('uppercase').checked;
+            const lowercase = document.getElementById('lowercase').checked;
+            const numbers = document.getElementById('numbers').checked;
+            const symbols = document.getElementById('symbols').checked;
+            
+            let charset = '';
+            if (uppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (lowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
+            if (numbers) charset += '0123456789';
+            if (symbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            if (charset === '') {
+                alert('Please select at least one character type!');
+                return;
+            }
+            
+            // Show generating animation
+            showGeneratingAnimation();
+            
+            setTimeout(() => {
+                let password = '';
+                for (let i = 0; i < length; i++) {
+                    password += charset.charAt(Math.floor(Math.random() * charset.length));
+                }
+                
+                currentPassword = password;
+                showPassword(password);
+            }, 1200);
+        }
+        
+        function showGeneratingAnimation() {
+            isGenerating = true;
+            const generatingAnim = document.getElementById('generating-animation');
+            const passwordText = document.getElementById('password-text');
+            const generateBtn = document.getElementById('generate-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            
+            generatingAnim.style.display = 'block';
+            passwordText.style.display = 'none';
+            generateBtn.disabled = true;
+            copyBtn.disabled = true;
+            
+            // Animate random characters
+            const loader = document.getElementById('cyber-loader');
+            const length = parseInt(document.getElementById('password-length').value);
+            let chars = '';
+            
+            const interval = setInterval(() => {
+                chars = '';
+                for (let i = 0; i < length; i++) {
+                    chars += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+                }
+                loader.textContent = chars;
+            }, 100);
+            
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 1200);
+        }
+        
+        function showPassword(password) {
+            isGenerating = false;
+            const generatingAnim = document.getElementById('generating-animation');
+            const passwordText = document.getElementById('password-text');
+            const generateBtn = document.getElementById('generate-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            
+            generatingAnim.style.display = 'none';
+            passwordText.style.display = 'block';
+            passwordText.textContent = password;
+            generateBtn.disabled = false;
+            copyBtn.disabled = false;
+        }
+        
+        async function copyPassword() {
+            if (!currentPassword) return;
+            
+            try {
+                await navigator.clipboard.writeText(currentPassword);
+                const copyBtn = document.getElementById('copy-btn');
+                const btnText = copyBtn.querySelector('.btn-text');
+                const btnIcon = copyBtn.querySelector('.btn-icon');
+                
+                btnText.textContent = 'COPIED!';
+                btnIcon.textContent = '✓';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btnText.textContent = 'COPY';
+                    btnIcon.textContent = '📋';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                alert('Failed to copy password to clipboard');
+            }
+        }
+        
+        function updateLength(value) {
+            document.getElementById('length-value').textContent = value;
+            if (currentPassword) {
+                generatePassword();
+            }
+        }
+        
+        function updatePassword() {
+            if (currentPassword) {
+                generatePassword();
+            }
+        }
+        
+        // Generate initial password when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            generatePassword();
+            
+            // Add cyber animations
+            animateNeuralNodes();
+            animateDataStreams();
+        });
+        
+        function animateNeuralNodes() {
+            const nodes = document.querySelectorAll('.neural-node');
+            nodes.forEach((node, index) => {
+                const delay = index * 500;
+                setInterval(() => {
+                    node.style.transform = `scale(${1 + Math.random() * 0.5})`;
+                    node.style.opacity = 0.3 + Math.random() * 0.5;
+                }, 2000 + delay);
+            });
+        }
+        
+        function animateDataStreams() {
+            const streams = document.querySelectorAll('.stream');
+            streams.forEach((stream, index) => {
+                const duration = 8000 + (index * 2000);
+                const delay = index * 1000;
+                
+                function moveStream() {
+                    stream.style.transform = 'translateX(-100px)';
+                    stream.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        stream.style.transform = `translateX(${window.innerWidth + 100}px)`;
+                        stream.style.opacity = '0.3';
+                    }, 100);
+                }
+                
+                setTimeout(() => {
+                    moveStream();
+                    setInterval(moveStream, duration);
+                }, delay);
+            });
+        }
+
+        // Smooth scrolling for footer links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all footer links that start with #
+            const footerLinks = document.querySelectorAll('.footer-link[href^="#"]');
+            
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Calculate offset to account for header
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.offsetTop;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        console.log(`🔗 Scrolling to section: ${targetId}`);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="/script.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Quiz - BreachBuster | Test Your Security Knowledge</title>
+    <meta name="description" content="Test your cybersecurity knowledge with BreachBuster's interactive quiz. Learn about password security, data breaches, and cyber threats while improving your security awareness.">
+    <meta name="keywords" content="BreachBuster cybersecurity quiz, password security test, cyber security knowledge, breach awareness quiz, security education, cybersecurity training">
+    <meta name="author" content="BreachBuster Security Team">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="canonical" href="https://breachbuster.tech/cybersecurity-quiz">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Cybersecurity Quiz - BreachBuster Security Training">
+    <meta property="og:description" content="Test your cybersecurity knowledge and learn about password security and breach detection with BreachBuster's interactive quiz.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://breachbuster.tech/cybersecurity-quiz">
+    <meta property="og:image" content="https://breachbuster.tech/favicon.ico">
+    <meta property="og:site_name" content="BreachBuster">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Cybersecurity Quiz - BreachBuster">
+    <meta name="twitter:description" content="Test your cybersecurity knowledge with BreachBuster's interactive security quiz.">
+    <meta name="twitter:image" content="https://breachbuster.tech/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Russo+One&family=Rubik+Mono+One&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Enhanced Cyber Background */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 40% 60%, #0f172a 0%, #1e293b 40%, #000 100%);
+            animation: backgroundShift 30s ease-in-out infinite;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { background: radial-gradient(circle at 40% 60%, #0f172a 0%, #1e293b 40%, #000 100%); }
+            33% { background: radial-gradient(circle at 70% 30%, #1e293b 0%, #0f172a 40%, #000 100%); }
+            66% { background: radial-gradient(circle at 20% 80%, #0f172a 0%, #1e293b 40%, #000 100%); }
+        }
+
+        /* Enhanced Matrix-like Grid */
+        .matrix-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 25px 25px, 25px 25px;
+            animation: matrixFlow 40s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes matrixFlow {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 100px) rotate(1deg); }
+        }
+
+        /* Digital Rain Effect */
+        .digital-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .rain-drop {
+            position: absolute;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            animation: fall linear infinite;
+            opacity: 0.7;
+        }
+
+        .rain-drop:nth-child(1) { left: 5%; animation-delay: 0s; animation-duration: 15s; }
+        .rain-drop:nth-child(2) { left: 15%; animation-delay: -2s; animation-duration: 18s; }
+        .rain-drop:nth-child(3) { left: 25%; animation-delay: -4s; animation-duration: 12s; }
+        .rain-drop:nth-child(4) { left: 35%; animation-delay: -6s; animation-duration: 20s; }
+        .rain-drop:nth-child(5) { left: 45%; animation-delay: -8s; animation-duration: 16s; }
+        .rain-drop:nth-child(6) { left: 55%; animation-delay: -10s; animation-duration: 22s; }
+        .rain-drop:nth-child(7) { left: 65%; animation-delay: -12s; animation-duration: 14s; }
+        .rain-drop:nth-child(8) { left: 75%; animation-delay: -14s; animation-duration: 19s; }
+        .rain-drop:nth-child(9) { left: 85%; animation-delay: -16s; animation-duration: 17s; }
+        .rain-drop:nth-child(10) { left: 95%; animation-delay: -18s; animation-duration: 21s; }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Cyber Orbs */
+        .cyber-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.3;
+            animation: orbDance 35s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #00ff00 0%, #008800 50%, transparent 70%);
+            top: 15%;
+            left: -15%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #ff0040 0%, #cc0033 50%, transparent 70%);
+            bottom: 10%;
+            right: -10%;
+            animation-delay: -12s;
+        }
+
+        .orb-3 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, #0099ff 0%, #0066cc 50%, transparent 70%);
+            top: 60%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            animation-delay: -24s;
+        }
+
+        @keyframes orbDance {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(80px, -60px) scale(1.1) rotate(90deg); }
+            50% { transform: translate(-60px, 80px) scale(0.9) rotate(180deg); }
+            75% { transform: translate(60px, 40px) scale(1.05) rotate(270deg); }
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-b {
+            font-family: 'Russo One', monospace;
+            font-size: 3rem;
+            transform: rotate(180deg);
+            color: #fff;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.6));
+            animation: logoHack 4s ease-in-out infinite;
+        }
+
+        @keyframes logoHack {
+            0%, 100% { 
+                filter: drop-shadow(0 0 15px rgba(0, 255, 0, 0.6));
+                transform: rotate(180deg);
+            }
+            50% { 
+                filter: drop-shadow(0 0 25px rgba(0, 255, 0, 0.9));
+                transform: rotate(180deg) scale(1.05);
+            }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Russo One', monospace;
+            font-size: 1.5rem;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .back-btn {
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+            border: 2px solid rgba(0, 255, 0, 0.4);
+            color: #00ff00;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
+        }
+
+        .back-btn:hover {
+            border-color: rgba(0, 255, 0, 0.7);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .title-main {
+            font-family: 'Passion One', monospace;
+            font-size: 4.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+            animation: titleHacker 5s ease-in-out infinite;
+        }
+
+        .title-sub {
+            font-family: 'Passion One', monospace;
+            font-size: 2.8rem;
+            color: #00ff00;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+            animation: subtitleGlitch 4s ease-in-out infinite;
+        }
+
+        @keyframes titleHacker {
+            0%, 100% { 
+                text-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 50px rgba(0, 255, 0, 0.9), 0 0 70px rgba(0, 255, 0, 0.4);
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes subtitleGlitch {
+            0%, 100% { 
+                text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+                transform: skew(0deg);
+            }
+            25% { 
+                text-shadow: 0 0 25px rgba(0, 255, 0, 1), 2px 0 0 rgba(255, 0, 0, 0.3);
+                transform: skew(0.5deg);
+            }
+            75% { 
+                text-shadow: 0 0 25px rgba(0, 255, 0, 1), -2px 0 0 rgba(0, 0, 255, 0.3);
+                transform: skew(-0.5deg);
+            }
+        }
+
+        .description {
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 700px;
+            margin: 1rem auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Quiz Terminal Container */
+        .quiz-terminal {
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(0, 255, 0, 0.2), inset 0 0 40px rgba(0, 255, 0, 0.05);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            position: relative;
+        }
+
+        .quiz-terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+            animation: scanLine 3s linear infinite;
+        }
+
+        @keyframes scanLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Terminal Header */
+        .terminal-header {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid rgba(0, 255, 0, 0.3);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .control-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: controlBlink 2s ease-in-out infinite;
+        }
+
+        .red { background: #ff5f56; animation-delay: 0s; }
+        .yellow { background: #ffbd2e; animation-delay: 0.3s; }
+        .green { background: #27ca3f; animation-delay: 0.6s; }
+
+        @keyframes controlBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .terminal-title {
+            font-family: 'Rubik Mono One', monospace;
+            color: #00ff00;
+            font-size: 1.3rem;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+            animation: terminalFlicker 3s ease-in-out infinite;
+        }
+
+        @keyframes terminalFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .quiz-status {
+            font-family: 'Ubuntu', monospace;
+            color: #00ffff;
+            font-size: 0.9rem;
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Quiz Content */
+        .quiz-content {
+            padding: 2rem;
+            min-height: 400px;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .quiz-intro {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .quiz-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(0, 255, 0, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .stat-number {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 2.5rem;
+            color: #00ff00;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #00ff00, #00cc00);
+            border: none;
+            color: #000;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .start-btn:hover::before {
+            left: 100%;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 0, 0.5);
+        }
+
+        .start-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Question Screen */
+        .question-screen {
+            display: none;
+        }
+
+        .progress-bar-container {
+            background: rgba(55, 65, 81, 0.6);
+            border-radius: 8px;
+            height: 8px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #00ff00, #00cc00);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .question-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-family: 'Ubuntu', monospace;
+        }
+
+        .question-counter {
+            color: #00ffff;
+            font-size: 1.1rem;
+        }
+
+        .question-timer {
+            color: #ffaa00;
+            font-size: 1.1rem;
+            animation: timerPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes timerPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .answers-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .answer-option {
+            background: rgba(30, 41, 59, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .answer-option:hover::before {
+            left: 100%;
+        }
+
+        .answer-option:hover {
+            border-color: rgba(0, 255, 0, 0.4);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            transform: translateX(5px);
+        }
+
+        .answer-option.selected {
+            border-color: rgba(0, 255, 0, 0.6);
+            background: rgba(0, 255, 0, 0.1);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.3);
+        }
+
+        .answer-option.correct {
+            border-color: rgba(34, 197, 94, 0.8);
+            background: rgba(34, 197, 94, 0.2);
+            color: #fff;
+        }
+
+        .answer-option.incorrect {
+            border-color: rgba(239, 68, 68, 0.8);
+            background: rgba(239, 68, 68, 0.2);
+            color: #fff;
+        }
+
+        .next-btn {
+            background: linear-gradient(45deg, #00ffff, #0099cc);
+            border: none;
+            color: #000;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: auto;
+            display: block;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .next-btn.active {
+            opacity: 1;
+            pointer-events: auto;
+            box-shadow: 0 3px 15px rgba(0, 255, 255, 0.4);
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Results Screen */
+        .results-screen {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .results-header {
+            margin-bottom: 2rem;
+        }
+
+        .results-title {
+            font-family: 'Passion One', monospace;
+            font-size: 3rem;
+            color: #00ff00;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+        }
+
+        .final-score {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .score-excellent { color: #00ff00; }
+        .score-good { color: #00ffff; }
+        .score-average { color: #ffaa00; }
+        .score-poor { color: #ff6666; }
+
+        .results-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .breakdown-item {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .breakdown-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .breakdown-value {
+            font-family: 'Rubik Mono One', monospace;
+            font-size: 2rem;
+            color: #00ff00;
+        }
+
+        .security-recommendation {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(255, 165, 0, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .recommendation-title {
+            font-size: 1.4rem;
+            color: #ffaa00;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .recommendation-text {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .restart-btn {
+            background: linear-gradient(45deg, #ff6600, #ff4400);
+            border: none;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 102, 0, 0.3);
+            text-transform: uppercase;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 102, 0, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .main-content {
+                padding: 0 1rem;
+            }
+
+            .title-main {
+                font-size: 3rem;
+            }
+
+            .title-sub {
+                font-size: 2rem;
+            }
+
+            .quiz-content {
+                padding: 1.5rem;
+            }
+
+            .quiz-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .results-breakdown {
+                grid-template-columns: 1fr;
+            }
+
+            .final-score {
+                font-size: 3rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-dots {
+            display: inline-flex;
+            gap: 0.3rem;
+        }
+
+        .loading-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00ff00;
+            animation: loadingBounce 1.4s ease-in-out infinite both;
+        }
+
+        .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes loadingBounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-container">
+        <div class="matrix-grid"></div>
+        <div class="digital-rain">
+            <div class="rain-drop">01011010</div>
+            <div class="rain-drop">11001101</div>
+            <div class="rain-drop">10110001</div>
+            <div class="rain-drop">01100110</div>
+            <div class="rain-drop">11010011</div>
+            <div class="rain-drop">00111001</div>
+            <div class="rain-drop">10101010</div>
+            <div class="rain-drop">01010101</div>
+            <div class="rain-drop">11110000</div>
+            <div class="rain-drop">00001111</div>
+        </div>
+        <div class="cyber-orb orb-1"></div>
+        <div class="cyber-orb orb-2"></div>
+        <div class="cyber-orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-b">B</div>
+                <div class="logo-text">
+                    <span>reach</span>
+                    <span>uster</span>
+                </div>
+            </div>
+            <a href="../index.html" class="back-btn" data-testid="link-back-home">← Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1 class="title-main">SECURITY ASSESSMENT</h1>
+            <h2 class="title-sub">KNOWLEDGE PROTOCOL</h2>
+            <p class="description">
+                Test your cybersecurity expertise with our advanced security awareness protocol. 
+                Measure your defense readiness against modern digital threats.
+            </p>
+        </div>
+
+        <!-- Quiz Terminal -->
+        <div class="quiz-terminal">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <span class="control-dot red"></span>
+                    <span class="control-dot yellow"></span>
+                    <span class="control-dot green"></span>
+                </div>
+                <div class="terminal-title">[SECURITY_ASSESSMENT_TERMINAL_V4.0]</div>
+                <div class="quiz-status" id="quizStatus">SYSTEM READY</div>
+            </div>
+
+            <div class="quiz-content">
+                <!-- Start Screen -->
+                <div id="startScreen" class="start-screen">
+                    <div class="quiz-intro">
+                        Welcome to the Cybersecurity Knowledge Assessment Protocol. This advanced evaluation will test your understanding of modern security threats, best practices, and defense mechanisms.
+                    </div>
+                    
+                    <div class="quiz-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">20</span>
+                            <span class="stat-label">Questions</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">30s</span>
+                            <span class="stat-label">Per Question</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Security Focus</span>
+                        </div>
+                    </div>
+
+                    <button class="start-btn" onclick="startQuiz()" data-testid="button-start-quiz">
+                        Initialize Assessment
+                        <div class="loading-dots" style="display: none;">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Question Screen -->
+                <div id="questionScreen" class="question-screen">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    
+                    <div class="question-info">
+                        <div class="question-counter" id="questionCounter">Question 1 of 20</div>
+                        <div class="question-timer" id="questionTimer">Time: 30s</div>
+                    </div>
+
+                    <div class="question-text" id="questionText">Loading question...</div>
+
+                    <div class="answers-grid" id="answersGrid">
+                        <!-- Dynamic answers will be inserted here -->
+                    </div>
+
+                    <button class="next-btn" id="nextBtn" onclick="nextQuestion()" data-testid="button-next-question">
+                        Next Question →
+                    </button>
+                </div>
+
+                <!-- Results Screen -->
+                <div id="resultsScreen" class="results-screen">
+                    <div class="results-header">
+                        <h2 class="results-title">ASSESSMENT COMPLETE</h2>
+                        <div class="final-score" id="finalScore">0%</div>
+                    </div>
+
+                    <div class="results-breakdown">
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Correct Answers</div>
+                            <div class="breakdown-value" id="correctCount">0</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Total Questions</div>
+                            <div class="breakdown-value" id="totalCount">20</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Time Taken</div>
+                            <div class="breakdown-value" id="timeTaken">0m</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">Security Level</div>
+                            <div class="breakdown-value" id="securityLevel">NOVICE</div>
+                        </div>
+                    </div>
+
+                    <div class="security-recommendation" id="securityRecommendation">
+                        <h3 class="recommendation-title">Security Recommendation</h3>
+                        <p class="recommendation-text" id="recommendationText">
+                            Based on your assessment results, we recommend focusing on fundamental cybersecurity practices.
+                        </p>
+                    </div>
+
+                    <button class="restart-btn" onclick="restartQuiz()" data-testid="button-restart-quiz">
+                        🔄 Retake Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Quiz State
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = null;
+        let timer = null;
+        let timeRemaining = 30;
+        let startTime = null;
+        let questions = [];
+
+        // Comprehensive Cybersecurity Questions Database
+        const questionDatabase = [
+            {
+                question: "What is the primary purpose of a firewall in network security?",
+                answers: [
+                    "To encrypt all network traffic",
+                    "To monitor and control incoming and outgoing network traffic",
+                    "To store security logs",
+                    "To authenticate users"
+                ],
+                correct: 1,
+                explanation: "A firewall acts as a barrier between trusted and untrusted networks, controlling traffic based on security rules."
+            },
+            {
+                question: "Which of the following is considered a strong password practice?",
+                answers: [
+                    "Using the same password for multiple accounts",
+                    "Using a combination of uppercase, lowercase, numbers, and special characters",
+                    "Using only numbers for better security",
+                    "Sharing passwords with trusted colleagues"
+                ],
+                correct: 1,
+                explanation: "Strong passwords should be complex, unique, and contain a mix of different character types."
+            },
+            {
+                question: "What does '2FA' or 'MFA' refer to in cybersecurity?",
+                answers: [
+                    "Two-Factor Authentication / Multi-Factor Authentication",
+                    "Two-File Access / Multi-File Access",
+                    "Technical Forensic Analysis",
+                    "Threat Factor Assessment"
+                ],
+                correct: 0,
+                explanation: "2FA/MFA requires two or more verification factors to gain access, significantly improving security."
+            },
+            {
+                question: "Which type of malware is designed to encrypt files and demand payment?",
+                answers: [
+                    "Trojan",
+                    "Spyware",
+                    "Ransomware",
+                    "Adware"
+                ],
+                correct: 2,
+                explanation: "Ransomware encrypts victim's files and demands payment (usually cryptocurrency) for the decryption key."
+            },
+            {
+                question: "What is phishing in cybersecurity context?",
+                answers: [
+                    "A type of network protocol",
+                    "A method to catch fish using technology",
+                    "A social engineering attack to steal sensitive information",
+                    "A programming language for security"
+                ],
+                correct: 2,
+                explanation: "Phishing is a social engineering attack where attackers impersonate legitimate entities to steal credentials or data."
+            },
+            {
+                question: "What does HTTPS provide that HTTP does not?",
+                answers: [
+                    "Faster loading times",
+                    "Better search engine ranking",
+                    "Encryption and authentication",
+                    "More colorful web pages"
+                ],
+                correct: 2,
+                explanation: "HTTPS adds SSL/TLS encryption to HTTP, providing data encryption and server authentication."
+            },
+            {
+                question: "Which of these is NOT a recommended practice for email security?",
+                answers: [
+                    "Verifying sender identity before clicking links",
+                    "Opening all attachments to check for viruses",
+                    "Using email encryption for sensitive data",
+                    "Regularly updating email client software"
+                ],
+                correct: 1,
+                explanation: "Never open attachments from unknown sources as they may contain malware."
+            },
+            {
+                question: "What is the principle of 'least privilege' in security?",
+                answers: [
+                    "Users should have the minimum access necessary to perform their job",
+                    "Security measures should be as simple as possible",
+                    "The least secure system should be protected first",
+                    "Only privileged users need security training"
+                ],
+                correct: 0,
+                explanation: "Least privilege limits user access rights to the minimum necessary to accomplish their tasks."
+            },
+            {
+                question: "What is a VPN primarily used for?",
+                answers: [
+                    "Increasing internet speed",
+                    "Creating a secure, encrypted connection over public networks",
+                    "Blocking all internet traffic",
+                    "Storing files in the cloud"
+                ],
+                correct: 1,
+                explanation: "VPNs create encrypted tunnels over public networks, protecting data transmission and privacy."
+            },
+            {
+                question: "Which of these is a sign of a potential security breach?",
+                answers: [
+                    "Slower internet connection",
+                    "Unexpected network activity or unauthorized access attempts",
+                    "Regular software updates",
+                    "Strong password requirements"
+                ],
+                correct: 1,
+                explanation: "Unusual network activity and unauthorized access attempts are key indicators of potential security breaches."
+            },
+            {
+                question: "What is social engineering in cybersecurity?",
+                answers: [
+                    "Designing secure social media platforms",
+                    "Manipulating people to divulge confidential information",
+                    "Engineering social networks",
+                    "Creating security awareness programs"
+                ],
+                correct: 1,
+                explanation: "Social engineering exploits human psychology to trick people into revealing sensitive information or performing actions that compromise security."
+            },
+            {
+                question: "What does the term 'zero-day' refer to?",
+                answers: [
+                    "A vulnerability that has been known for zero days",
+                    "A security patch released immediately",
+                    "A vulnerability unknown to security vendors and without available patches",
+                    "A system with zero security vulnerabilities"
+                ],
+                correct: 2,
+                explanation: "Zero-day vulnerabilities are unknown to security vendors, making them particularly dangerous as no patches exist."
+            },
+            {
+                question: "What is the purpose of data backup in cybersecurity?",
+                answers: [
+                    "To increase storage capacity",
+                    "To ensure data recovery after incidents like ransomware attacks",
+                    "To improve system performance",
+                    "To share data with other organizations"
+                ],
+                correct: 1,
+                explanation: "Regular backups ensure data can be recovered after security incidents, hardware failures, or ransomware attacks."
+            },
+            {
+                question: "Which authentication method is considered most secure?",
+                answers: [
+                    "Username and password only",
+                    "Biometric authentication combined with other factors",
+                    "Security questions only",
+                    "PIN numbers"
+                ],
+                correct: 1,
+                explanation: "Biometric authentication combined with other factors provides strong security as biometrics are unique and difficult to replicate."
+            },
+            {
+                question: "What is the main risk of using public Wi-Fi for sensitive activities?",
+                answers: [
+                    "Slower connection speeds",
+                    "Higher data usage costs",
+                    "Data interception and man-in-the-middle attacks",
+                    "Limited bandwidth"
+                ],
+                correct: 2,
+                explanation: "Public Wi-Fi networks are often unsecured, making data transmission vulnerable to interception and attacks."
+            },
+            {
+                question: "What does 'patching' refer to in cybersecurity?",
+                answers: [
+                    "Repairing physical hardware damage",
+                    "Updating software to fix security vulnerabilities",
+                    "Adding new features to software",
+                    "Connecting network cables"
+                ],
+                correct: 1,
+                explanation: "Patching involves updating software with security fixes to address known vulnerabilities and maintain system security."
+            },
+            {
+                question: "What is the primary goal of penetration testing?",
+                answers: [
+                    "To break into systems for malicious purposes",
+                    "To identify and exploit vulnerabilities ethically to improve security",
+                    "To test network speed",
+                    "To install new security software"
+                ],
+                correct: 1,
+                explanation: "Penetration testing simulates cyber attacks to identify vulnerabilities before malicious actors can exploit them."
+            },
+            {
+                question: "Which of these is a characteristic of a botnet?",
+                answers: [
+                    "A network of legitimate security tools",
+                    "A collection of compromised computers controlled remotely",
+                    "A type of firewall configuration",
+                    "A secure communication protocol"
+                ],
+                correct: 1,
+                explanation: "Botnets are networks of compromised devices that can be controlled remotely to perform malicious activities."
+            },
+            {
+                question: "What is the purpose of encryption in cybersecurity?",
+                answers: [
+                    "To compress files for storage",
+                    "To convert data into unreadable format for unauthorized users",
+                    "To increase data processing speed",
+                    "To organize data more efficiently"
+                ],
+                correct: 1,
+                explanation: "Encryption converts readable data into an unreadable format that can only be decrypted with the proper key."
+            },
+            {
+                question: "What does the term 'insider threat' refer to?",
+                answers: [
+                    "External hackers trying to break in",
+                    "Malware infected external devices",
+                    "Security risks posed by people within the organization",
+                    "Threats from competing companies"
+                ],
+                correct: 2,
+                explanation: "Insider threats come from individuals within the organization who have authorized access but may misuse it."
+            },
+            {
+                question: "What is the main purpose of a honeypot in cybersecurity?",
+                answers: [
+                    "To store encrypted passwords",
+                    "To attract and detect attackers",
+                    "To speed up network connections",
+                    "To backup important files"
+                ],
+                correct: 1,
+                explanation: "Honeypots are decoy systems designed to attract attackers and gather intelligence about their methods."
+            },
+            {
+                question: "Which of these is the best practice for software downloads?",
+                answers: [
+                    "Download from any website that offers the software",
+                    "Only download from official sources and verify digital signatures",
+                    "Always choose the fastest download server",
+                    "Download pirated software to save money"
+                ],
+                correct: 1,
+                explanation: "Only downloading from official sources and verifying signatures ensures software authenticity and reduces malware risk."
+            },
+            {
+                question: "What is endpoint security?",
+                answers: [
+                    "Security measures for network routers only",
+                    "Protection for end-user devices like laptops and smartphones",
+                    "Security for data centers only",
+                    "Protection for website endpoints"
+                ],
+                correct: 1,
+                explanation: "Endpoint security protects end-user devices like laptops, phones, and tablets from security threats."
+            },
+            {
+                question: "What does 'DDoS' stand for and what is its purpose?",
+                answers: [
+                    "Data Denial of Service - to steal data",
+                    "Distributed Denial of Service - to overwhelm and crash systems",
+                    "Direct Data of Service - to speed up data transfer",
+                    "Dynamic Domain of Service - to manage domain names"
+                ],
+                correct: 1,
+                explanation: "DDoS attacks use multiple systems to flood a target with traffic, overwhelming it and causing service disruption."
+            },
+            {
+                question: "What is the most important first step when discovering a security breach?",
+                answers: [
+                    "Post about it on social media",
+                    "Try to fix it yourself immediately",
+                    "Contain the breach and assess the damage",
+                    "Ignore it and hope it goes away"
+                ],
+                correct: 2,
+                explanation: "The first priority is to contain the breach to prevent further damage, then assess the scope and impact."
+            }
+        ];
+
+        // Initialize quiz system
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🛡️ Security Assessment Terminal Initialized');
+            console.log('🔧 Loading cybersecurity knowledge database...');
+            console.log('🎯 Assessment protocol ready for deployment');
+            console.log('✅ All security assessment systems operational');
+        });
+
+        function startQuiz() {
+            console.log('🚀 Initiating security assessment protocol...');
+            
+            // Show loading animation
+            const startBtn = document.querySelector('.start-btn');
+            startBtn.innerHTML = 'Initializing Assessment <div class="loading-dots" style="display: inline-flex; margin-left: 10px;"><span></span><span></span><span></span></div>';
+            
+            setTimeout(() => {
+                // Reset quiz state
+                currentQuestion = 0;
+                score = 0;
+                selectedAnswer = null;
+                startTime = new Date();
+
+                // Select 20 random questions
+                questions = getRandomQuestions(20);
+
+                // Update UI
+                document.getElementById('startScreen').style.display = 'none';
+                document.getElementById('questionScreen').style.display = 'block';
+                document.getElementById('quizStatus').textContent = 'ASSESSMENT IN PROGRESS';
+
+                displayQuestion();
+                startTimer();
+                
+                console.log('✅ Security assessment initiated successfully');
+            }, 2000);
+        }
+
+        function getRandomQuestions(count) {
+            const shuffled = [...questionDatabase].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        function displayQuestion() {
+            const question = questions[currentQuestion];
+            
+            // Update progress
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('questionCounter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            
+            // Display question
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Display answers
+            const answersGrid = document.getElementById('answersGrid');
+            answersGrid.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer-option';
+                answerDiv.textContent = answer;
+                answerDiv.onclick = () => selectAnswer(index, answerDiv);
+                answerDiv.setAttribute('data-testid', `answer-option-${index}`);
+                answersGrid.appendChild(answerDiv);
+            });
+
+            // Reset state
+            selectedAnswer = null;
+            document.getElementById('nextBtn').classList.remove('active');
+            timeRemaining = 30;
+        }
+
+        function selectAnswer(answerIndex, element) {
+            // Remove previous selection
+            document.querySelectorAll('.answer-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark current selection
+            element.classList.add('selected');
+            selectedAnswer = answerIndex;
+            
+            // Enable next button
+            document.getElementById('nextBtn').classList.add('active');
+            
+            console.log(`Answer selected: ${answerIndex}`);
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === null) return;
+
+            // Check if answer is correct
+            const question = questions[currentQuestion];
+            const isCorrect = selectedAnswer === question.correct;
+            
+            if (isCorrect) {
+                score++;
+                console.log('✅ Correct answer!');
+            } else {
+                console.log('❌ Incorrect answer');
+            }
+
+            // Show correct/incorrect feedback
+            showAnswerFeedback(isCorrect);
+        }
+
+        function showAnswerFeedback(isCorrect) {
+            const question = questions[currentQuestion];
+            const answerOptions = document.querySelectorAll('.answer-option');
+            
+            // Highlight correct and incorrect answers
+            answerOptions.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedAnswer && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Wait then proceed to next question
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion >= questions.length) {
+                    finishQuiz();
+                } else {
+                    displayQuestion();
+                }
+            }, 2000);
+        }
+
+        function finishQuiz() {
+            clearInterval(timer);
+            
+            // Calculate results
+            const percentage = Math.round((score / questions.length) * 100);
+            const endTime = new Date();
+            const timeTakenMinutes = Math.round((endTime - startTime) / 60000);
+            
+            // Show results screen
+            document.getElementById('questionScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+            document.getElementById('quizStatus').textContent = 'ASSESSMENT COMPLETE';
+            
+            // Display results
+            displayResults(percentage, timeTakenMinutes);
+            
+            console.log(`🎯 Assessment complete! Score: ${percentage}%`);
+        }
+
+        function displayResults(percentage, timeTaken) {
+            // Set score color and security level
+            let scoreClass, securityLevel, recommendation;
+            
+            if (percentage >= 90) {
+                scoreClass = 'score-excellent';
+                securityLevel = 'EXPERT';
+                recommendation = 'Outstanding! You demonstrate expert-level cybersecurity knowledge. Continue staying updated with emerging threats and consider mentoring others in security best practices.';
+            } else if (percentage >= 75) {
+                scoreClass = 'score-good';
+                securityLevel = 'ADVANCED';
+                recommendation = 'Excellent work! You have strong cybersecurity knowledge. Focus on staying current with the latest threats and advanced security techniques to maintain your expertise.';
+            } else if (percentage >= 60) {
+                scoreClass = 'score-average';
+                securityLevel = 'INTERMEDIATE';
+                recommendation = 'Good foundation! You understand core cybersecurity concepts. Consider deepening your knowledge in areas like advanced threat detection and incident response.';
+            } else {
+                scoreClass = 'score-poor';
+                securityLevel = 'NOVICE';
+                recommendation = 'Important areas for improvement identified. Focus on learning fundamental cybersecurity concepts, password security, and recognizing common threats like phishing and malware.';
+            }
+
+            // Update display elements
+            const finalScore = document.getElementById('finalScore');
+            finalScore.textContent = percentage + '%';
+            finalScore.className = 'final-score ' + scoreClass;
+            
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('totalCount').textContent = questions.length;
+            document.getElementById('timeTaken').textContent = timeTaken + 'm';
+            document.getElementById('securityLevel').textContent = securityLevel;
+            document.getElementById('recommendationText').textContent = recommendation;
+        }
+
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('questionTimer').textContent = `Time: ${timeRemaining}s`;
+                
+                if (timeRemaining <= 10) {
+                    document.getElementById('questionTimer').style.color = '#ff6666';
+                }
+                
+                if (timeRemaining <= 0) {
+                    // Time up, move to next question
+                    if (selectedAnswer === null) {
+                        // Select a random wrong answer if no answer selected
+                        selectedAnswer = -1;
+                    }
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        function restartQuiz() {
+            console.log('🔄 Restarting security assessment...');
+            
+            // Reset all screens
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('questionScreen').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
+            document.getElementById('quizStatus').textContent = 'SYSTEM READY';
+            
+            // Reset start button
+            const startBtn = document.querySelector('.start-btn');
+            startBtn.innerHTML = 'Initialize Assessment';
+            
+            // Reset timer color
+            document.getElementById('questionTimer').style.color = '#ffaa00';
+            
+            clearInterval(timer);
+            console.log('✅ Assessment system reset complete');
+        }
+
+        // Console status updates
+        setInterval(() => {
+            if (document.getElementById('questionScreen').style.display !== 'none') {
+                console.log('🔍 Security assessment in progress...');
+            }
+        }, 15000);
+
+        console.log('🛡️ Breach Buster Security Assessment System fully loaded and operational!');
+        console.log('🧠 Cybersecurity knowledge database initialized');
+        console.log('📊 Assessment analytics ready');
+        console.log('🔒 Question randomization protocols active');
+        console.log('⏱️ Timer systems operational');
+        console.log('✅ All assessment systems ready for deployment');
+    </script>
+</body>
+</html>

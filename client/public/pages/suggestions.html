@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Suggestions - BreachBuster | Help Improve Security Tools</title>
+    <meta name="description" content="Share your feature ideas and suggestions to help improve BreachBuster's security features. Contribute to the evolution of password security and breach detection tools.">
+    <meta name="keywords" content="BreachBuster suggestions, feature requests, cybersecurity improvements, password security feedback, user suggestions, security tool enhancement">
+    <meta name="author" content="BreachBuster Security Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://breachbuster.tech/suggestions">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&family=Russo+One&family=Rubik+Mono+One&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #000 0%, #0f172a 25%, #1e293b 50%, #0f172a 75%, #000 100%);
+        }
+
+        /* Moving Grid Pattern */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 25s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            opacity: 0.6;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 20s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: -2s; animation-duration: 18s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: -4s; animation-duration: 22s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: -6s; animation-duration: 16s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: -8s; animation-duration: 24s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: -10s; animation-duration: 19s; }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container and Layout */
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            color: #fff;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-b {
+            font-family: 'Russo One', monospace;
+            font-size: 3rem;
+            color: #fff;
+            transform: rotate(180deg);
+            animation: logoSpin 6s ease-in-out infinite;
+        }
+
+        @keyframes logoSpin {
+            0%, 100% { transform: rotate(180deg); }
+            50% { transform: rotate(170deg); }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            font-family: 'Russo One', monospace;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .form-container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Title Section */
+        .title-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .main-title {
+            font-family: 'Passion One', cursive;
+            font-size: 4rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .sub-title {
+            font-family: 'Passion One', cursive;
+            font-size: 2.5rem;
+            color: #00bfff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Form Styles */
+        .form-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+        }
+
+        .form-header {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ff5f5f; }
+        .dot.yellow { background: #ffff5f; }
+        .dot.green { background: #5fff5f; }
+
+        .form-title {
+            font-family: 'Russo One', monospace;
+            font-size: 1.2rem;
+            color: #00ffff;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .form-content {
+            padding: 2rem;
+        }
+
+        .suggestion-notice {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .suggestion-notice-icon {
+            font-size: 1.5rem;
+            color: #22c55e;
+            flex-shrink: 0;
+        }
+
+        .suggestion-notice-content h4 {
+            color: #4ade80;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .suggestion-notice-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Form Groups */
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Russo One', monospace;
+            font-size: 1rem;
+            color: #00ffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .required {
+            color: #ff6b6b;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            border-radius: 6px;
+            padding: 0.8rem;
+            color: #4ade80;
+            font-family: 'Ubuntu', monospace;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(0, 255, 255, 0.5);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-help {
+            font-size: 0.8rem;
+            color: rgba(0, 255, 255, 0.7);
+            margin-top: 0.3rem;
+        }
+
+        /* Priority Badges */
+        .priority-options {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .priority-option {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Ubuntu', monospace;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .priority-option:hover {
+            border-color: rgba(0, 255, 255, 0.5);
+            color: #00ffff;
+        }
+
+        .priority-option.selected {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+            color: #00ffff;
+        }
+
+        .priority-option.low { border-color: rgba(34, 197, 94, 0.5); }
+        .priority-option.low.selected { background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #22c55e; }
+
+        .priority-option.medium { border-color: rgba(245, 158, 11, 0.5); }
+        .priority-option.medium.selected { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; color: #f59e0b; }
+
+        .priority-option.high { border-color: rgba(239, 68, 68, 0.5); }
+        .priority-option.high.selected { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #ef4444; }
+
+        /* Submit Button */
+        .submit-section {
+            margin-top: 2rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Response Notice */
+        .response-notice {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-family: 'Ubuntu', monospace;
+        }
+
+        .response-time {
+            color: #00bfff;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .response-details {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Error/Success Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .main-title {
+                font-size: 3rem;
+            }
+
+            .sub-title {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .priority-options {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-container">
+        <div class="grid-overlay"></div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-b">B</div>
+                    <div class="logo-text">
+                        <span>reach</span>
+                        <span>uster</span>
+                    </div>
+                </div>
+            </div>
+            <a href="/" class="back-button">
+                <span>←</span> Back to Home
+            </a>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="form-container">
+                <!-- Title Section -->
+                <div class="title-section">
+                    <h1 class="main-title">Feature</h1>
+                    <h2 class="sub-title">Suggestions</h2>
+                    <p class="description">
+                        Share your innovative ideas and feature requests to help us build better security tools for everyone.
+                    </p>
+                </div>
+
+                <!-- Form Card -->
+                <div class="form-card">
+                    <div class="form-header">
+                        <div class="terminal-dots">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                        </div>
+                        <h3 class="form-title">[ FEATURE SUGGESTION TERMINAL ]</h3>
+                    </div>
+
+                    <div class="form-content">
+                        <!-- Suggestion Notice -->
+                        <div class="suggestion-notice">
+                            <div class="suggestion-notice-icon">💡</div>
+                            <div class="suggestion-notice-content">
+                                <h4>Innovation Hub:</h4>
+                                <p>
+                                    Your creative ideas drive our development. Suggest new features, security enhancements, 
+                                    or improvements that could benefit the entire cybersecurity community.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Success/Error Messages -->
+                        <div id="successMessage" class="message success">
+                            <strong>Success!</strong> Your suggestion has been sent to our development team. We appreciate your innovation!
+                        </div>
+                        <div id="errorMessage" class="message error">
+                            <strong>Error!</strong> <span id="errorText">There was a problem sending your suggestion. Please try again.</span>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="suggestionForm">
+                            <!-- Contact Information -->
+                            <div class="form-section">
+                                <h3 class="section-title">Contact Information</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label class="form-label" for="userName">
+                                            Name <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="userName" 
+                                            name="userName" 
+                                            class="form-input" 
+                                            placeholder="Your name"
+                                            required
+                                            data-testid="input-user-name"
+                                        >
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="userEmail">
+                                            Email Address <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="email" 
+                                            id="userEmail" 
+                                            name="userEmail" 
+                                            class="form-input" 
+                                            placeholder="your.email@example.com"
+                                            required
+                                            data-testid="input-user-email"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Suggestion Details -->
+                            <div class="form-section">
+                                <h3 class="section-title">Feature Suggestion</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="suggestionCategory">
+                                        Category <span class="required">*</span>
+                                    </label>
+                                    <select 
+                                        id="suggestionCategory" 
+                                        name="suggestionCategory" 
+                                        class="form-select" 
+                                        required
+                                        data-testid="select-suggestion-category"
+                                    >
+                                        <option value="">Select category...</option>
+                                        <option value="security-feature">🛡️ Security Feature</option>
+                                        <option value="password-tools">🔐 Password Tools</option>
+                                        <option value="breach-detection">🚨 Breach Detection</option>
+                                        <option value="user-interface">🎨 User Interface</option>
+                                        <option value="api-integration">🔗 API Integration</option>
+                                        <option value="mobile-app">📱 Mobile Features</option>
+                                        <option value="analytics">📊 Analytics & Reports</option>
+                                        <option value="other">💫 Other Innovation</option>
+                                    </select>
+                                    <div class="form-help">
+                                        Choose the category that best fits your suggestion
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="suggestionTitle">
+                                        Feature Title <span class="required">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="suggestionTitle" 
+                                        name="suggestionTitle" 
+                                        class="form-input" 
+                                        placeholder="Brief title for your feature idea..."
+                                        required
+                                        data-testid="input-suggestion-title"
+                                    >
+                                    <div class="form-help">
+                                        A clear, descriptive name for your feature suggestion
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="suggestionDescription">
+                                        Detailed Description <span class="required">*</span>
+                                    </label>
+                                    <textarea 
+                                        id="suggestionDescription" 
+                                        name="suggestionDescription" 
+                                        class="form-textarea" 
+                                        placeholder="Describe your feature idea in detail. Include how it would work, who would benefit, and why it's important..."
+                                        required
+                                        data-testid="textarea-suggestion-description"
+                                    ></textarea>
+                                    <div class="form-help">
+                                        Explain your idea thoroughly - the more detail, the better we can understand and implement it
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Implementation Priority
+                                    </label>
+                                    <div class="priority-options">
+                                        <div class="priority-option low" data-priority="low" data-testid="priority-low">
+                                            Nice to Have
+                                        </div>
+                                        <div class="priority-option medium selected" data-priority="medium" data-testid="priority-medium">
+                                            Important
+                                        </div>
+                                        <div class="priority-option high" data-priority="high" data-testid="priority-high">
+                                            Critical Need
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="priorityLevel" name="priorityLevel" value="medium">
+                                    <div class="form-help">
+                                        How important is this feature for security enhancement?
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="useCase">
+                                        Use Case Example
+                                    </label>
+                                    <textarea 
+                                        id="useCase" 
+                                        name="useCase" 
+                                        class="form-textarea" 
+                                        placeholder="Provide a real-world example of how this feature would be used..."
+                                        data-testid="textarea-use-case"
+                                    ></textarea>
+                                    <div class="form-help">
+                                        Help us understand the practical application of your suggestion
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Submit Section -->
+                            <div class="submit-section">
+                                <button type="submit" class="submit-button" data-testid="button-submit-suggestion">
+                                    <span id="submitText">Submit Feature Suggestion</span>
+                                    <div id="submitSpinner" class="loading-spinner" style="display: none;"></div>
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Response Notice -->
+                        <div class="response-notice">
+                            <div class="response-time">⚡ Instant Discord Integration</div>
+                            <div class="response-details">
+                                Your suggestion is sent directly to our development team via Discord
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Initialize system
+        console.log('🛡️ Breach Buster Suggestion System Initialized');
+
+        // Priority selection
+        const priorityOptions = document.querySelectorAll('.priority-option');
+        const priorityInput = document.getElementById('priorityLevel');
+
+        priorityOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                priorityOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                priorityInput.value = option.dataset.priority;
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('suggestionForm');
+        const submitButton = document.querySelector('.submit-button');
+        const submitText = document.getElementById('submitText');
+        const submitSpinner = document.getElementById('submitSpinner');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorText = document.getElementById('errorText');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Start loading state
+            submitButton.disabled = true;
+            submitText.style.display = 'none';
+            submitSpinner.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Collect form data
+            const formData = new FormData(form);
+            const suggestionData = {
+                userName: formData.get('userName'),
+                userEmail: formData.get('userEmail'),
+                feedbackType: 'feature-request',
+                feedbackTitle: formData.get('suggestionTitle'),
+                feedbackMessage: `**Category:** ${formData.get('suggestionCategory')}\n\n**Description:**\n${formData.get('suggestionDescription')}\n\n**Use Case:**\n${formData.get('useCase') || 'Not provided'}`,
+                priorityLevel: formData.get('priorityLevel'),
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+
+            try {
+                const response = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(suggestionData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Success
+                    successMessage.style.display = 'block';
+                    form.reset();
+                    
+                    // Reset priority to medium
+                    priorityOptions.forEach(opt => opt.classList.remove('selected'));
+                    document.querySelector('[data-priority="medium"]').classList.add('selected');
+                    priorityInput.value = 'medium';
+                } else {
+                    // Error from server
+                    errorText.textContent = result.error || 'Failed to send suggestion. Please try again.';
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                // Network error
+                console.error('Error sending suggestion:', error);
+                errorText.textContent = 'Network error. Please check your connection and try again.';
+                errorMessage.style.display = 'block';
+            } finally {
+                // Reset button state
+                submitButton.disabled = false;
+                submitText.style.display = 'inline';
+                submitSpinner.style.display = 'none';
+            }
+        });
+
+        console.log('✅ Suggestion system ready');
+        console.log('💡 Ready to collect innovative feature ideas');
+    </script>
+</body>
+</html>
