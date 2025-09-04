@@ -41,7 +41,7 @@ BreachBuster is a comprehensive cybersecurity defense platform that empowers use
 ### 🏠 **Main Dashboard**
 *Experience the cyberpunk-themed interface with real-time security monitoring*
 
-![Dashboard Preview](./image_1757008585126.png)
+![Check Preview](assests/demo.mp4)
 
 ### 🔍 **Password Security Scanner**
 *Instantly check if your passwords have been compromised in data breaches*
