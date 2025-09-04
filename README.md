@@ -328,6 +328,6 @@ copies or substantial portions of the Software.
 [![Privacy](https://img.shields.io/badge/Privacy-Protected-00d4ff?style=for-the-badge&labelColor=0a0a0a)](https://github.com/yourusername/breachbuster)
 [![Open Source](https://img.shields.io/badge/Open-Source-00d4ff?style=for-the-badge&labelColor=0a0a0a)](https://github.com/yourusername/breachbuster)
 
-**Made with ❤️ by the BreachBuster Security Team**
+**Made with ❤️ by the BreachBuster Security Team - TechieGeeke**
 
 </div>
